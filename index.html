@@ -126,7 +126,7 @@
     right: 18px;
     font-family: 'Agustus Signature', cursive;
     font-weight: 500;
-    font-size: 2.24rem;
+    font-size: 2.69rem;
     color: #ffffff;
     letter-spacing: 0.01em;
     text-shadow: 0 2px 12px rgba(0,0,0,0.7);
@@ -285,14 +285,14 @@
     opacity: 0.55;
   }
 
-  .flip-card-back .card-symbol { font-size: 2.5rem; }
-
   .flip-card-back .card-name-on-card {
     font-family: 'Agustus Signature', cursive;
-    font-size: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
     color: var(--cream);
     text-align: center;
     padding: 0 12px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
   }
 
   .card-deck-wrapper:hover .flip-card-inner:not(.flipped) {
@@ -668,7 +668,7 @@
 
   <div id="category-header" style="text-align:center; margin-bottom:30px;">
     <div id="cat-icon" style="font-size:2.5rem; margin-bottom:8px;"></div>
-    <div id="cat-name" style="font-family:'Agustus Signature',cursive; font-size:2.99rem; color:var(--green-deep);"></div>
+    <div id="cat-name" style="font-family:'Agustus Signature',cursive; font-size:3.59rem; color:var(--green-deep);"></div>
   </div>
 
   <!-- Oracle -->
@@ -692,7 +692,6 @@
             </div>
           </div>
           <div class="flip-card-back" id="flip-card-back">
-            <span class="card-symbol" id="card-symbol"></span>
             <div class="card-name-on-card" id="card-name-visual"></div>
           </div>
         </div>
@@ -1062,7 +1061,6 @@ function drawCard() {
     stopShuffle();
 
     const card = oracleCards[Math.floor(Math.random() * oracleCards.length)];
-    document.getElementById('card-symbol').textContent = card.symbol;
     document.getElementById('card-name-visual').textContent = card.name;
     document.getElementById('card-name-text').textContent = card.name;
     document.getElementById('card-desc-text').textContent = card.desc;
