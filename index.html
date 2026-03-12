@@ -636,7 +636,7 @@
     <div class="category-card" onclick="openCategory('dormir')">
       <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/34767464/pexels-photo-34767464.jpeg'); background-size:cover; background-position:center;"></div>
       <div class="card-overlay"></div>
-      <div class="category-name">Pour aller dormir tranquillement</div>
+      <div class="category-name">Pour dormir tranquillement</div>
     </div>
     <div class="category-card" onclick="openCategory('bain')">
       <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/32208792/pexels-photo-32208792.jpeg'); background-size:cover; background-position:center;"></div>
@@ -671,13 +671,14 @@
   <button class="back-btn" onclick="goHome()">← Retour</button>
 
   <div id="category-header" style="text-align:center; margin-bottom:30px;">
-    <div id="cat-icon" style="font-size:2.5rem; margin-bottom:8px;"></div>
     <div id="cat-name" style="font-family:'Agustus Signature',cursive; font-size:3.59rem; color:var(--green-deep);"></div>
   </div>
 
   <!-- Oracle -->
   <div class="oracle-section">
-    <div class="oracle-title">Tirez votre carte du jour</div>
+    <div style="text-align:center; margin-bottom:28px;">
+      <div style="font-family:'Agustus Signature',cursive; font-size:3.8rem; font-weight:700; color:var(--green-deep); text-shadow: 0 2px 12px rgba(45,74,45,0.18); line-height:1.1;">l'oracle du calme</div>
+    </div>
 
     <!-- Deck of cards with flip animation -->
     <div class="card-deck-wrapper" onclick="drawCard()" onmouseenter="startShuffle()" onmouseleave="stopShuffle()">
@@ -702,10 +703,14 @@
       </div>
     </div>
 
+    <!-- Bouton tirer à nouveau, toujours visible après tirage -->
+    <div id="retirer-btn" style="display:none; text-align:center; margin-bottom:12px;">
+      <button onclick="resetOracle()" style="font-family:'Agustus Signature',cursive;font-size:1.1rem;color:var(--cream);background:var(--green-deep);border:none;border-radius:30px;padding:10px 28px;cursor:pointer;box-shadow:0 4px 15px rgba(30,58,30,0.3);">🔄 Tirer à nouveau</button>
+    </div>
+
     <div class="oracle-card-display" id="oracle-display">
       <div class="oracle-card-name" id="card-name-text"></div>
       <div class="oracle-card-desc" id="card-desc-text"></div>
-      <button onclick="resetOracle()" style="margin-top:16px;font-family:'Agustus Signature',cursive;font-size:1rem;color:var(--green-deep);background:rgba(255,255,255,0.8);border:1px solid var(--green-sage);border-radius:30px;padding:8px 24px;cursor:pointer;">🔄 Tirer une nouvelle carte</button>
     </div>
   </div>
 
@@ -794,6 +799,7 @@ const oracleCards = [
   {
     name: "La Guidance",
     symbol: "⭐",
+    image: "https://images.pexels.com/photos/17298790/pexels-photo-17298790.jpeg",
     desc: "Vous n'êtes pas seul·e. Des guides visibles et invisibles marchent à vos côtés. Ouvrez-vous à leurs signes."
   },
   {
@@ -820,7 +826,7 @@ const oracleCards = [
 const categories = {
   dormir: {
     icon: "🌙",
-    name: "Pour aller dormir tranquillement",
+    name: "Pour dormir tranquillement",
     subcategories: {
       "Les bruits de l'eau": [
         { label: "Ruisseau balbutiant", type: "soundcloud", url: "https://soundcloud.com/oasisdesbruitsnaturels/ruisseau-balbutiant-le-rebirth" },
@@ -1087,6 +1093,7 @@ function drawCard() {
     inner.classList.add('flipped');
 
     setTimeout(() => {
+      document.getElementById('retirer-btn').style.display = 'block';
       const display = document.getElementById('oracle-display');
       display.style.display = 'block';
       display.style.animation = 'none';
@@ -1099,8 +1106,8 @@ function drawCard() {
 function resetOracle() {
   const inner = document.getElementById('flip-card-inner');
   inner.classList.remove('flipped');
-  const display = document.getElementById('oracle-display');
-  display.style.display = 'none';
+  document.getElementById('oracle-display').style.display = 'none';
+  document.getElementById('retirer-btn').style.display = 'none';
 }
 </script>
 </body>
