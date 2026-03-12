@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temps Calme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Caveat:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/raba-rough" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/hambut" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #2d4a2d;
+    --green-mid: #4a7c4a;
+    --green-sage: #7a9e6e;
+    --green-light: #b8d4a8;
+    --green-pale: #e8f0e0;
+    --cream: #faf6ee;
+    --petal-pink: #e8a0b0;
+    --petal-yellow: #e8d480;
+    --petal-violet: #b088c0;
+    --petal-white: #f5f0e8;
+    --brown-soft: #8b6f47;
+    --text-dark: #2a3a1f;
+    --text-mid: #4a5e38;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background-color: var(--cream);
+    background-image: url('https://images.pexels.com/photos/7899693/pexels-photo-7899693.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--text-dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── Soft overlay to keep text readable ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(250, 246, 238, 0.72);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 60px 20px 50px;
+  }
+
+  .site-title {
+    font-family: 'Raba Rough', sans-serif;
+    font-weight: 400;
+    font-size: clamp(5rem, 12vw, 10rem);
+    color: var(--green-deep);
+    letter-spacing: 0.02em;
+    line-height: 1;
+    text-shadow: 0 2px 20px rgba(45,74,45,0.15);
+  }
+
+  /* ── HOME PAGE ── */
+  #home-page {
+    position: relative;
+    z-index: 5;
+    padding: 40px 20px 80px;
+  }
+
+  /* ── CATEGORIES GRID ── */
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .category-card {
+    position: relative;
+    height: 280px;
+    border-radius: 18px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.25);
+  }
+
+  .card-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    transition: transform 0.5s ease;
+    transform-origin: center center;
+  }
+
+  .category-card:hover .card-bg {
+    transform: scale(1.06);
+  }
+
+  .card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.15) 50%, transparent 100%);
+  }
+
+  .category-name {
+    position: absolute;
+    bottom: 22px;
+    left: 18px;
+    right: 18px;
+    font-family: 'Hambut', sans-serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: #ffffff;
+    letter-spacing: 0.01em;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.7);
+    line-height: 1.2;
+  }
+
+  /* ── CATEGORY PAGE ── */
+  #category-page {
+    display: none;
+    position: relative;
+    z-index: 5;
+    padding: 30px 20px 80px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--green-mid);
+    background: none;
+    border: 1px solid var(--green-light);
+    border-radius: 30px;
+    padding: 8px 18px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-bottom: 30px;
+  }
+  .back-btn:hover { background: var(--green-pale); }
+
+  /* ── ORACLE SECTION ── */
+  .oracle-section {
+    background: linear-gradient(135deg, rgba(45,74,45,0.05), rgba(176,136,192,0.08));
+    border: 1px solid rgba(176,136,192,0.3);
+    border-radius: 20px;
+    padding: 36px;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .oracle-title {
+    font-family: 'Hambut', sans-serif;
+    font-size: 2.6rem;
+    color: var(--green-deep);
+    margin-bottom: 28px;
+    line-height: 1.2;
+  }
+
+  .oracle-card-clickable {
+    width: 160px;
+    height: 240px;
+    margin: 0 auto 28px;
+    border-radius: 16px;
+    background-color: #1e3a1e;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(30,58,30,0.45);
+    border: none;
+    display: block;
+  }
+
+  .oracle-card-clickable:hover {
+    transform: translateY(-6px) rotate(1deg);
+    box-shadow: 0 18px 45px rgba(30,58,30,0.55);
+  }
+
+  .oracle-card-clickable .foliage-pattern {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .oracle-card-clickable .card-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .oracle-card-clickable .card-star {
+    font-size: 1.6rem;
+    color: rgba(232,240,224,0.7);
+  }
+
+  .oracle-card-clickable .card-question {
+    font-family: 'Hambut', sans-serif;
+    font-size: 0.85rem;
+    color: rgba(232,240,224,0.8);
+    letter-spacing: 0.04em;
+  }
+
+  .oracle-card-display {
+    display: none;
+    margin-top: 28px;
+    animation: fadeInUp 0.6s ease;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .oracle-card-visual {
+    width: 160px;
+    height: 240px;
+    margin: 0 auto 20px;
+    border-radius: 14px;
+    background-color: #1e3a1e;
+    border: 2px solid rgba(45,74,45,0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 8px 30px rgba(30,58,30,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .oracle-card-visual .card-symbol { font-size: 2.5rem; position: relative; z-index: 1; }
+
+  .oracle-card-visual .card-name-on-card {
+    font-family: 'Hambut', sans-serif;
+    font-size: 0.9rem;
+    color: var(--cream);
+    text-align: center;
+    padding: 0 10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .oracle-card-name {
+    font-family: 'Hambut', sans-serif;
+    font-size: 1.6rem;
+    color: var(--green-deep);
+    margin-bottom: 14px;
+  }
+
+  .oracle-card-desc {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--text-dark);
+    font-weight: 400;
+    max-width: 480px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.7);
+    border-radius: 12px;
+    padding: 16px 22px;
+    border-left: 3px solid var(--green-sage);
+  }
+
+  /* ── SUBCATEGORIES ── */
+  .subcategories-title {
+    font-family: 'Caveat', cursive;
+    font-size: 1.4rem;
+    color: var(--green-deep);
+    margin-bottom: 18px;
+    text-align: center;
+  }
+
+  .subcategory-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+
+  .tab-btn {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--green-mid);
+    background: rgba(255,255,255,0.8);
+    border: 1px solid var(--green-light);
+    border-radius: 30px;
+    padding: 9px 22px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .tab-btn:hover, .tab-btn.active {
+    background: var(--green-deep);
+    color: var(--cream);
+    border-color: var(--green-deep);
+  }
+
+  /* ── VIDEOS GRID ── */
+  .videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .video-card {
+    background: rgba(255,255,255,0.8);
+    border: 1px solid rgba(122,158,110,0.25);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .video-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(45,74,45,0.12);
+  }
+
+  .video-label {
+    padding: 12px 16px 8px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--text-mid);
+    font-style: italic;
+  }
+
+  .video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+  }
+
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* ── EMPTY STATE ── */
+  .empty-state {
+    text-align: center;
+    padding: 40px;
+    color: var(--green-sage);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+  }
+
+  /* ── FOOTER PETALS ── */
+  .petal-row {
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 20px;
+    opacity: 0.5;
+  }
+
+  /* ── MUSIC PLAYER ── */
+  #music-player {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    background: rgba(45,74,45,0.88);
+    backdrop-filter: blur(8px);
+    border-radius: 40px;
+    padding: 10px 18px;
+    box-shadow: 0 4px 20px rgba(45,74,45,0.3);
+    transition: all 0.3s;
+  }
+  #music-player.open {
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 16px;
+    padding: 14px 16px;
+  }
+  #music-player:hover { background: rgba(45,74,45,0.97); }
+
+  #toggle-player-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: var(--cream);
+    padding: 0;
+    transition: transform 0.2s;
+  }
+  #toggle-player-btn:hover { transform: scale(1.2); }
+
+  .player-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.85);
+  }
+
+  /* ── MUSIC PLAYER ── */
+  #music-player {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  #music-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(45,74,45,0.85);
+    border: 1px solid rgba(122,158,110,0.5);
+    color: var(--cream);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(6px);
+    transition: all 0.3s;
+    box-shadow: 0 4px 16px rgba(45,74,45,0.25);
+  }
+  #music-btn:hover { background: rgba(45,74,45,1); transform: scale(1.08); }
+  #music-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.82rem;
+    color: var(--green-mid);
+    background: rgba(255,255,255,0.75);
+    padding: 4px 10px;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(122,158,110,0.2);
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: all 0.3s;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  #music-player:hover #music-label { opacity: 1; transform: translateX(0); }
+
+  /* ── MUSIC PLAYER ── */
+  #music-player {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  #play-btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(45,74,45,0.85);
+    border: 1px solid rgba(122,158,110,0.5);
+    color: var(--cream);
+    font-size: 1.1rem;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(45,74,45,0.25);
+  }
+  #play-btn:hover {
+    background: var(--green-deep);
+    transform: scale(1.08);
+  }
+
+  #music-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--green-deep);
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(6px);
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(122,158,110,0.3);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.4s;
+    pointer-events: none;
+  }
+  #music-player:hover #music-label { opacity: 1; }
+
+  /* ── FLOATING MUSIC PLAYER ── */
+  #music-player {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(45,74,45,0.88);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(184,212,168,0.3);
+    border-radius: 50px;
+    padding: 10px 18px 10px 14px;
+    box-shadow: 0 4px 20px rgba(45,74,45,0.25);
+    transition: all 0.3s ease;
+  }
+  #music-player:hover {
+    background: rgba(45,74,45,0.96);
+    box-shadow: 0 6px 28px rgba(45,74,45,0.35);
+  }
+  #play-pause-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(184,212,168,0.2);
+    border: 1px solid rgba(184,212,168,0.4);
+    color: var(--cream);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+  #play-pause-btn:hover { background: rgba(184,212,168,0.35); }
+  #track-info {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--green-light);
+    white-space: nowrap;
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  #next-btn {
+    background: none;
+    border: none;
+    color: var(--green-light);
+    font-size: 0.8rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    padding: 0;
+    flex-shrink: 0;
+  }
+  #next-btn:hover { opacity: 1; }
+  #yt-players { position: fixed; top: -9999px; left: -9999px; width: 1px; height: 1px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .categories-grid { grid-template-columns: 1fr; }
+    .oracle-section { padding: 24px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="site-title">temps calme</div>
+</header>
+
+<!-- HOME PAGE -->
+<div id="home-page">
+  <div class="categories-grid">
+    <div class="category-card" onclick="openCategory('dormir')">
+      <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/34767464/pexels-photo-34767464.jpeg'); background-size:cover; background-position:center;"></div>
+      <div class="card-overlay"></div>
+      <div class="category-name">Pour aller dormir tranquillement</div>
+    </div>
+    <div class="category-card" onclick="openCategory('bain')">
+      <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/32208792/pexels-photo-32208792.jpeg'); background-size:cover; background-position:center;"></div>
+      <div class="card-overlay"></div>
+      <div class="category-name">Pour prendre soin de moi</div>
+    </div>
+    <div class="category-card" onclick="openCategory('travailler')">
+      <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/14348172/pexels-photo-14348172.jpeg'); background-size:cover; background-position:center;"></div>
+      <div class="card-overlay"></div>
+      <div class="category-name">Pour bosser sereinement</div>
+    </div>
+    <div class="category-card" onclick="openCategory('jardiner')">
+      <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/10713505/pexels-photo-10713505.jpeg'); background-size:cover; background-position:center;"></div>
+      <div class="card-overlay"></div>
+      <div class="category-name">Pour apaiser mes plantes et moi</div>
+    </div>
+    <div class="category-card" onclick="openCategory('lire')">
+      <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/2177482/pexels-photo-2177482.jpeg'); background-size:cover; background-position:center;"></div>
+      <div class="card-overlay"></div>
+      <div class="category-name">Pour lire en toute détente</div>
+    </div>
+    <div class="category-card" onclick="openCategory('mediter')">
+      <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/5596902/pexels-photo-5596902.png'); background-size:cover; background-position:center;"></div>
+      <div class="card-overlay"></div>
+      <div class="category-name">Pour un moment spirituel</div>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORY PAGE -->
+<div id="category-page">
+  <button class="back-btn" onclick="goHome()">← Retour</button>
+
+  <div id="category-header" style="text-align:center; margin-bottom:30px;">
+    <div id="cat-icon" style="font-size:2.5rem; margin-bottom:8px;"></div>
+    <div id="cat-name" style="font-family:'Hambut',sans-serif; font-size:2rem; color:var(--green-deep);"></div>
+  </div>
+
+  <!-- Oracle -->
+  <div class="oracle-section">
+    <div class="oracle-title">Tirez votre carte du jour</div>
+
+    <button class="oracle-card-clickable" onclick="drawCard()">
+      <svg class="foliage-pattern" viewBox="0 0 160 240" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="15" cy="25" rx="13" ry="22" fill="#4a7c4a" opacity="0.4" transform="rotate(-35 15 25)"/>
+        <ellipse cx="145" cy="40" rx="11" ry="19" fill="#7a9e6e" opacity="0.35" transform="rotate(25 145 40)"/>
+        <ellipse cx="10" cy="90" rx="9" ry="16" fill="#4a7c4a" opacity="0.3" transform="rotate(-20 10 90)"/>
+        <ellipse cx="150" cy="110" rx="12" ry="20" fill="#7a9e6e" opacity="0.32" transform="rotate(30 150 110)"/>
+        <ellipse cx="20" cy="170" rx="14" ry="23" fill="#4a7c4a" opacity="0.38" transform="rotate(-25 20 170)"/>
+        <ellipse cx="140" cy="190" rx="10" ry="18" fill="#7a9e6e" opacity="0.3" transform="rotate(20 140 190)"/>
+        <ellipse cx="25" cy="225" rx="11" ry="17" fill="#4a7c4a" opacity="0.35" transform="rotate(-15 25 225)"/>
+        <ellipse cx="135" cy="220" rx="13" ry="21" fill="#7a9e6e" opacity="0.33" transform="rotate(35 135 220)"/>
+        <ellipse cx="75" cy="10" rx="8" ry="14" fill="#4a7c4a" opacity="0.28" transform="rotate(10 75 10)"/>
+        <ellipse cx="85" cy="232" rx="9" ry="15" fill="#7a9e6e" opacity="0.3" transform="rotate(-10 85 232)"/>
+        <line x1="15" y1="25" x2="35" y2="60" stroke="#4a7c4a" stroke-width="1.5" opacity="0.3"/>
+        <line x1="145" y1="40" x2="125" y2="75" stroke="#7a9e6e" stroke-width="1.5" opacity="0.28"/>
+        <line x1="20" y1="170" x2="45" y2="200" stroke="#4a7c4a" stroke-width="1.5" opacity="0.3"/>
+        <line x1="140" y1="190" x2="115" y2="215" stroke="#7a9e6e" stroke-width="1.5" opacity="0.28"/>
+      </svg>
+      <div class="card-inner">
+        <div class="card-star">✦</div>
+        <div class="card-question">cliquez pour tirer</div>
+      </div>
+    </button>
+
+    <div class="oracle-card-display" id="oracle-display">
+      <div class="oracle-card-visual">
+        <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.2;" viewBox="0 0 160 240" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="15" cy="25" rx="13" ry="22" fill="#b8d4a8" transform="rotate(-35 15 25)"/>
+          <ellipse cx="145" cy="40" rx="11" ry="19" fill="#b8d4a8" transform="rotate(25 145 40)"/>
+          <ellipse cx="20" cy="170" rx="14" ry="23" fill="#b8d4a8" transform="rotate(-25 20 170)"/>
+          <ellipse cx="140" cy="190" rx="10" ry="18" fill="#b8d4a8" transform="rotate(20 140 190)"/>
+        </svg>
+        <span class="card-symbol" id="card-symbol"></span>
+        <div class="card-name-on-card" id="card-name-visual"></div>
+      </div>
+      <div class="oracle-card-name" id="card-name-text"></div>
+      <div class="oracle-card-desc" id="card-desc-text"></div>
+    </div>
+  </div>
+
+  <!-- Subcategories -->
+  <div class="subcategories-title">Choisissez votre ambiance</div>
+  <div class="subcategory-tabs" id="subcategory-tabs"></div>
+
+  <!-- Playlist player -->
+  <div id="playlist-player" style="display:none; background:rgba(255,255,255,0.8); border:1px solid rgba(122,158,110,0.3); border-radius:16px; padding:18px 20px; margin-bottom:20px; text-align:center;">
+    <div id="now-playing" style="font-family:'Hambut',sans-serif; font-size:1.1rem; color:var(--green-deep); margin-bottom:12px;">🎵 <span id="track-title">—</span></div>
+    <iframe id="playlist-iframe" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" style="border-radius:10px; display:block; margin-bottom:14px;"></iframe>
+    <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+      <button onclick="prevTrack()" style="font-family:'Hambut',sans-serif; font-size:0.95rem; color:var(--green-deep); background:rgba(255,255,255,0.9); border:1px solid var(--green-light); border-radius:30px; padding:8px 20px; cursor:pointer;">⏮ Précédent</button>
+      <button onclick="nextTrack()" style="font-family:'Hambut',sans-serif; font-size:0.95rem; color:var(--green-deep); background:rgba(255,255,255,0.9); border:1px solid var(--green-light); border-radius:30px; padding:8px 20px; cursor:pointer;">Suivant ⏭</button>
+      <button id="loop-btn" onclick="toggleLoop()" style="font-family:'Hambut',sans-serif; font-size:0.95rem; color:var(--cream); background:var(--green-sage); border:none; border-radius:30px; padding:8px 20px; cursor:pointer;">🔁 Boucle : off</button>
+      <button onclick="shufflePlay()" style="font-family:'Hambut',sans-serif; font-size:0.95rem; color:var(--cream); background:var(--green-mid); border:none; border-radius:30px; padding:8px 20px; cursor:pointer;">🔀 Aléatoire</button>
+    </div>
+  </div>
+
+  <div id="shuffle-bar" style="display:none; text-align:center; margin-bottom:20px;">
+    <button onclick="startPlaylist(false)" style="font-family:'Hambut',sans-serif; font-size:1rem; color:var(--cream); background:var(--green-deep); border:none; border-radius:30px; padding:10px 26px; cursor:pointer;">▶ Écouter à la suite</button>
+  </div>
+  <div class="videos-grid" id="videos-grid"></div>
+
+  <div class="petal-row">🌸 🌼 💮 🌺 🌻 🌷</div>
+</div>
+
+<!-- Music Player -->
+<!-- Floating SoundCloud player -->
+<div id="music-player">
+  <button id="toggle-player-btn" onclick="togglePlayerView()" title="Musique d'ambiance">🎵</button>
+  <span class="player-label" id="player-label-text">ambiance</span>
+  <div id="sc-wrap" style="display:none; margin-top:8px;">
+    <iframe
+      width="260" height="120"
+      scrolling="no" frameborder="no" allow="autoplay"
+      src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/soundcloud-uk/sets/jamz-best-uk-r-b&color=%234a7c4a&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&single_active=false"
+      style="border-radius:12px;">
+    </iframe>
+  </div>
+</div>
+
+<script>
+var playerOpen = false;
+function togglePlayerView() {
+  playerOpen = !playerOpen;
+  document.getElementById('sc-wrap').style.display = playerOpen ? 'block' : 'none';
+  document.getElementById('toggle-player-btn').textContent = playerOpen ? '✕' : '🎵';
+  document.getElementById('player-label-text').style.display = playerOpen ? 'none' : 'inline';
+  document.getElementById('music-player').classList.toggle('open', playerOpen);
+}
+</script>
+
+<script>
+// ── Oracle cards data ──
+const oracleCards = [
+  {
+    name: "La Sérénité",
+    symbol: "🕊️",
+    desc: "Un espace de paix s'ouvre en vous. Rien n'est urgent. Vous êtes exactement là où vous devez être. Respirez."
+  },
+  {
+    name: "L'Amour",
+    symbol: "🌹",
+    desc: "L'amour sous toutes ses formes vous entoure. Tournez votre regard vers ce qui nourrit votre cœur avec douceur."
+  },
+  {
+    name: "L'Écoute de soi",
+    symbol: "🌿",
+    desc: "Votre corps et votre âme ont quelque chose à vous dire. Faites silence, et écoutez ce qui monte de l'intérieur."
+  },
+  {
+    name: "Le Changement",
+    symbol: "🍂",
+    desc: "Comme les saisons, tout se transforme. Ce qui se termine fait place à quelque chose de nouveau. Faites confiance au mouvement."
+  },
+  {
+    name: "L'Ordre des choses",
+    symbol: "✨",
+    desc: "Chaque chose en son temps. L'univers tisse sa toile avec une sagesse que vous n'avez pas toujours à comprendre."
+  },
+  {
+    name: "La Guidance",
+    symbol: "⭐",
+    desc: "Vous n'êtes pas seul·e. Des guides visibles et invisibles marchent à vos côtés. Ouvrez-vous à leurs signes."
+  },
+  {
+    name: "Le Pardon",
+    symbol: "🌸",
+    desc: "Libérez ce qui pèse. Le pardon — envers les autres ou vous-même — est un cadeau que vous vous offrez."
+  },
+  {
+    name: "Le Choix",
+    symbol: "🌿",
+    desc: "Vous êtes à un carrefour. Il n'y a pas de mauvais chemin, seulement celui qui résonne avec qui vous êtes vraiment."
+  },
+  {
+    name: "Mère Nature",
+    symbol: "🌍",
+    desc: "La terre vous porte. Reconnectez-vous à ce qui est vivant, à ce qui pousse, à ce qui respire avec vous."
+  }
+];
+
+// ── Categories data ──
+const categories = {
+  dormir: {
+    icon: "🌙",
+    name: "Pour aller dormir tranquillement",
+    subcategories: {
+      "Les bruits de l'eau": [
+        { label: "Ruisseau balbutiant", type: "soundcloud", url: "https://soundcloud.com/oasisdesbruitsnaturels/ruisseau-balbutiant-le-rebirth" },
+        { label: "Son de pluie", type: "soundcloud", url: "https://soundcloud.com/sonidosdelanaturalezaruidoblancoparabebes/sonido-de-lluvia-rain-sound" },
+        { label: "Sons de douche apaisants", type: "soundcloud", url: "https://soundcloud.com/thechilloutzone/relaxing-sound-of-a-2-hour-shower-white-noise-water-sounds-to-help-you-or-baby-sleep" },
+        { label: "Cascades féeriques", type: "soundcloud", url: "https://soundcloud.com/freshwatersoundsforinnerpeace-sc/whimsical-waterfalls-sounds-to" }
+      ],
+      "Musiques douces": [
+        { label: "Relaxing Sleep Music", type: "soundcloud", url: "https://soundcloud.com/soothingrelaxation/relaxing-sleep-music-deep-sleeping-music-relaxing-music-stress-relief-meditation-music-68" },
+        { label: "Relaxing Facial Harmony", type: "soundcloud", url: "https://soundcloud.com/deepmassagetribe/relaxing-facial-harmony" }
+      ]
+    }
+  },
+  bain: {
+    icon: "🛁",
+    name: "Pour prendre soin de moi",
+    subcategories: {
+      "Ambiances douces": [
+        { label: "The Sun Comes Out", type: "soundcloud", url: "https://soundcloud.com/chapelsound/astrological-the-sun-comes-out" }
+      ]
+    }
+  },
+  travailler: {
+    icon: "📖",
+    name: "Pour bosser sereinement",
+    subcategories: {
+      "Lo-fi": [
+        { label: "Lo-fi chill beats", id: "TO_ADD" }
+      ],
+      "Café ambiance": [
+        { label: "Bruits de café parisien", id: "TO_ADD" }
+      ],
+      "Nature focus": [
+        { label: "Forêt matinale", id: "TO_ADD" }
+      ]
+    }
+  },
+  jardiner: {
+    icon: "🌿",
+    name: "Pour apaiser mes plantes et moi",
+    subcategories: {
+      "Musiques pour les plantes": [
+        { label: "Moon feat. Lamat", type: "soundcloud", url: "https://soundcloud.com/andresalborok/moon-feat-lamat-8" },
+        { label: "Highlands", type: "soundcloud", url: "https://soundcloud.com/zazenkai-music/highlands" },
+        { label: "Aurum", type: "soundcloud", url: "https://soundcloud.com/dr3amd00r/aurum" }
+      ]
+    }
+  },
+  lire: {
+    icon: "🍃",
+    name: "Pour lire en toute détente",
+    subcategories: {
+      "Ambiances musicales": [
+        { label: "Cellar", type: "soundcloud", url: "https://soundcloud.com/user-933862268/cellar" },
+        { label: "Damp Forest", type: "soundcloud", url: "https://soundcloud.com/user-933862268/damp-forest" },
+        { label: "Ethereal Serenity", type: "soundcloud", url: "https://soundcloud.com/zen74833/ethereal-serenity-in-harmonic" },
+        { label: "Tranquil Harmonies", type: "soundcloud", url: "https://soundcloud.com/velvetambient/tranquil-harmonies" },
+        { label: "Rain Sounds Ambience", type: "soundcloud", url: "https://soundcloud.com/soundsofnaturewhitenoisesoundeffects/rain-sounds-ambience-for" }
+      ]
+    }
+  },
+  mediter: {
+    icon: "🕊️",
+    name: "Pour un moment spirituel",
+    subcategories: {
+      "Ambiances spirituelles": [
+        { label: "Vertige", type: "soundcloud", url: "https://soundcloud.com/user-228288169/vertige" },
+        { label: "Jardin", type: "soundcloud", url: "https://soundcloud.com/user-228288169/jardin" },
+        { label: "Sad Angels", type: "soundcloud", url: "https://soundcloud.com/cedricdiaz/sad-angels" },
+        { label: "Full Soundscape 60min", type: "soundcloud", url: "https://soundcloud.com/konstantin-garkavenko/full-60-minute-soundscape" },
+        { label: "The Billows That Break", type: "soundcloud", url: "https://soundcloud.com/mattt/the-billows-that-break" }
+      ]
+    }
+  }
+};
+
+let currentCategory = null;
+let currentSubcat = null;
+
+function openCategory(key) {
+  currentCategory = key;
+  const cat = categories[key];
+
+  document.getElementById('home-page').style.display = 'none';
+  document.getElementById('category-page').style.display = 'block';
+  document.getElementById('cat-icon').textContent = cat.icon;
+  document.getElementById('cat-name').textContent = cat.name;
+
+  // Reset oracle
+  document.getElementById('oracle-display').style.display = 'none';
+
+  // Reset playlist player
+  document.getElementById('playlist-player').style.display = 'none';
+  document.getElementById('playlist-iframe').src = '';
+  playlistTracks = [];
+  playlistIndex = 0;
+
+  // Build subcategory tabs
+  const tabsEl = document.getElementById('subcategory-tabs');
+  tabsEl.innerHTML = '';
+  const subcats = Object.keys(cat.subcategories);
+  subcats.forEach((sub, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn' + (i === 0 ? ' active' : '');
+    btn.textContent = sub;
+    btn.onclick = () => selectSubcat(sub, btn);
+    tabsEl.appendChild(btn);
+  });
+
+  // Show first subcategory
+  if (subcats.length > 0) selectSubcat(subcats[0]);
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function selectSubcat(name, btn) {
+  currentSubcat = name;
+
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  else {
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      if (b.textContent === name) b.classList.add('active');
+    });
+  }
+
+  const videos = categories[currentCategory].subcategories[name] || [];
+  const grid = document.getElementById('videos-grid');
+  grid.innerHTML = '';
+
+  // Show shuffle button only if all items are soundcloud
+  const shuffleBar = document.getElementById('shuffle-bar');
+  const allSoundcloud = videos.length > 0 && videos.every(v => v.type === 'soundcloud');
+  shuffleBar.style.display = allSoundcloud ? 'block' : 'none';
+
+  if (videos.length === 0) {
+    grid.innerHTML = '<div class="empty-state">Aucune musique pour l\'instant… revenez bientôt 🌿</div>';
+    return;
+  }
+
+  videos.forEach((v, index) => {
+    const card = document.createElement('div');
+    card.className = 'video-card';
+
+    if (v.type === 'soundcloud' && v.url) {
+      const encodedUrl = encodeURIComponent(v.url);
+      card.innerHTML = `
+        <div class="video-label">${v.label}</div>
+        <div style="padding:10px 12px 12px;">
+          <iframe id="sc-track-${index}"
+            width="100%" height="120"
+            scrolling="no" frameborder="no" allow="autoplay"
+            src="https://w.soundcloud.com/player/?url=${encodedUrl}&color=%234a7c4a&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&single_active=false"
+            style="border-radius:10px;">
+          </iframe>
+        </div>`;
+    } else if (v.id && v.id !== 'TO_ADD') {
+      card.innerHTML = `
+        <div class="video-label">${v.label}</div>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/${v.id}?rel=0&modestbranding=1" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
+        </div>`;
+    } else {
+      card.innerHTML = `
+        <div class="video-label">${v.label}</div>
+        <div style="padding:20px; text-align:center; color:var(--green-sage); font-style:italic; font-size:0.9rem;">
+          🌿 À ajouter bientôt
+        </div>`;
+    }
+    grid.appendChild(card);
+  });
+}
+
+function shufflePlay() {
+  startPlaylist(true);
+}
+
+let playlistTracks = [];
+let playlistIndex = 0;
+let loopEnabled = false;
+let autoAdvanceTimer = null;
+
+function startPlaylist(shuffle) {
+  const videos = categories[currentCategory].subcategories[currentSubcat] || [];
+  if (!videos.length) return;
+  playlistTracks = shuffle ? [...videos].sort(() => Math.random() - 0.5) : [...videos];
+  playlistIndex = 0;
+  document.getElementById('playlist-player').style.display = 'block';
+  document.getElementById('shuffle-bar').style.display = 'none';
+  loadPlaylistTrack(playlistIndex);
+}
+
+function loadPlaylistTrack(index) {
+  if (!playlistTracks.length) return;
+  if (index >= playlistTracks.length) {
+    if (loopEnabled) { index = 0; playlistIndex = 0; }
+    else return;
+  }
+  const v = playlistTracks[index];
+  document.getElementById('track-title').textContent = v.label + ' (' + (index+1) + '/' + playlistTracks.length + ')';
+  const encodedUrl = encodeURIComponent(v.url);
+  document.getElementById('playlist-iframe').src =
+    'https://w.soundcloud.com/player/?url=' + encodedUrl +
+    '&color=%234a7c4a&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false';
+  if (autoAdvanceTimer) clearTimeout(autoAdvanceTimer);
+  // Auto advance après ~1h (durée max approximative d'un morceau)
+  autoAdvanceTimer = setTimeout(() => {
+    if (loopEnabled) {
+      loadPlaylistTrack(playlistIndex); // répète le même
+    } else {
+      playlistIndex++;
+      loadPlaylistTrack(playlistIndex);
+    }
+  }, 3600000);
+}
+
+function nextTrack() {
+  playlistIndex++;
+  if (playlistIndex >= playlistTracks.length) playlistIndex = loopEnabled ? 0 : playlistTracks.length - 1;
+  loadPlaylistTrack(playlistIndex);
+}
+
+function prevTrack() {
+  playlistIndex--;
+  if (playlistIndex < 0) playlistIndex = loopEnabled ? playlistTracks.length - 1 : 0;
+  loadPlaylistTrack(playlistIndex);
+}
+
+function toggleLoop() {
+  loopEnabled = !loopEnabled;
+  const btn = document.getElementById('loop-btn');
+  btn.textContent = loopEnabled ? '🔁 Boucle : on' : '🔁 Boucle : off';
+  btn.style.background = loopEnabled ? 'var(--green-deep)' : 'var(--green-sage)';
+  if (loopEnabled) {
+    // Reload current track to restart it, loop will retrigger via timer
+    loadPlaylistTrack(playlistIndex);
+  }
+}
+
+function loopCurrentTrack() {
+  if (!loopEnabled) return;
+  loadPlaylistTrack(playlistIndex);
+  loopTimer = setTimeout(loopCurrentTrack, 3600000);
+}
+
+function goHome() {
+  document.getElementById('category-page').style.display = 'none';
+  document.getElementById('home-page').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function drawCard() {
+  const card = oracleCards[Math.floor(Math.random() * oracleCards.length)];
+  document.getElementById('card-symbol').textContent = card.symbol;
+  document.getElementById('card-name-visual').textContent = card.name;
+  document.getElementById('card-name-text').textContent = card.name;
+  document.getElementById('card-desc-text').textContent = card.desc;
+
+  const display = document.getElementById('oracle-display');
+  display.style.display = 'block';
+  display.style.animation = 'none';
+  display.offsetHeight; // reflow
+  display.style.animation = 'fadeInUp 0.6s ease';
+}
+</script>
+</body>
+</html>
