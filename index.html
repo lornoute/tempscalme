@@ -126,7 +126,7 @@
     right: 18px;
     font-family: 'Agustus Signature', cursive;
     font-weight: 500;
-    font-size: 1.95rem;
+    font-size: 2.24rem;
     color: #ffffff;
     letter-spacing: 0.01em;
     text-shadow: 0 2px 12px rgba(0,0,0,0.7);
@@ -178,93 +178,125 @@
     line-height: 1.2;
   }
 
-  .oracle-card-clickable {
+  /* ── ORACLE DECK ── */
+  .card-deck-wrapper {
+    position: relative;
     width: 160px;
     height: 240px;
     margin: 0 auto 28px;
-    border-radius: 16px;
-    background-color: #1e3a1e;
     cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 8px 30px rgba(30,58,30,0.45);
-    border: none;
-    display: block;
   }
 
-  .oracle-card-clickable:hover {
-    transform: translateY(-6px) rotate(1deg);
-    box-shadow: 0 18px 45px rgba(30,58,30,0.55);
-  }
-
-  .oracle-card-clickable .foliage-pattern {
+  .deck-card {
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .oracle-card-clickable .card-inner {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-  }
-
-  .oracle-card-clickable .card-star {
-    font-size: 1.6rem;
-    color: rgba(232,240,224,0.7);
-  }
-
-  .oracle-card-clickable .card-question {
-    font-family: 'Agustus Signature', cursive;
-    font-size: 0.85rem;
-    color: rgba(232,240,224,0.8);
-    letter-spacing: 0.04em;
-  }
-
-  .oracle-card-display {
-    display: none;
-    margin-top: 28px;
-    animation: fadeInUp 0.6s ease;
-  }
-
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .oracle-card-visual {
     width: 160px;
     height: 240px;
-    margin: 0 auto 20px;
     border-radius: 14px;
-    background-color: #1e3a1e;
-    border: 2px solid rgba(45,74,45,0.4);
+    background-image: url('https://images.pexels.com/photos/6689392/pexels-photo-6689392.jpeg');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 8px 30px rgba(30,58,30,0.4);
+    transition: transform 0.3s ease;
+  }
+  .deck-card-3 { transform: rotate(-6deg) translateY(6px); opacity: 0.6; }
+  .deck-card-2 { transform: rotate(-3deg) translateY(3px); opacity: 0.8; }
+  .deck-card-1 { transform: rotate(2deg); opacity: 0.9; }
+
+  @keyframes shuffle1 {
+    0%   { transform: rotate(2deg) translateX(0px); }
+    25%  { transform: rotate(-8deg) translateX(-18px) translateY(-8px); }
+    50%  { transform: rotate(5deg) translateX(12px) translateY(-4px); }
+    75%  { transform: rotate(-4deg) translateX(-8px) translateY(4px); }
+    100% { transform: rotate(2deg) translateX(0px); }
+  }
+  @keyframes shuffle2 {
+    0%   { transform: rotate(-3deg) translateY(3px); }
+    25%  { transform: rotate(7deg) translateX(16px) translateY(-10px); }
+    50%  { transform: rotate(-6deg) translateX(-14px) translateY(2px); }
+    75%  { transform: rotate(4deg) translateX(8px) translateY(-5px); }
+    100% { transform: rotate(-3deg) translateY(3px); }
+  }
+  @keyframes shuffle3 {
+    0%   { transform: rotate(-6deg) translateY(6px); }
+    25%  { transform: rotate(4deg) translateX(-10px) translateY(-6px); }
+    50%  { transform: rotate(-9deg) translateX(16px) translateY(4px); }
+    75%  { transform: rotate(2deg) translateX(-6px) translateY(-2px); }
+    100% { transform: rotate(-6deg) translateY(6px); }
+  }
+
+  .deck-shuffling .deck-card-1 { animation: shuffle1 0.4s ease-in-out infinite; }
+  .deck-shuffling .deck-card-2 { animation: shuffle2 0.4s ease-in-out infinite 0.1s; }
+  .deck-shuffling .deck-card-3 { animation: shuffle3 0.4s ease-in-out infinite 0.2s; }
+
+  .flip-card {
+    position: absolute;
+    width: 160px;
+    height: 240px;
+    perspective: 1000px;
+    top: 0; left: 0;
+  }
+
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .flip-card-inner.flipped {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 14px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(30,58,30,0.45);
+  }
+
+  .flip-card-front {
+    background: #1e3a1e;
+  }
+
+  .flip-card-back {
+    background: linear-gradient(160deg, #2d4a2d, #1e3a1e);
+    transform: rotateY(180deg);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    box-shadow: 0 8px 30px rgba(30,58,30,0.3);
-    position: relative;
+    border: 2px solid rgba(122,158,110,0.4);
     overflow: hidden;
   }
 
-  .oracle-card-visual .card-symbol { font-size: 2.5rem; position: relative; z-index: 1; }
+  .flip-card-back .card-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+    opacity: 0.55;
+  }
 
-  .oracle-card-visual .card-name-on-card {
+  .flip-card-back .card-symbol { font-size: 2.5rem; }
+
+  .flip-card-back .card-name-on-card {
     font-family: 'Agustus Signature', cursive;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--cream);
     text-align: center;
-    padding: 0 10px;
-    position: relative;
-    z-index: 1;
+    padding: 0 12px;
+  }
+
+  .card-deck-wrapper:hover .flip-card-inner:not(.flipped) {
+    transform: translateY(-6px) rotate(1deg);
   }
 
   .oracle-card-name {
@@ -636,49 +668,41 @@
 
   <div id="category-header" style="text-align:center; margin-bottom:30px;">
     <div id="cat-icon" style="font-size:2.5rem; margin-bottom:8px;"></div>
-    <div id="cat-name" style="font-family:'Agustus Signature',cursive; font-size:2.6rem; color:var(--green-deep);"></div>
+    <div id="cat-name" style="font-family:'Agustus Signature',cursive; font-size:2.99rem; color:var(--green-deep);"></div>
   </div>
 
   <!-- Oracle -->
   <div class="oracle-section">
     <div class="oracle-title">Tirez votre carte du jour</div>
 
-    <button class="oracle-card-clickable" onclick="drawCard()">
-      <svg class="foliage-pattern" viewBox="0 0 160 240" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="15" cy="25" rx="13" ry="22" fill="#4a7c4a" opacity="0.4" transform="rotate(-35 15 25)"/>
-        <ellipse cx="145" cy="40" rx="11" ry="19" fill="#7a9e6e" opacity="0.35" transform="rotate(25 145 40)"/>
-        <ellipse cx="10" cy="90" rx="9" ry="16" fill="#4a7c4a" opacity="0.3" transform="rotate(-20 10 90)"/>
-        <ellipse cx="150" cy="110" rx="12" ry="20" fill="#7a9e6e" opacity="0.32" transform="rotate(30 150 110)"/>
-        <ellipse cx="20" cy="170" rx="14" ry="23" fill="#4a7c4a" opacity="0.38" transform="rotate(-25 20 170)"/>
-        <ellipse cx="140" cy="190" rx="10" ry="18" fill="#7a9e6e" opacity="0.3" transform="rotate(20 140 190)"/>
-        <ellipse cx="25" cy="225" rx="11" ry="17" fill="#4a7c4a" opacity="0.35" transform="rotate(-15 25 225)"/>
-        <ellipse cx="135" cy="220" rx="13" ry="21" fill="#7a9e6e" opacity="0.33" transform="rotate(35 135 220)"/>
-        <ellipse cx="75" cy="10" rx="8" ry="14" fill="#4a7c4a" opacity="0.28" transform="rotate(10 75 10)"/>
-        <ellipse cx="85" cy="232" rx="9" ry="15" fill="#7a9e6e" opacity="0.3" transform="rotate(-10 85 232)"/>
-        <line x1="15" y1="25" x2="35" y2="60" stroke="#4a7c4a" stroke-width="1.5" opacity="0.3"/>
-        <line x1="145" y1="40" x2="125" y2="75" stroke="#7a9e6e" stroke-width="1.5" opacity="0.28"/>
-        <line x1="20" y1="170" x2="45" y2="200" stroke="#4a7c4a" stroke-width="1.5" opacity="0.3"/>
-        <line x1="140" y1="190" x2="115" y2="215" stroke="#7a9e6e" stroke-width="1.5" opacity="0.28"/>
-      </svg>
-      <div class="card-inner">
-        <div class="card-star">✦</div>
-        <div class="card-question">cliquez pour tirer</div>
+    <!-- Deck of cards with flip animation -->
+    <div class="card-deck-wrapper" onclick="drawCard()" onmouseenter="startShuffle()" onmouseleave="stopShuffle()">
+      <!-- Background stacked cards -->
+      <div class="deck-card deck-card-3"></div>
+      <div class="deck-card deck-card-2"></div>
+      <div class="deck-card deck-card-1"></div>
+      <!-- Flip card (front = back of card / back = revealed card) -->
+      <div class="flip-card" id="flip-card">
+        <div class="flip-card-inner" id="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://images.pexels.com/photos/6689392/pexels-photo-6689392.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:14px;"/>
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
+              <div style="font-size:1.4rem;color:rgba(255,255,255,0.85);">✦</div>
+              <div style="font-family:'Agustus Signature',cursive;font-size:0.9rem;color:rgba(255,255,255,0.85);">cliquez pour tirer</div>
+            </div>
+          </div>
+          <div class="flip-card-back" id="flip-card-back">
+            <span class="card-symbol" id="card-symbol"></span>
+            <div class="card-name-on-card" id="card-name-visual"></div>
+          </div>
+        </div>
       </div>
-    </button>
+    </div>
 
     <div class="oracle-card-display" id="oracle-display">
-      <div class="oracle-card-visual">
-        <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.2;" viewBox="0 0 160 240" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="15" cy="25" rx="13" ry="22" fill="#b8d4a8" transform="rotate(-35 15 25)"/>
-          <ellipse cx="145" cy="40" rx="11" ry="19" fill="#b8d4a8" transform="rotate(25 145 40)"/>
-          <ellipse cx="20" cy="170" rx="14" ry="23" fill="#b8d4a8" transform="rotate(-25 20 170)"/>
-          <ellipse cx="140" cy="190" rx="10" ry="18" fill="#b8d4a8" transform="rotate(20 140 190)"/>
-        </svg>
-        <span class="card-symbol" id="card-symbol"></span>
-        <div class="card-name-on-card" id="card-name-visual"></div>
-      </div>
       <div class="oracle-card-name" id="card-name-text"></div>
       <div class="oracle-card-desc" id="card-desc-text"></div>
+      <button onclick="resetOracle()" style="margin-top:16px;font-family:'Agustus Signature',cursive;font-size:1rem;color:var(--green-deep);background:rgba(255,255,255,0.8);border:1px solid var(--green-sage);border-radius:30px;padding:8px 24px;cursor:pointer;">🔄 Tirer une nouvelle carte</button>
     </div>
   </div>
 
@@ -737,26 +761,31 @@ const oracleCards = [
   {
     name: "La Sérénité",
     symbol: "🕊️",
+    image: "https://images.pexels.com/photos/11377550/pexels-photo-11377550.jpeg",
     desc: "Un espace de paix s'ouvre en vous. Rien n'est urgent. Vous êtes exactement là où vous devez être. Respirez."
   },
   {
     name: "L'Amour",
     symbol: "🌹",
+    image: "https://images.pexels.com/photos/5874736/pexels-photo-5874736.jpeg",
     desc: "L'amour sous toutes ses formes vous entoure. Tournez votre regard vers ce qui nourrit votre cœur avec douceur."
   },
   {
     name: "L'Écoute de soi",
     symbol: "🌿",
+    image: "https://images.pexels.com/photos/29567421/pexels-photo-29567421.jpeg",
     desc: "Votre corps et votre âme ont quelque chose à vous dire. Faites silence, et écoutez ce qui monte de l'intérieur."
   },
   {
     name: "Le Changement",
     symbol: "🍂",
+    image: "https://images.pexels.com/photos/3389538/pexels-photo-3389538.jpeg",
     desc: "Comme les saisons, tout se transforme. Ce qui se termine fait place à quelque chose de nouveau. Faites confiance au mouvement."
   },
   {
     name: "L'Ordre des choses",
     symbol: "✨",
+    image: "https://images.pexels.com/photos/3083250/pexels-photo-3083250.jpeg",
     desc: "Chaque chose en son temps. L'univers tisse sa toile avec une sagesse que vous n'avez pas toujours à comprendre."
   },
   {
@@ -767,16 +796,19 @@ const oracleCards = [
   {
     name: "Le Pardon",
     symbol: "🌸",
+    image: "https://images.pexels.com/photos/827455/pexels-photo-827455.jpeg",
     desc: "Libérez ce qui pèse. Le pardon — envers les autres ou vous-même — est un cadeau que vous vous offrez."
   },
   {
     name: "Le Choix",
     symbol: "🌿",
+    image: "https://images.pexels.com/photos/164377/pexels-photo-164377.jpeg",
     desc: "Vous êtes à un carrefour. Il n'y a pas de mauvais chemin, seulement celui qui résonne avec qui vous êtes vraiment."
   },
   {
     name: "Mère Nature",
     symbol: "🌍",
+    image: "https://images.pexels.com/photos/10077939/pexels-photo-10077939.jpeg",
     desc: "La terre vous porte. Reconnectez-vous à ce qui est vivant, à ce qui pousse, à ce qui respire avec vous."
   }
 ];
@@ -1010,18 +1042,63 @@ function goHome() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function drawCard() {
-  const card = oracleCards[Math.floor(Math.random() * oracleCards.length)];
-  document.getElementById('card-symbol').textContent = card.symbol;
-  document.getElementById('card-name-visual').textContent = card.name;
-  document.getElementById('card-name-text').textContent = card.name;
-  document.getElementById('card-desc-text').textContent = card.desc;
+function startShuffle() {
+  const inner = document.getElementById('flip-card-inner');
+  if (inner.classList.contains('flipped')) return;
+  document.querySelector('.card-deck-wrapper').classList.add('deck-shuffling');
+}
 
+function stopShuffle() {
+  document.querySelector('.card-deck-wrapper').classList.remove('deck-shuffling');
+}
+
+function drawCard() {
+  const inner = document.getElementById('flip-card-inner');
+  if (inner.classList.contains('flipped')) return;
+
+  // Mélange rapide avant le retournement
+  startShuffle();
+  setTimeout(() => {
+    stopShuffle();
+
+    const card = oracleCards[Math.floor(Math.random() * oracleCards.length)];
+    document.getElementById('card-symbol').textContent = card.symbol;
+    document.getElementById('card-name-visual').textContent = card.name;
+    document.getElementById('card-name-text').textContent = card.name;
+    document.getElementById('card-desc-text').textContent = card.desc;
+
+    // Image de fond sur la carte révélée
+    const back = document.getElementById('flip-card-back');
+    let bgImg = back.querySelector('.card-bg-img');
+    if (!bgImg) {
+      bgImg = document.createElement('img');
+      bgImg.className = 'card-bg-img';
+      back.insertBefore(bgImg, back.firstChild);
+    }
+    if (card.image) {
+      bgImg.src = card.image;
+      bgImg.style.display = 'block';
+    } else {
+      bgImg.style.display = 'none';
+    }
+
+    inner.classList.add('flipped');
+
+    setTimeout(() => {
+      const display = document.getElementById('oracle-display');
+      display.style.display = 'block';
+      display.style.animation = 'none';
+      display.offsetHeight;
+      display.style.animation = 'fadeInUp 0.6s ease';
+    }, 500);
+  }, 600);
+}
+
+function resetOracle() {
+  const inner = document.getElementById('flip-card-inner');
+  inner.classList.remove('flipped');
   const display = document.getElementById('oracle-display');
-  display.style.display = 'block';
-  display.style.animation = 'none';
-  display.offsetHeight; // reflow
-  display.style.animation = 'fadeInUp 0.6s ease';
+  display.style.display = 'none';
 }
 </script>
 </body>
