@@ -162,12 +162,30 @@
 
   /* ── ORACLE SECTION ── */
   .oracle-section {
-    background: linear-gradient(135deg, rgba(45,74,45,0.05), rgba(176,136,192,0.08));
+    background-image: url('https://images.pexels.com/photos/7698214/pexels-photo-7698214.jpeg');
+    background-size: cover;
+    background-position: center;
     border: 1px solid rgba(176,136,192,0.3);
     border-radius: 20px;
     padding: 36px;
     text-align: center;
     margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .oracle-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(250,246,238,0.55);
+    border-radius: 20px;
+    z-index: 0;
+  }
+
+  .oracle-section > * {
+    position: relative;
+    z-index: 1;
   }
 
   .oracle-title {
