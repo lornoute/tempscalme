@@ -48,7 +48,7 @@
     content: '';
     position: fixed;
     inset: 0;
-    background: rgba(250, 246, 238, 0.35);
+    background: rgba(250, 246, 238, 0.72);
     pointer-events: none;
     z-index: 0;
   }
@@ -75,45 +75,16 @@
   #home-page {
     position: relative;
     z-index: 5;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
     padding: 40px 20px 80px;
   }
 
   /* ── CATEGORIES GRID ── */
   .categories-grid {
     display: grid;
-    gap: 16px;
-    max-width: 820px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
     margin: 0 auto;
-  }
-
-  .categories-grid-2 { grid-template-columns: 1fr 1fr; }
-  .categories-grid-1 { grid-template-columns: 1fr; }
-
-  /* Grille 3 colonnes — colonne du milieu contient 3 éléments dont l'oracle */
-  .categories-grid-3 {
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto auto auto;
-  }
-
-  /* Col 1 : dormir (ligne 1) + jardiner (ligne 2) → span 1 chacun */
-  .categories-grid-3 .category-card:nth-child(1) { grid-column: 1; grid-row: 1; }
-  .categories-grid-3 .category-card:nth-child(2) { grid-column: 1; grid-row: 2 / 4; }
-
-  /* Col 2 : travailler (ligne 1) + oracle (ligne 2) + méditer (ligne 3) */
-  .categories-grid-3 .category-card:nth-child(3) { grid-column: 2; grid-row: 1; }
-  .categories-grid-3 .category-card:nth-child(4) { grid-column: 2; grid-row: 2; }
-  .categories-grid-3 .category-card:nth-child(5) { grid-column: 2; grid-row: 3; }
-
-  /* Col 3 : bain (ligne 1) + lire (lignes 2-3) */
-  .categories-grid-3 .category-card:nth-child(6) { grid-column: 3; grid-row: 1; }
-  .categories-grid-3 .category-card:nth-child(7) { grid-column: 3; grid-row: 2 / 4; }
-
-  .category-card-oracle {
-    height: 100%;
-    min-height: 200px;
   }
 
   .category-card {
@@ -148,14 +119,6 @@
     position: absolute;
     inset: 0;
     background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.15) 50%, transparent 100%);
-  }
-
-  .card-overlay::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(90, 110, 75, 0.22);
-    mix-blend-mode: multiply;
   }
 
   .category-name {
@@ -204,7 +167,7 @@
     background-image: url('https://images.pexels.com/photos/17495285/pexels-photo-17495285.jpeg');
     background-size: cover;
     background-position: center;
-    border: 1px solid rgba(0,0,0,0.12);
+    border: 1px solid rgba(176,136,192,0.3);
     border-radius: 20px;
     padding: 36px;
     text-align: center;
@@ -240,7 +203,7 @@
     width: 160px;
     height: 240px;
     border-radius: 14px;
-    background-image: url('https://images.pexels.com/photos/4623019/pexels-photo-4623019.jpeg');
+    background-image: url('https://images.pexels.com/photos/34256952/pexels-photo-34256952.jpeg');
     background-size: cover;
     background-position: center;
     box-shadow: 0 8px 30px rgba(30,58,30,0.4);
@@ -376,7 +339,7 @@
   .subcategories-title {
     font-family: 'PP Pangaia', sans-serif;
     font-size: 1.4rem;
-    color: #3a3a3a;
+    color: var(--green-deep);
     margin-bottom: 18px;
     text-align: center;
   }
@@ -667,11 +630,7 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 600px) {
-    .categories-grid-2 { grid-template-columns: 1fr; }
-  .categories-grid-1 { grid-template-columns: 1fr; }
-  .categories-grid-3 { grid-template-columns: 1fr; }
-  .categories-grid-3 .category-card { grid-column: auto !important; grid-row: auto !important; }
-  .category-card-oracle { min-height: 280px; height: 280px; }
+    .categories-grid { grid-template-columns: 1fr; }
     .oracle-section { padding: 24px 18px; }
   }
 </style>
@@ -684,99 +643,36 @@
 
 <!-- HOME PAGE -->
 <div id="home-page">
-  <!-- Grille 3 colonnes, oracle au centre -->
-  <div class="categories-grid categories-grid-3">
-    <!-- Col 1 : dormir + jardiner -->
+  <div class="categories-grid">
     <div class="category-card" onclick="openCategory('dormir')">
       <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/34767464/pexels-photo-34767464.jpeg'); background-size:cover; background-position:center;"></div>
       <div class="card-overlay"></div>
       <div class="category-name">Pour dormir tranquillement</div>
+    </div>
+    <div class="category-card" onclick="openCategory('bain')">
+      <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/32208792/pexels-photo-32208792.jpeg'); background-size:cover; background-position:center;"></div>
+      <div class="card-overlay"></div>
+      <div class="category-name">Pour prendre soin de moi</div>
+    </div>
+    <div class="category-card" onclick="openCategory('travailler')">
+      <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/14348172/pexels-photo-14348172.jpeg'); background-size:cover; background-position:center;"></div>
+      <div class="card-overlay"></div>
+      <div class="category-name">Pour bosser sereinement</div>
     </div>
     <div class="category-card" onclick="openCategory('jardiner')">
       <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/10713505/pexels-photo-10713505.jpeg'); background-size:cover; background-position:center;"></div>
       <div class="card-overlay"></div>
       <div class="category-name">Pour apaiser mes plantes et moi</div>
     </div>
-
-    <!-- Col 2 : travailler + oracle + méditer -->
-    <div class="category-card" onclick="openCategory('travailler')">
-      <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/14348172/pexels-photo-14348172.jpeg'); background-size:cover; background-position:center;"></div>
-      <div class="card-overlay"></div>
-      <div class="category-name">Pour bosser sereinement</div>
-    </div>
-    <div class="category-card category-card-oracle" onclick="openOracle()">
-      <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/11437522/pexels-photo-11437522.jpeg'); background-size:cover; background-position:center;"></div>
-      <div class="card-overlay"></div>
-      <div class="category-name">pause de l'oracle</div>
-    </div>
-    <div class="category-card" onclick="openCategory('mediter')">
-      <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/5596902/pexels-photo-5596902.png'); background-size:cover; background-position:center;"></div>
-      <div class="card-overlay"></div>
-      <div class="category-name">Pour un moment spirituel</div>
-    </div>
-
-    <!-- Col 3 : bain + lire -->
-    <div class="category-card" onclick="openCategory('bain')">
-      <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/32208792/pexels-photo-32208792.jpeg'); background-size:cover; background-position:center;"></div>
-      <div class="card-overlay"></div>
-      <div class="category-name">Pour prendre soin de moi</div>
-    </div>
     <div class="category-card" onclick="openCategory('lire')">
       <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/2177482/pexels-photo-2177482.jpeg'); background-size:cover; background-position:center;"></div>
       <div class="card-overlay"></div>
       <div class="category-name">Pour lire en toute détente</div>
     </div>
-  </div>
-</div>
-
-<!-- ORACLE PAGE -->
-<div id="oracle-page" style="display:none; padding:20px; max-width:700px; margin:0 auto;">
-  <button class="back-btn" onclick="goHome()">← Retour</button>
-  <div class="oracle-section">
-    <div style="text-align:center; margin-bottom:28px;">
-      <div style="font-family:'PP Pangaia',sans-serif; font-size:3.8rem; font-weight:700; color:#3a3a3a; text-shadow: 0 2px 12px rgba(0,0,0,0.1); line-height:1.1;">pause de l'oracle</div>
-    </div>
-    <div class="card-deck-wrapper" onclick="drawCard()" onmouseenter="startShuffle()" onmouseleave="stopShuffle()">
-      <div class="deck-card deck-card-3"></div>
-      <div class="deck-card deck-card-2"></div>
-      <div class="deck-card deck-card-1"></div>
-      <div class="flip-card" id="flip-card">
-        <div class="flip-card-inner" id="flip-card-inner">
-          <div class="flip-card-front">
-            <img src="https://images.pexels.com/photos/4623019/pexels-photo-4623019.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:14px;"/>
-            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
-              <div style="font-size:1.4rem;color:rgba(255,255,255,0.85);">✦</div>
-              <div style="font-family:'PP Pangaia',sans-serif;font-size:0.9rem;color:#3a3a3a;">cliquez pour tirer</div>
-            </div>
-          </div>
-          <div class="flip-card-back" id="flip-card-back">
-            <div class="card-name-on-card" id="card-name-visual"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="retirer-btn" style="display:none; text-align:center; margin-bottom:12px;">
-      <button onclick="resetOracle()" style="font-family:'PP Pangaia',sans-serif;font-size:1.1rem;color:var(--cream);background:var(--green-deep);border:none;border-radius:30px;padding:10px 28px;cursor:pointer;box-shadow:0 4px 15px rgba(30,58,30,0.3);">🔄 Tirer à nouveau</button>
-    </div>
-    <div class="oracle-card-display" id="oracle-display">
-      <div class="oracle-card-name" id="card-name-text"></div>
-      <div class="oracle-card-desc" id="card-desc-text"></div>
-    </div>
-  </div>
-
-  <!-- ASTRO SECTION -->
-  <div class="oracle-section" style="margin-top:28px;">
-    <div style="text-align:center; margin-bottom:20px;">
-      <div style="font-family:'PP Pangaia',sans-serif; font-size:2.4rem; font-weight:700; color:#ffffff; line-height:1.1;">pause astro</div>
-      <div style="font-family:'PP Pangaia',sans-serif; font-size:0.95rem; color:#3a3a3a; opacity:0.65; margin-top:10px;">clique sur ton signe pour recevoir ton message</div>
-    </div>
-    <div id="astro-grid" style="display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:16px 0 8px;"></div>
-    <div id="astro-display" style="display:none;">
-      <div id="astro-sign-name" style="font-family:'PP Pangaia',sans-serif; font-size:2rem; font-weight:700; color:#3a3a3a; text-align:center; margin-bottom:16px;"></div>
-      <div id="astro-message" style="font-family:'PP Pangaia',sans-serif; font-size:1.05rem; color:#3a3a3a; line-height:1.85; background:rgba(255,255,255,0.65); border-radius:14px; padding:20px 24px; border-left:3px solid var(--green-sage);"></div>
-      <div style="text-align:center; margin-top:18px;">
-        <button onclick="closeAstro()" style="font-family:'PP Pangaia',sans-serif;font-size:1rem;color:var(--cream);background:var(--green-deep);border:none;border-radius:30px;padding:10px 28px;cursor:pointer;box-shadow:0 4px 15px rgba(30,58,30,0.3);">← changer de signe</button>
-      </div>
+    <div class="category-card" onclick="openCategory('mediter')">
+      <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/5596902/pexels-photo-5596902.png'); background-size:cover; background-position:center;"></div>
+      <div class="card-overlay"></div>
+      <div class="category-name">Pour un moment spirituel</div>
     </div>
   </div>
 </div>
@@ -786,7 +682,47 @@
   <button class="back-btn" onclick="goHome()">← Retour</button>
 
   <div id="category-header" style="text-align:center; margin-bottom:30px;">
-    <div id="cat-name" style="font-family:'PP Pangaia',sans-serif; font-size:1.8rem; color:#3a3a3a; display:none;"></div>
+    <div id="cat-name" style="font-family:'PP Pangaia',sans-serif; font-size:1.8rem; color:var(--green-deep);"></div>
+  </div>
+
+  <!-- Oracle -->
+  <div class="oracle-section">
+    <div style="text-align:center; margin-bottom:28px;">
+      <div style="font-family:'PP Pangaia',sans-serif; font-size:3.8rem; font-weight:700; color:#ffffff; text-shadow: 0 2px 12px rgba(0,0,0,0.4); line-height:1.1;">l'oracle du calme</div>
+    </div>
+
+    <!-- Deck of cards with flip animation -->
+    <div class="card-deck-wrapper" onclick="drawCard()" onmouseenter="startShuffle()" onmouseleave="stopShuffle()">
+      <!-- Background stacked cards -->
+      <div class="deck-card deck-card-3"></div>
+      <div class="deck-card deck-card-2"></div>
+      <div class="deck-card deck-card-1"></div>
+      <!-- Flip card (front = back of card / back = revealed card) -->
+      <div class="flip-card" id="flip-card">
+        <div class="flip-card-inner" id="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://images.pexels.com/photos/34256952/pexels-photo-34256952.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:14px;"/>
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
+              <div style="font-size:1.4rem;color:rgba(255,255,255,0.85);">✦</div>
+              <div style="font-family:'PP Pangaia',sans-serif;font-size:0.9rem;color:rgba(255,255,255,0.85);">cliquez pour tirer</div>
+            </div>
+          </div>
+          <div class="flip-card-back" id="flip-card-back">
+            <div class="card-name-on-card" id="card-name-visual"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bouton tirer à nouveau, toujours visible après tirage -->
+    <div id="retirer-btn" style="display:none; text-align:center; margin-bottom:12px;">
+      <button onclick="resetOracle()" style="font-family:'PP Pangaia',sans-serif;font-size:1.1rem;color:var(--cream);background:var(--green-deep);border:none;border-radius:30px;padding:10px 28px;cursor:pointer;box-shadow:0 4px 15px rgba(30,58,30,0.3);">🔄 Tirer à nouveau</button>
+    </div>
+
+    <div class="oracle-card-display" id="oracle-display">
+      <div class="oracle-card-name" id="card-name-text"></div>
+      <div class="oracle-card-desc" id="card-desc-text"></div>
+    </div>
   </div>
 
   <!-- Subcategories -->
@@ -800,12 +736,12 @@
     <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
       <button onclick="prevTrack()" style="font-family:'PP Pangaia',sans-serif; font-size:0.95rem; color:var(--green-deep); background:rgba(255,255,255,0.9); border:1px solid var(--green-light); border-radius:30px; padding:8px 20px; cursor:pointer;">⏮ Précédent</button>
       <button onclick="nextTrack()" style="font-family:'PP Pangaia',sans-serif; font-size:0.95rem; color:var(--green-deep); background:rgba(255,255,255,0.9); border:1px solid var(--green-light); border-radius:30px; padding:8px 20px; cursor:pointer;">Suivant ⏭</button>
-      <button onclick="shufflePlay()" style="font-family:'PP Pangaia',sans-serif; font-size:0.95rem; color:var(--cream); background:var(--green-mid); border:none; border-radius:30px; padding:8px 20px; cursor:pointer;">Aléatoire</button>
+      <button onclick="shufflePlay()" style="font-family:'PP Pangaia',sans-serif; font-size:0.95rem; color:var(--cream); background:var(--green-mid); border:none; border-radius:30px; padding:8px 20px; cursor:pointer;">🔀 Aléatoire</button>
     </div>
   </div>
 
   <div id="shuffle-bar" style="display:none; text-align:center; margin-bottom:20px;">
-    <button onclick="shufflePlay()" style="font-family:'PP Pangaia',sans-serif; font-size:1rem; color:var(--cream); background:var(--green-mid); border:none; border-radius:30px; padding:10px 26px; cursor:pointer;">Lancer en aléatoire</button>
+    <button onclick="shufflePlay()" style="font-family:'PP Pangaia',sans-serif; font-size:1rem; color:var(--cream); background:var(--green-mid); border:none; border-radius:30px; padding:10px 26px; cursor:pointer;">🔀 Lancer en aléatoire</button>
   </div>
   <div class="videos-grid" id="videos-grid"></div>
 
@@ -903,17 +839,15 @@ const categories = {
     icon: "🌙",
     name: "Pour dormir tranquillement",
     subcategories: {
-      "une petite pause": [
+      "Les bruits de l'eau": [
         { label: "Ruisseau balbutiant", type: "soundcloud", url: "https://soundcloud.com/oasisdesbruitsnaturels/ruisseau-balbutiant-le-rebirth" },
         { label: "Son de pluie", type: "soundcloud", url: "https://soundcloud.com/sonidosdelanaturalezaruidoblancoparabebes/sonido-de-lluvia-rain-sound" },
-        { label: "Cascades féeriques", type: "soundcloud", url: "https://soundcloud.com/freshwatersoundsforinnerpeace-sc/whimsical-waterfalls-sounds-to" },
-        { label: "Relaxing Facial Harmony", type: "soundcloud", url: "https://soundcloud.com/deepmassagetribe/relaxing-facial-harmony" }
-      ],
-      "une longue pause": [
         { label: "Sons de douche apaisants", type: "soundcloud", url: "https://soundcloud.com/thechilloutzone/relaxing-sound-of-a-2-hour-shower-white-noise-water-sounds-to-help-you-or-baby-sleep" },
+        { label: "Cascades féeriques", type: "soundcloud", url: "https://soundcloud.com/freshwatersoundsforinnerpeace-sc/whimsical-waterfalls-sounds-to" }
+      ],
+      "Musiques douces": [
         { label: "Relaxing Sleep Music", type: "soundcloud", url: "https://soundcloud.com/soothingrelaxation/relaxing-sleep-music-deep-sleeping-music-relaxing-music-stress-relief-meditation-music-68" },
-        { label: "Rain Ambience", type: "soundcloud", url: "https://soundcloud.com/cosmomedia/rain-ambience" },
-        { label: "Autumn Wind Sounds", type: "soundcloud", url: "https://soundcloud.com/dave-smith-173/autumn-wind-sounds-2-hour-long" }
+        { label: "Relaxing Facial Harmony", type: "soundcloud", url: "https://soundcloud.com/deepmassagetribe/relaxing-facial-harmony" }
       ]
     }
   },
@@ -921,11 +855,8 @@ const categories = {
     icon: "🛁",
     name: "Pour prendre soin de moi",
     subcategories: {
-      "une petite pause": [
+      "Ambiances douces": [
         { label: "The Sun Comes Out", type: "soundcloud", url: "https://soundcloud.com/chapelsound/astrological-the-sun-comes-out" }
-      ],
-      "une longue pause": [
-        { label: "The KLF - Chill Out", type: "soundcloud", url: "https://soundcloud.com/mrgrinderman/the-klf-chill-out" }
       ]
     }
   },
@@ -933,8 +864,14 @@ const categories = {
     icon: "📖",
     name: "Pour bosser sereinement",
     subcategories: {
-      "une longue pause": [
-        { label: "Vajra Mind Soundscapes", type: "soundcloud", url: "https://soundcloud.com/desertdwellers/vajra-mind-meditative-soundscapes-compiled-by-amani" }
+      "Lo-fi": [
+        { label: "Lo-fi chill beats", id: "TO_ADD" }
+      ],
+      "Café ambiance": [
+        { label: "Bruits de café parisien", id: "TO_ADD" }
+      ],
+      "Nature focus": [
+        { label: "Forêt matinale", id: "TO_ADD" }
       ]
     }
   },
@@ -942,11 +879,10 @@ const categories = {
     icon: "🌿",
     name: "Pour apaiser mes plantes et moi",
     subcategories: {
-      "une petite pause": [
+      "Musiques pour les plantes": [
         { label: "Moon feat. Lamat", type: "soundcloud", url: "https://soundcloud.com/andresalborok/moon-feat-lamat-8" },
         { label: "Highlands", type: "soundcloud", url: "https://soundcloud.com/zazenkai-music/highlands" },
-        { label: "Aurum", type: "soundcloud", url: "https://soundcloud.com/dr3amd00r/aurum" },
-        { label: "Oiseaux de ruisseau", type: "soundcloud", url: "https://soundcloud.com/zonedelamusiquerelaxante/oiseaux-de-ruisseau" }
+        { label: "Aurum", type: "soundcloud", url: "https://soundcloud.com/dr3amd00r/aurum" }
       ]
     }
   },
@@ -954,15 +890,12 @@ const categories = {
     icon: "🍃",
     name: "Pour lire en toute détente",
     subcategories: {
-      "une petite pause": [
+      "Ambiances musicales": [
         { label: "Cellar", type: "soundcloud", url: "https://soundcloud.com/user-933862268/cellar" },
         { label: "Damp Forest", type: "soundcloud", url: "https://soundcloud.com/user-933862268/damp-forest" },
         { label: "Ethereal Serenity", type: "soundcloud", url: "https://soundcloud.com/zen74833/ethereal-serenity-in-harmonic" },
-        { label: "Tranquil Harmonies", type: "soundcloud", url: "https://soundcloud.com/velvetambient/tranquil-harmonies" }
-      ],
-      "une longue pause": [
-        { label: "Rain Sounds Ambience", type: "soundcloud", url: "https://soundcloud.com/soundsofnaturewhitenoisesoundeffects/rain-sounds-ambience-for" },
-        { label: "ASMR Rain Storm", type: "soundcloud", url: "https://soundcloud.com/relaxmusic0007/asmr-rain-storm-atmosphere-relax-nature-sounds-rain-thunder-water-ambience-meditation-sleep-sound" }
+        { label: "Tranquil Harmonies", type: "soundcloud", url: "https://soundcloud.com/velvetambient/tranquil-harmonies" },
+        { label: "Rain Sounds Ambience", type: "soundcloud", url: "https://soundcloud.com/soundsofnaturewhitenoisesoundeffects/rain-sounds-ambience-for" }
       ]
     }
   },
@@ -970,14 +903,12 @@ const categories = {
     icon: "🕊️",
     name: "Pour un moment spirituel",
     subcategories: {
-      "une petite pause": [
+      "Ambiances spirituelles": [
         { label: "Vertige", type: "soundcloud", url: "https://soundcloud.com/user-228288169/vertige" },
         { label: "Jardin", type: "soundcloud", url: "https://soundcloud.com/user-228288169/jardin" },
         { label: "Sad Angels", type: "soundcloud", url: "https://soundcloud.com/cedricdiaz/sad-angels" },
+        { label: "Full Soundscape 60min", type: "soundcloud", url: "https://soundcloud.com/konstantin-garkavenko/full-60-minute-soundscape" },
         { label: "The Billows That Break", type: "soundcloud", url: "https://soundcloud.com/mattt/the-billows-that-break" }
-      ],
-      "une longue pause": [
-        { label: "Full Soundscape 60min", type: "soundcloud", url: "https://soundcloud.com/konstantin-garkavenko/full-60-minute-soundscape" }
       ]
     }
   }
@@ -1124,16 +1055,9 @@ function prevTrack() {
 }
 
 
-function openOracle() {
-  document.getElementById('home-page').style.display = 'none';
-  document.getElementById('oracle-page').style.display = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
 function goHome() {
   resetOracle();
   document.getElementById('category-page').style.display = 'none';
-  document.getElementById('oracle-page').style.display = 'none';
   document.getElementById('home-page').style.display = 'block';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -1196,167 +1120,6 @@ function resetOracle() {
   document.getElementById('oracle-display').style.display = 'none';
   document.getElementById('retirer-btn').style.display = 'none';
 }
-
-// ── ASTRO ──────────────────────────────────────────────
-const astroSigns = [
-  {
-    name: 'Bélier', symbol: '♈', dates: '21 mars – 19 avr',
-    messages: [
-      `Tu es un feu qui n'attend pas la permission de brûler. Aujourd'hui, offre-toi le luxe inattendu de ralentir. La vraie bravoure, parfois, c'est de poser les armes et de laisser la vie venir à toi. Tu as déjà tellement donné — reçois maintenant.`,
-      `Ton énergie est contagieuse, et c'est un vrai cadeau pour ceux qui t'entourent ! Mais pense à toi aussi aujourd'hui. Même les plus fonceurs ont besoin de recharger les batteries. Une petite pause, et tu repars encore plus fort·e. 🌿`,
-      `Tu as tendance à foncer tête baissée, et c'est ce qui te rend si admirable. Mais aujourd'hui, laisse ton intuition guider plutôt que l'urgence. Les meilleures décisions se prennent souvent dans le calme. Essaie !`,
-      `Une belle énergie t'entoure ce jour. C'est le bon moment pour lâcher ce qui te pèse depuis trop longtemps. Tu n'as pas besoin de tout porter. Fais confiance au processus, et à toi surtout.`,
-      `Tu mérites des relations qui te dynamisent autant que tu les dynamisent. N'hésite pas à exprimer ce dont tu as besoin aujourd'hui — les gens qui t'aiment seront là. Et si ce n'est pas le cas, tu sais quoi faire. 😉`
-    ]
-  },
-  {
-    name: 'Taureau', symbol: '♉', dates: '20 avr – 20 mai',
-    messages: [
-      `Tu portes en toi une douceur rare qui rassure tous ceux qui t'entourent. Aujourd'hui, rappelle-toi que tu mérites autant de soin que tu en prodigues. Offre-toi quelque chose de beau — un repas savouré, un parfum aimé. Tu le mérites infiniment.`,
-      `Ton sens du confort et du beau est une vraie richesse ! Prends le temps aujourd'hui de savourer les petites choses. Un bon café, une lumière douce, une musique que tu aimes. C'est dans ces détails que la vie devient douce. ☕`,
-      `Tu as parfois du mal à changer de cap, et c'est normal — tu aimes la stabilité. Mais aujourd'hui, une petite nouveauté pourrait te faire beaucoup de bien. Pas besoin que ce soit grand. Juste différent. Laisse-toi surprendre !`,
-      `Ton instinct est solide et fiable. Si quelque chose te semble juste aujourd'hui, fais-lui confiance. Tu n'as pas besoin de l'avis de tout le monde pour prendre une bonne décision. Ton ventre sait. 🌱`,
-      `Tu donnes beaucoup sans toujours le dire. Aujourd'hui, autorise-toi à recevoir — une attention, un compliment, de l'aide. C'est aussi une forme de force que de savoir accueillir la générosité des autres.`
-    ]
-  },
-  {
-    name: 'Gémeaux', symbol: '♊', dates: '21 mai – 20 juin',
-    messages: [
-      `Ton esprit tourne à mille à l'heure — c'est ce qui te rend fascinant·e ! Mais aujourd'hui, choisis une seule pensée, un seul projet, et reste-y pleinement. La profondeur t'attend là où tu acceptes de ne pas fuir. Tu vas adorer ce que tu y trouveras.`,
-      `Tu as une façon unique de voir les choses sous tous les angles, et c'est un vrai superpouvoir. Aujourd'hui, utilise-le pour toi : qu'est-ce que la version bienveillante de toi te dirait en ce moment ? Écoute-la. 💛`,
-      `Ton besoin de connexion est beau et vivant. N'hésite pas à tendre la main à quelqu'un aujourd'hui — un message, un appel. Ces petits ponts que tu crées ont plus d'importance que tu ne le penses.`,
-      `Il y a tellement d'idées qui bouillonnent en toi ! Prends cinq minutes pour en noter une. Pas pour la réaliser tout de suite, juste pour ne pas la perdre. Ton cerveau te remerciera de cette petite attention. 📝`,
-      `Aujourd'hui, offre-toi le droit à la légèreté. Pas tout à analyser, pas tout à comprendre. Certaines choses peuvent juste être vécues et appréciées. Et c'est absolument suffisant.`
-    ]
-  },
-  {
-    name: 'Cancer', symbol: '♋', dates: '21 juin – 22 juil',
-    messages: [
-      `Tu ressens tout avec une intensité que peu comprennent — et c'est un don précieux. Aujourd'hui, protège ton énergie. Tu n'as pas à tout absorber, tu n'as pas à tout réparer. Rentre dans ta coquille avec amour et sans culpabilité. 🐚`,
-      `Ton cœur est grand, vraiment grand. Mais pense à toi aussi aujourd'hui — pas après les autres, en même temps. Qu'est-ce dont tu aurais besoin là, maintenant ? C'est une question qui mérite une vraie réponse.`,
-      `Tu portes souvent les émotions des autres sans qu'on te le demande. C'est magnifique, mais c'est lourd. Aujourd'hui, pose ce poids doucement. Tu peux prendre soin de toi sans trahir personne.`,
-      `Ton intuition est l'une des plus fines du zodiaque. Si quelque chose te tracasse sans raison apparente, écoute ce signal. Ton ressenti a de la valeur — il mérite d'être pris au sérieux, par toi en premier. 🌊`,
-      `Un moment de douceur s'impose aujourd'hui. Que ce soit un bain, une tisane, une série confort — tu as le droit de ne rien faire de productif. Le repos est aussi une façon de prendre soin des autres demain.`
-    ]
-  },
-  {
-    name: 'Lion', symbol: '♌', dates: '23 juil – 22 août',
-    messages: [
-      `Tu rayonnes naturellement et les gens se réchauffent à ta lumière. Mais qui prend soin du soleil ? Aujourd'hui, tourne cette générosité vers toi-même. Tu n'as pas besoin d'applaudissements pour valider ta valeur. Brille pour toi d'abord. 🌟`,
-      `Ton charisme attire tout le monde, et c'est normal ! Mais aujourd'hui, prends un moment pour toi, loin des regards. Ce que tu ressens quand personne ne te regarde est tout aussi important. Explore ça avec curiosité.`,
-      `Tu as tellement à offrir, et le monde le sait. Mais il est permis d'avoir des jours sans performance, sans rayonnement. Aujourd'hui, être simplement toi — sans costume — c'est plus que suffisant. 💛`,
-      `Une reconnaissance que tu attends peut tarder à venir. Ne la laisse pas définir ta journée. Tu sais ce que tu vaux, et c'est ce qui compte le plus. Les autres finiront par le voir aussi, ne t'inquiète pas.`,
-      `C'est un bon jour pour exprimer ce que tu ressens vraiment. Pas pour impressionner, pas pour briller — juste pour être authentique. Les gens qui t'entourent apprécieront cette version de toi encore plus.`
-    ]
-  },
-  {
-    name: 'Vierge', symbol: '♍', dates: '23 août – 22 sept',
-    messages: [
-      `Tu vois les détails que personne ne perçoit — et c'est un service précieux que tu rends au monde. Mais aujourd'hui, lâche la checklist. Tout n'a pas besoin d'être parfait pour être bien. Tu fais déjà assez. Tu es déjà assez. 🌿`,
-      `Ton sens de l'organisation est une vraie force ! Mais si aujourd'hui les choses ne se passent pas comme prévu, c'est OK. L'imprévu a aussi ses cadeaux. Essaie de lui faire un peu de place avec un sourire.`,
-      `Tu es souvent plus dur·e avec toi-même qu'avec n'importe qui d'autre. Aujourd'hui, applique-toi la même bienveillance que tu accordes si naturellement aux autres. Tu la mérites autant, vraiment.`,
-      `Ton besoin d'être utile est beau, mais tu as aussi le droit d'exister sans servir à quelque chose. Aujourd'hui, fais quelque chose uniquement parce que ça te plaît. Sans but. Juste pour toi. 💛`,
-      `Un doute te ronge peut-être en ce moment. Plutôt que de chercher la réponse parfaite, pose-toi une question simple : qu'est-ce qui me ferait me sentir bien là, maintenant ? Et commence par là.`
-    ]
-  },
-  {
-    name: 'Balance', symbol: '♎', dates: '23 sept – 22 oct',
-    messages: [
-      `Tu cherches l'harmonie partout — dans les relations, les espaces, les mots. C'est magnifique. Mais aujourd'hui, pose-toi cette question : qu'est-ce que moi je veux vraiment ? Ta voix compte autant que celles que tu écoutes. ⚖️`,
-      `Tu as parfois du mal à choisir, et c'est parce que tu vois la valeur dans tout — c'est un beau défaut ! Aujourd'hui, fais un choix, même petit, juste pour toi. Et remarque comme ça fait du bien d'avoir décidé.`,
-      `Ton sens de l'esthétique est un vrai don. Entoure-toi de beau aujourd'hui — une fleur, une bougie, un fond d'écran qui te fait sourire. Ces petits détails ont un impact réel sur ton humeur. 🌸`,
-      `Tu donnes beaucoup pour maintenir la paix autour de toi. Mais certains conflits méritent d'être traversés plutôt qu'évités. Aujourd'hui, si quelque chose te pèse, dis-le doucement mais dis-le. Tu te sentiras plus léger·e.`,
-      `Une belle connexion t'attend peut-être aujourd'hui — que ce soit avec quelqu'un ou avec toi-même. Sois ouvert·e à ce qui arrive sans trop vouloir le contrôler. La vie a des plans souvent meilleurs que les nôtres.`
-    ]
-  },
-  {
-    name: 'Scorpion', symbol: '♏', dates: '23 oct – 21 nov',
-    messages: [
-      `Tu vas en profondeur là où d'autres restent en surface — c'est ton superpouvoir. Aujourd'hui, dirige cette intensité vers ce qui te nourrit vraiment. Tu n'as pas besoin de tout contrôler pour te sentir en sécurité. La paix vient de l'intérieur. 🖤`,
-      `Ton intuition est redoutable. Si quelqu'un ou quelque chose te semble off aujourd'hui, fais confiance à ce ressenti. Ton radar ne te ment jamais — tu le sais mieux que quiconque.`,
-      `Tu portes souvent tes émotions en silence. Aujourd'hui, autorise-toi à en partager une — même petite — avec quelqu'un en qui tu as confiance. La vulnérabilité n'est pas une faiblesse. C'est du courage à l'état pur. 🌊`,
-      `Un chapitre se ferme peut-être en ce moment. Laisse-le se fermer. Tu as déjà prouvé que tu sais renaître de tout — c'est dans ta nature. Et ce qui arrive ensuite est souvent bien plus beau que ce qu'on laisse partir.`,
-      `Aujourd'hui, offre-toi un espace pour ne rien analyser. Juste ressentir. Juste être. Ton cerveau travaille tout le temps — il mérite une petite récré. La profondeur sera encore là demain, promis. 🌙`
-    ]
-  },
-  {
-    name: 'Sagittaire', symbol: '♐', dates: '22 nov – 21 déc',
-    messages: [
-      `Tu portes en toi une soif d'horizon qui est magnifique. Mais aujourd'hui, l'aventure la plus rare est intérieure. Explore tes doutes, tes désirs secrets. Le plus grand voyage de ta vie mène à toi-même — et il ne coûte aucun billet d'avion. 🌍`,
-      `Ton optimisme est contagieux et les gens adorent ça chez toi ! Aujourd'hui, utilise-le pour toi en premier. Rappelle-toi de tout ce que tu as déjà accompli. Il y a de quoi être fier·e, vraiment.`,
-      `Tu as besoin de liberté comme d'air — et c'est tout à fait normal ! Si tu te sens un peu à l'étroit en ce moment, cherche un espace de respiration. Une balade, un livre qui t'emmène loin, une nouvelle idée à explorer. 🗺️`,
-      `Ta franchise est une qualité rare et précieuse. Mais aujourd'hui, écoute autant que tu parles. Il y a peut-être quelque chose d'important que quelqu'un essaie de te dire entre les lignes.`,
-      `Une opportunité inattendue pourrait se présenter aujourd'hui. Ne la laisse pas passer par peur de te tromper. Le Sagittaire est fait pour sauter — et tu atterris toujours mieux que tu ne le crois. 🏹`
-    ]
-  },
-  {
-    name: 'Capricorne', symbol: '♑', dates: '22 déc – 19 jan',
-    messages: [
-      `Tu construis, tu tiens, tu avances même quand c'est difficile — c'est admirable. Mais aujourd'hui, pose les outils doucement. Tu n'as pas à mériter le repos. Il t'appartient déjà, inconditionnellement. Juste toi, vivant·e, suffisant·e. 🌲`,
-      `Tu as des objectifs clairs et c'est une vraie force. Mais n'oublie pas de célébrer le chemin parcouru, pas seulement l'arrivée. Regarde derrière toi un instant — tu as déjà fait tellement. C'est énorme.`,
-      `Tu portes souvent beaucoup de responsabilités, parfois celles des autres aussi. Aujourd'hui, demande-toi : est-ce que cette charge est vraiment la mienne ? Déléguer n'est pas abandonner. C'est sage. 🏔️`,
-      `Ton sérieux et ta fiabilité inspirent confiance à tous. Mais aujourd'hui, permets-toi un peu de légèreté ! Rigoler, faire quelque chose d'inutilement fun — c'est aussi bon pour la productivité. Vraiment.`,
-      `Une décision importante mijote peut-être. Pas besoin de tout résoudre aujourd'hui. Laisse la réponse venir à son rythme. Ton instinct de stratège saura quand c'est le bon moment. Fais-lui confiance. 💛`
-    ]
-  },
-  {
-    name: 'Verseau', symbol: '♒', dates: '20 jan – 18 fév',
-    messages: [
-      `Tu penses en dehors de toutes les cases — c'est ce qui te rend unique. Aujourd'hui, utilise ce regard sur toi-même, avec douceur. Tu es rare et précieux·se, même si peu de gens te comprennent pleinement. C'est OK. ⚡`,
-      `Ton besoin d'indépendance est légitime et beau. Mais aujourd'hui, laisse quelqu'un être là pour toi. Accepter du soutien n'est pas perdre ta liberté — c'est juste laisser entrer un peu de chaleur. Et tu le mérites.`,
-      `Tu as des idées brillantes qui méritent d'exister dans le monde réel. Aujourd'hui, fais un tout petit pas concret vers l'une d'elles. Un email, une note, une conversation. Le début d'une grande chose. 🌀`,
-      `Tu ressens parfois que tu ne corresponds à aucune case — et c'est vrai, tu n'y corresponds pas. C'est une force, même quand ça se sent comme une solitude. Les esprits libres changent le monde. Le tien en fait partie.`,
-      `Une conversation inattendue pourrait t'apporter quelque chose de précieux aujourd'hui. Sois curieux·se, ouvert·e, présent·e. Les meilleures idées naissent souvent d'échanges qu'on n'avait pas planifiés. 💫`
-    ]
-  },
-  {
-    name: 'Poissons', symbol: '♓', dates: '19 fév – 20 mars',
-    messages: [
-      `Tu navigues entre les mondes avec une sensibilité qui touche les âmes sans le chercher. Aujourd'hui, ancre-toi. Sens le sol sous tes pieds, l'air dans tes poumons. Tu n'as pas à porter les émotions du monde. Reviens à toi. 🌊`,
-      `Ton imagination est un trésor infini. Aujourd'hui, offre-lui un espace — dessiner, écrire, rêver les yeux ouverts. Ces moments ne sont pas perdus. Ils te ressourcent d'une manière que rien d'autre ne peut remplacer. 🎨`,
-      `Tu absorbes les émotions des autres comme une éponge — c'est un don, mais ça peut être épuisant. Après avoir côtoyé du monde aujourd'hui, prends un moment seul·e pour te "vider". Tu en sortiras tout·e neuf·ve.`,
-      `Une chose que tu portes depuis longtemps mérite peut-être d'être relâchée. Pas forcément résolue, juste... lâchée. Certaines choses se guérissent en les laissant partir plutôt qu'en les comprenant. 🌸`,
-      `Ton empathie est ta plus grande force. Aujourd'hui, tourne-la vers toi avec la même douceur que tu offres aux autres. Comment tu vas, toi ? Vraiment ? Prends le temps d'y répondre honnêtement. Tu le mérites.`
-    ]
-  }
-];
-
-function initAstroGrid() {
-  const grid = document.getElementById('astro-grid');
-  if (!grid) return;
-  grid.innerHTML = '';
-  astroSigns.forEach((sign, i) => {
-    const btn = document.createElement('button');
-    btn.style.cssText = `font-family:'PP Pangaia',sans-serif; background:rgba(255,255,255,0.65); border:1px solid rgba(122,158,110,0.35); border-radius:14px; padding:12px 6px; cursor:pointer; transition:all 0.25s; display:flex; flex-direction:column; align-items:center; gap:5px; width:100%; filter:grayscale(100%);`;
-    btn.innerHTML = `<span style="font-size:1.6rem; line-height:1;">${sign.symbol}</span><span style="font-size:0.78rem; color:#3a3a3a; font-weight:700;">${sign.name}</span><span style="font-size:0.58rem; color:#3a3a3a; opacity:0.55; line-height:1.3;">${sign.dates}</span>`;
-    btn.addEventListener('mouseenter', () => { btn.style.background = 'rgba(122,158,110,0.22)'; btn.style.transform = 'translateY(-2px)'; btn.style.filter = 'grayscale(0%)'; });
-    btn.addEventListener('mouseleave', () => { btn.style.background = 'rgba(255,255,255,0.65)'; btn.style.transform = 'translateY(0)'; btn.style.filter = 'grayscale(100%)'; });
-    btn.addEventListener('click', () => showAstroMessage(i));
-    grid.appendChild(btn);
-  });
-}
-
-function showAstroMessage(index) {
-  const sign = astroSigns[index];
-  const randomMsg = sign.messages[Math.floor(Math.random() * sign.messages.length)];
-  document.getElementById('astro-sign-name').textContent = sign.symbol + '  ' + sign.name;
-  document.getElementById('astro-message').textContent = randomMsg;
-  document.getElementById('astro-grid').style.display = 'none';
-  const display = document.getElementById('astro-display');
-  display.style.display = 'block';
-  display.style.animation = 'none';
-  display.offsetHeight;
-  display.style.animation = 'fadeInUp 0.6s ease';
-  display.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-function closeAstro() {
-  document.getElementById('astro-display').style.display = 'none';
-  document.getElementById('astro-grid').style.display = 'grid';
-}
-
-// Init astro on load
-document.addEventListener('DOMContentLoaded', initAstroGrid);
 </script>
 </body>
 </html>
