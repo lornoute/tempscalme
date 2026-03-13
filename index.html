@@ -48,7 +48,7 @@
     content: '';
     position: fixed;
     inset: 0;
-    background: rgba(250, 246, 238, 0.72);
+    background: rgba(250, 246, 238, 0.35);
     pointer-events: none;
     z-index: 0;
   }
@@ -81,10 +81,23 @@
   /* ── CATEGORIES GRID ── */
   .categories-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
+  }
+
+  .guidance-card {
+    grid-column: 2;
+    grid-row: 2;
+    height: 340px !important;
+    border: 3px solid rgba(122, 158, 110, 0.4);
+    box-shadow: 0 0 30px rgba(122, 158, 110, 0.2);
+  }
+
+  .guidance-card:hover {
+    border-color: rgba(122, 158, 110, 0.8);
+    box-shadow: 0 0 50px rgba(122, 158, 110, 0.35);
   }
 
   .category-card {
@@ -119,6 +132,14 @@
     position: absolute;
     inset: 0;
     background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.15) 50%, transparent 100%);
+  }
+
+  .card-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(90, 110, 75, 0.22);
+    mix-blend-mode: multiply;
   }
 
   .category-name {
@@ -628,10 +649,148 @@
   #next-btn:hover { opacity: 1; }
   #yt-players { position: fixed; top: -9999px; left: -9999px; width: 1px; height: 1px; }
 
+  /* ── GUIDANCE PAGE ── */
+  #guidance-page {
+    display: none;
+    position: relative;
+    z-index: 5;
+    padding: 30px 20px 80px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .guidance-tabs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .guidance-tab-btn {
+    font-family: 'PP Pangaia', sans-serif;
+    font-size: 1rem;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px solid var(--green-light);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: var(--green-mid);
+    font-weight: 500;
+  }
+
+  .guidance-tab-btn.active {
+    background: var(--green-mid);
+    color: white;
+    border-color: var(--green-mid);
+  }
+
+  .guidance-tab-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 124, 74, 0.2);
+  }
+
+  #oracle-content {
+    display: none;
+  }
+
+  #astro-content {
+    display: none;
+  }
+
+  /* ── ASTRO SIGNS GRID ── */
+  .astro-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 15px;
+    margin-top: 30px;
+  }
+
+  .astro-card {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border: 2px solid #333;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .astro-card:hover {
+    transform: scale(1.08) translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  }
+
+  .astro-symbol {
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+    filter: grayscale(100%);
+  }
+
+  .astro-name {
+    font-family: 'PP Pangaia', sans-serif;
+    font-size: 0.85rem;
+    color: #333;
+    font-weight: 500;
+  }
+
+  .astro-guidance-display {
+    display: none;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid var(--green-light);
+    border-radius: 20px;
+    padding: 40px;
+    margin-top: 40px;
+    animation: fadeInUp 0.6s ease;
+    text-align: center;
+  }
+
+  .astro-guidance-display.show {
+    display: block;
+  }
+
+  .astro-sign-title {
+    font-family: 'PP Pangaia', sans-serif;
+    font-size: 2rem;
+    color: var(--green-mid);
+    margin-bottom: 20px;
+  }
+
+  .astro-guidance-text {
+    font-family: 'PP Pangaia', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    line-height: 1.8;
+    font-style: italic;
+  }
+
   /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .categories-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .guidance-card {
+      grid-column: 1 / -1;
+      grid-row: auto;
+    }
+  }
+
   @media (max-width: 600px) {
-    .categories-grid { grid-template-columns: 1fr; }
-    .oracle-section { padding: 24px 18px; }
+    .categories-grid {
+      grid-template-columns: 1fr;
+    }
+    .guidance-card {
+      grid-column: 1;
+      grid-row: auto;
+      height: 280px !important;
+    }
   }
 </style>
 </head>
@@ -659,6 +818,14 @@
       <div class="card-overlay"></div>
       <div class="category-name">Pour bosser sereinement</div>
     </div>
+    
+    <!-- PAUSE GUIDANCE - AU CENTRE -->
+    <div class="category-card guidance-card" onclick="openCategory('pauseguidance')">
+      <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/11437522/pexels-photo-11437522.jpeg'); background-size:cover; background-position:center; filter: saturate(0.85) brightness(1.05) contrast(1.1);"></div>
+      <div class="card-overlay"></div>
+      <div class="category-name">Pause Guidance</div>
+    </div>
+    
     <div class="category-card" onclick="openCategory('jardiner')">
       <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/10713505/pexels-photo-10713505.jpeg'); background-size:cover; background-position:center;"></div>
       <div class="card-overlay"></div>
@@ -748,8 +915,121 @@
 
 </div>
 
-<!-- Music Player -->
-<!-- Floating SoundCloud player -->
+<!-- GUIDANCE PAGE (Oracle + Astro) -->
+<div id="guidance-page">
+  <button class="back-btn" onclick="goHome()"><span>← Retour</span></button>
+  
+  <div class="guidance-tabs">
+    <button class="guidance-tab-btn active" data-tab="oracle" onclick="switchGuidanceTab('oracle')">🔮 Oracle</button>
+    <button class="guidance-tab-btn" data-tab="astro" onclick="switchGuidanceTab('astro')">✨ Astrologie</button>
+  </div>
+
+  <!-- ORACLE CONTENT -->
+  <div id="oracle-content">
+    <div class="oracle-section">
+      <div class="oracle-title">Tirez votre carte de guidance</div>
+
+      <!-- Deck of cards with flip animation -->
+      <div class="card-deck-wrapper" onclick="drawCard()" onmouseenter="startShuffle()" onmouseleave="stopShuffle()">
+        <!-- Background stacked cards -->
+        <div class="deck-card deck-card-3"></div>
+        <div class="deck-card deck-card-2"></div>
+        <div class="deck-card deck-card-1"></div>
+        <!-- Flip card (front = back of card / back = revealed card) -->
+        <div class="flip-card" id="flip-card">
+          <div class="flip-card-inner" id="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="https://images.pexels.com/photos/34256952/pexels-photo-34256952.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:14px;"/>
+              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
+                <div style="font-size:1.4rem;color:rgba(255,255,255,0.85);">✦</div>
+                <div style="font-family:'PP Pangaia',sans-serif;font-size:0.9rem;color:rgba(255,255,255,0.85);">cliquez pour tirer</div>
+              </div>
+            </div>
+            <div class="flip-card-back" id="flip-card-back">
+              <div class="card-name-on-card" id="card-name-visual"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bouton tirer à nouveau, toujours visible après tirage -->
+      <div id="retirer-btn" style="display:none; text-align:center; margin-bottom:12px;">
+        <button onclick="resetOracle()" style="font-family:'PP Pangaia',sans-serif;font-size:1.1rem;color:var(--cream);background:var(--green-deep);border:none;border-radius:30px;padding:10px 28px;cursor:pointer;box-shadow:0 4px 15px rgba(30,58,30,0.3);">🔄 Tirer à nouveau</button>
+      </div>
+
+      <div class="oracle-card-display" id="oracle-display">
+        <div class="oracle-card-name" id="card-name-text"></div>
+        <div class="oracle-card-desc" id="card-desc-text"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ASTRO CONTENT -->
+  <div id="astro-content">
+    <div style="text-align: center; margin-bottom: 30px;">
+      <h2 style="font-family: 'PP Pangaia', sans-serif; font-size: 2rem; color: var(--green-deep); margin-bottom: 10px;">Astrologie</h2>
+      <p style="font-family: 'PP Pangaia', sans-serif; color: var(--text-mid); font-style: italic;">Cliquez sur votre signe pour recevoir votre message de guidance</p>
+    </div>
+
+    <div class="astro-grid">
+      <div class="astro-card" onclick="selectAstroSign('belier')">
+        <div class="astro-symbol">♈</div>
+        <div class="astro-name">Bélier</div>
+      </div>
+      <div class="astro-card" onclick="selectAstroSign('taureau')">
+        <div class="astro-symbol">♉</div>
+        <div class="astro-name">Taureau</div>
+      </div>
+      <div class="astro-card" onclick="selectAstroSign('gemeaux')">
+        <div class="astro-symbol">♊</div>
+        <div class="astro-name">Gémeaux</div>
+      </div>
+      <div class="astro-card" onclick="selectAstroSign('cancer')">
+        <div class="astro-symbol">♋</div>
+        <div class="astro-name">Cancer</div>
+      </div>
+      <div class="astro-card" onclick="selectAstroSign('lion')">
+        <div class="astro-symbol">♌</div>
+        <div class="astro-name">Lion</div>
+      </div>
+      <div class="astro-card" onclick="selectAstroSign('vierge')">
+        <div class="astro-symbol">♍</div>
+        <div class="astro-name">Vierge</div>
+      </div>
+      <div class="astro-card" onclick="selectAstroSign('balance')">
+        <div class="astro-symbol">♎</div>
+        <div class="astro-name">Balance</div>
+      </div>
+      <div class="astro-card" onclick="selectAstroSign('scorpion')">
+        <div class="astro-symbol">♏</div>
+        <div class="astro-name">Scorpion</div>
+      </div>
+      <div class="astro-card" onclick="selectAstroSign('sagittaire')">
+        <div class="astro-symbol">♐</div>
+        <div class="astro-name">Sagittaire</div>
+      </div>
+      <div class="astro-card" onclick="selectAstroSign('capricorne')">
+        <div class="astro-symbol">♑</div>
+        <div class="astro-name">Capricorne</div>
+      </div>
+      <div class="astro-card" onclick="selectAstroSign('verseau')">
+        <div class="astro-symbol">♒</div>
+        <div class="astro-name">Verseau</div>
+      </div>
+      <div class="astro-card" onclick="selectAstroSign('poissons')">
+        <div class="astro-symbol">♓</div>
+        <div class="astro-name">Poissons</div>
+      </div>
+    </div>
+
+    <div class="astro-guidance-display">
+      <div class="astro-sign-title"></div>
+      <div class="astro-guidance-text"></div>
+    </div>
+  </div>
+</div>
+
+
 <div id="music-player">
   <button id="toggle-player-btn" onclick="togglePlayerView()" title="Musique d'ambiance">🎵</button>
   <span class="player-label" id="player-label-text">ambiance</span>
@@ -911,6 +1191,11 @@ const categories = {
         { label: "The Billows That Break", type: "soundcloud", url: "https://soundcloud.com/mattt/the-billows-that-break" }
       ]
     }
+  },
+  pauseguidance: {
+    icon: "✨",
+    name: "Pause Guidance",
+    isSpecial: true
   }
 };
 
@@ -918,6 +1203,12 @@ let currentCategory = null;
 let currentSubcat = null;
 
 function openCategory(key) {
+  // Cas spécial: Pause Guidance
+  if (key === 'pauseguidance') {
+    openGuidance();
+    return;
+  }
+
   currentCategory = key;
   const cat = categories[key];
 
@@ -1058,6 +1349,7 @@ function prevTrack() {
 function goHome() {
   resetOracle();
   document.getElementById('category-page').style.display = 'none';
+  document.getElementById('guidance-page').style.display = 'none';
   document.getElementById('home-page').style.display = 'block';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -1120,6 +1412,112 @@ function resetOracle() {
   document.getElementById('oracle-display').style.display = 'none';
   document.getElementById('retirer-btn').style.display = 'none';
 }
+
+function openGuidance() {
+  document.getElementById('home-page').style.display = 'none';
+  document.getElementById('guidance-page').style.display = 'block';
+  document.getElementById('oracle-content').style.display = 'block';
+  document.getElementById('astro-content').style.display = 'none';
+  
+  // Reset oracle
+  resetOracle();
+  document.getElementById('oracle-display').style.display = 'none';
+  
+  // Active le premier tab
+  document.querySelectorAll('.guidance-tab-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelector('.guidance-tab-btn[data-tab="oracle"]').classList.add('active');
+  
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function switchGuidanceTab(tab) {
+  // Update buttons
+  document.querySelectorAll('.guidance-tab-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelector(`.guidance-tab-btn[data-tab="${tab}"]`).classList.add('active');
+  
+  // Update content
+  document.getElementById('oracle-content').style.display = tab === 'oracle' ? 'block' : 'none';
+  document.getElementById('astro-content').style.display = tab === 'astro' ? 'block' : 'none';
+  
+  if (tab === 'astro') {
+    document.querySelector('.astro-guidance-display').classList.remove('show');
+  }
+}
+
+function selectAstroSign(signKey) {
+  const sign = astroSigns[signKey];
+  const display = document.querySelector('.astro-guidance-display');
+  
+  document.querySelector('.astro-sign-title').textContent = sign.name + ' ' + sign.symbol;
+  document.querySelector('.astro-guidance-text').textContent = sign.guidance;
+  
+  display.classList.add('show');
+  display.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// Données des signes astro avec conseils personnalisés
+const astroSigns = {
+  belier: {
+    name: "Bélier",
+    symbol: "♈",
+    guidance: "Tu es un feu ardent qui brûle de passions. Ralentis un instant et écoute ton cœur avant de foncer. La réussite vient aussi de la réflexion et non que de l'action. Canalise cette énergie extraordinaire vers ce qui compte vraiment pour toi."
+  },
+  taureau: {
+    name: "Taureau",
+    symbol: "♉",
+    guidance: "Tu construis solidement, pierre après pierre. Tes fondations sont impressionnantes, mais ne restes pas figé dans tes certitudes. La vie t'invite à explorer l'inconnu avec confiance. Ton pouvoir réside dans ta capacité à évoluer sans perdre ton essence."
+  },
+  gemeaux: {
+    name: "Gémeaux",
+    symbol: "♊",
+    guidance: "Tu es une belle papillon qui voltige entre mille idées. Cherche la profondeur dans ces mille conversations. Là où tu brilles vraiment, c'est quand tu arrives à synthétiser ta curiosité en quelque chose de significatif. Écoute plus, parle avec intention."
+  },
+  cancer: {
+    name: "Cancer",
+    symbol: "♋",
+    guidance: "Ton empathie est un don précieux, mais ne te noies pas dans les émotions des autres. Protège-toi avec la même tendresse que tu offres au monde. Tu mérites d'être nourri autant que tu nourris les autres. Pose tes limites avec douceur mais fermeté."
+  },
+  lion: {
+    name: "Lion",
+    symbol: "♌",
+    guidance: "Tu es une lumière naturelle qui illumine tout autour de toi. Mais sais-tu que ton vrai pouvoir réside dans la capacité à élever les autres ? Partage le projecteur, car ensemble vous brillerez infiniment plus fort. L'amour vrai est dans la générosité de cœur."
+  },
+  vierge: {
+    name: "Vierge",
+    symbol: "♍",
+    guidance: "Tu vois les détails que personne d'autre ne voit. C'est un don, mais attention à ne pas perdre la vue d'ensemble. La perfection n'existe pas, et c'est justement ce qui rend la vie belle. Accorde-toi de la grâce et célèbre tes petites victoires au quotidien."
+  },
+  balance: {
+    name: "Balance",
+    symbol: "♎",
+    guidance: "Tu cherches l'harmonie, mais elle ne vient pas de plaire à tous. Elle vient de l'authenticité. Tu dois apprendre à dire non sans culpabilité et à choisir ton camp quand il le faut. Ton équilibre véritable naît de l'alignement avec tes valeurs profondes."
+  },
+  scorpion: {
+    name: "Scorpion",
+    symbol: "♏",
+    guidance: "Tu es intense, magnétique et profond comme un océan sans fin. Ton mystère est ton charme, mais partage un peu plus de toi. La vulnérabilité n'est pas une faiblesse, c'est une force. Laisse les gens proches te voir vraiment, sans armure."
+  },
+  sagittaire: {
+    name: "Sagittaire",
+    symbol: "♐",
+    guidance: "Tu rêves grand et tu as raison. Le monde a besoin de ton optimisme. Mais attention, ne fuis pas les responsabilités en quête de nouvelles aventures. Apprends à terminer ce que tu commences. C'est en ancrant tes rêves dans la réalité qu'ils deviennent vrais."
+  },
+  capricorne: {
+    name: "Capricorne",
+    symbol: "♑",
+    guidance: "Tu gravies les montagnes avec patience et détermination. C'est admirable, mais n'oublie pas de profiter du paysage en chemin. La vie n'est pas qu'une destination à atteindre. Permets-toi de rire, de jouer, de te détendre. Le succès sans joie est creux."
+  },
+  verseau: {
+    name: "Verseau",
+    symbol: "♒",
+    guidance: "Tu es un visionnaire, tes idées sont révolutionnaires. Mais souviens-toi que tu vis sur cette planète avec d'autres humains. Descends de ta tour d'ivoire et connecte-toi vraiment. La magie vient quand tes idées brillantes rencontrent le cœur tendre du monde."
+  },
+  poissons: {
+    name: "Poissons",
+    symbol: "♓",
+    guidance: "Tu nages dans les eaux infinies de l'imaginaire et c'est un cadeau. Mais tu dois aussi avoir des racines sur la terre. Ancre tes rêves dans des actions concrètes. Ton intuition est juste, alors fais-lui confiance tout en restant pragmatique. C'est ton équilibre."
+  }
+};
 </script>
 </body>
 </html>
