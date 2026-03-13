@@ -343,7 +343,7 @@
   .oracle-card-name {
     font-family: 'PP Pangaia', sans-serif;
     font-size: 1.6rem;
-    color: var(--green-deep);
+    color: white;
     margin-bottom: 14px;
   }
 
@@ -719,6 +719,9 @@
     align-items: center;
     justify-content: center;
     background: white;
+    background-image: url('https://images.pexels.com/photos/6298023/pexels-photo-6298023.jpeg');
+    background-size: cover;
+    background-position: center;
     border: 2px solid #333;
     border-radius: 15px;
     cursor: pointer;
@@ -726,6 +729,21 @@
     padding: 15px;
     text-align: center;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    position: relative;
+  }
+
+  .astro-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 15px;
+    z-index: 0;
+  }
+
+  .astro-card > * {
+    position: relative;
+    z-index: 1;
   }
 
   .astro-card:hover {
@@ -994,7 +1012,7 @@
 
       <!-- Bouton tirer à nouveau, toujours visible après tirage -->
       <div id="retirer-btn-guidance" style="display:none; text-align:center; margin-bottom:12px;">
-        <button onclick="resetOracleGuidance()" style="font-family:'PP Pangaia',sans-serif;font-size:1.1rem;color:var(--cream);background:var(--green-deep);border:none;border-radius:30px;padding:10px 28px;cursor:pointer;box-shadow:0 4px 15px rgba(30,58,30,0.3);">🔄 Tirer à nouveau</button>
+        <button onclick="resetOracleGuidance()" style="font-family:'PP Pangaia',sans-serif;font-size:1.1rem;color:var(--cream);background:var(--green-deep);border:none;border-radius:30px;padding:10px 28px;cursor:pointer;box-shadow:0 4px 15px rgba(30,58,30,0.3);">Tirer à nouveau</button>
       </div>
 
       <div class="oracle-card-display" id="oracle-display-guidance">
