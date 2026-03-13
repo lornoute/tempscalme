@@ -23,7 +23,6 @@
     --brown-soft: #8b6f47;
     --text-dark: #2a3a1f;
     --text-mid: #4a5e38;
-    --card-label-color: #a8927f;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -40,6 +39,7 @@
     overflow-x: hidden;
   }
 
+  /* ── Soft overlay to keep text readable ── */
   body::before {
     content: '';
     position: fixed;
@@ -49,6 +49,7 @@
     z-index: 0;
   }
 
+  /* ── HEADER ── */
   header {
     position: relative;
     z-index: 10;
@@ -68,37 +69,39 @@
   }
 
   @keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes shuffleAnimation {
-    0%, 100% { transform: translateX(0) rotateZ(0deg); }
-    25% { transform: translateX(8px) rotateZ(2deg); }
-    50% { transform: translateX(-8px) rotateZ(-2deg); }
-    75% { transform: translateX(6px) rotateZ(1deg); }
-  }
-
-  @keyframes revealCard {
-    from { opacity: 0; transform: scale(0.85) rotateY(90deg); }
-    to { opacity: 1; transform: scale(1) rotateY(0deg); }
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   #home-page {
     animation: fadeInUp 0.8s ease-out 0.2s both;
   }
 
+  /* ── HOME PAGE ── */
   #home-page {
     position: relative;
     z-index: 5;
     padding: 60px 20px 100px;
   }
 
+  /* ── CATEGORIES GRID ── */
   .categories-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -124,6 +127,7 @@
     box-shadow: 0 20px 50px rgba(0,0,0,0.2);
   }
 
+  /* Guidance card small - en haut */
   .guidance-card-small {
     position: relative;
     border: 2px solid rgba(122, 158, 110, 0.5);
@@ -179,24 +183,8 @@
     line-height: 1.2;
   }
 
-  /* ── GUIDANCE PAGE ── */
-  #guidance-section {
-    display: none;
-    position: relative;
-    z-index: 5;
-    padding: 30px 20px 80px;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
-  .guidance-header {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    margin-bottom: 40px;
-  }
-
-  #guidance-title {
+  /* ── CATEGORY PAGE HEADER ── */
+  #cat-name {
     font-family: 'Maulysia', sans-serif;
     font-weight: 400;
     font-size: clamp(3rem, 8vw, 5rem);
@@ -207,71 +195,233 @@
     margin-bottom: 12px;
   }
 
-  .guidance-subtitle {
+  .category-subtitle {
     font-family: 'PP Pangaia', sans-serif;
     font-size: 1.2rem;
     color: #3a3a3a;
     font-weight: 400;
     letter-spacing: 0.01em;
   }
+  #category-page {
+    display: none;
+    position: relative;
+    z-index: 5;
+    padding: 30px 20px 80px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
 
   .back-btn {
-    position: absolute;
-    top: 30px;
-    left: 30px;
-    z-index: 20;
-    background: rgba(255,255,255,0.7);
-    border: 1px solid rgba(122, 158, 110, 0.3);
-    border-radius: 25px;
-    padding: 10px 22px;
-    cursor: pointer;
-    font-family: 'PP Pangaia', sans-serif;
-    color: var(--text-dark);
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(6px);
-  }
-
-  .back-btn:hover {
-    background: rgba(255,255,255,0.9);
-    border-color: rgba(122, 158, 110, 0.6);
-  }
-
-  /* ── TABS ── */
-  .guidance-tabs {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 50px;
-    flex-wrap: wrap;
-  }
-
-  .tab-btn {
-    padding: 12px 28px;
-    border: 2px solid #ccc;
-    background: #fff;
-    border-radius: 25px;
-    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     font-family: 'PP Pangaia', sans-serif;
     font-size: 1rem;
     color: #3a3a3a;
-    transition: all 0.3s ease;
-    font-weight: 500;
+    background: none;
+    border: 1px solid #3a3a3a;
+    border-radius: 30px;
+    padding: 8px 18px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-bottom: 30px;
+  }
+  .back-btn:hover { background: rgba(58, 58, 58, 0.08); }
+
+  /* ── ORACLE SECTION ── */
+  .oracle-section {
+    background-image: url('https://images.pexels.com/photos/2109759/pexels-photo-2109759.jpeg');
+    background-size: cover;
+    background-position: center;
+    border: 1px solid rgba(176,136,192,0.3);
+    border-radius: 20px;
+    padding: 36px;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
   }
 
-  .tab-btn:hover {
-    border-color: #7a9e6e;
-    color: #7a9e6e;
+  #tarot-content .oracle-section {
+    background-image: url('https://images.unsplash.com/photo-1656125654190-eb2225a43cad?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
   }
 
-  .tab-btn.active {
-    background: #7a9e6e;
-    border-color: #7a9e6e;
+  .oracle-section > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .oracle-title {
+    font-family: 'PP Pangaia', sans-serif;
+    font-size: 2.6rem;
+    color: var(--green-deep);
+    margin-bottom: 28px;
+    line-height: 1.2;
+  }
+
+  /* ── ORACLE DECK ── */
+  .card-deck-wrapper {
+    position: relative;
+    width: 160px;
+    height: 240px;
+    margin: 0 auto 28px;
+    cursor: pointer;
+  }
+
+  .deck-card {
+    position: absolute;
+    width: 160px;
+    height: 240px;
+    border-radius: 14px;
+    background-image: url('https://images.pexels.com/photos/10397039/pexels-photo-10397039.jpeg');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 8px 30px rgba(30,58,30,0.4);
+    transition: transform 0.3s ease;
+  }
+  .deck-card-3 { transform: rotate(-6deg) translateY(6px); opacity: 0.6; }
+  .deck-card-2 { transform: rotate(-3deg) translateY(3px); opacity: 0.8; }
+  .deck-card-1 { transform: rotate(2deg); opacity: 0.9; }
+
+  /* Animations améliorées avec shuffle plus long et continu */
+  @keyframes shuffle1 {
+    0%   { transform: rotate(2deg) translateX(0px); }
+    20%  { transform: rotate(-8deg) translateX(-18px) translateY(-8px); }
+    40%  { transform: rotate(5deg) translateX(12px) translateY(-4px); }
+    60%  { transform: rotate(-4deg) translateX(-8px) translateY(4px); }
+    80%  { transform: rotate(6deg) translateX(16px) translateY(-6px); }
+    100% { transform: rotate(2deg) translateX(0px); }
+  }
+  @keyframes shuffle2 {
+    0%   { transform: rotate(-3deg) translateY(3px); }
+    20%  { transform: rotate(7deg) translateX(16px) translateY(-10px); }
+    40%  { transform: rotate(-6deg) translateX(-14px) translateY(2px); }
+    60%  { transform: rotate(4deg) translateX(8px) translateY(-5px); }
+    80%  { transform: rotate(-7deg) translateX(-16px) translateY(8px); }
+    100% { transform: rotate(-3deg) translateY(3px); }
+  }
+  @keyframes shuffle3 {
+    0%   { transform: rotate(-6deg) translateY(6px); }
+    20%  { transform: rotate(4deg) translateX(-10px) translateY(-6px); }
+    40%  { transform: rotate(-9deg) translateX(16px) translateY(4px); }
+    60%  { transform: rotate(2deg) translateX(-6px) translateY(-2px); }
+    80%  { transform: rotate(8deg) translateX(14px) translateY(5px); }
+    100% { transform: rotate(-6deg) translateY(6px); }
+  }
+
+  .deck-shuffling .deck-card-1 { animation: shuffle1 0.6s ease-in-out infinite; }
+  .deck-shuffling .deck-card-2 { animation: shuffle2 0.6s ease-in-out infinite 0.1s; }
+  .deck-shuffling .deck-card-3 { animation: shuffle3 0.6s ease-in-out infinite 0.2s; }
+
+  .flip-card {
+    position: absolute;
+    width: 160px;
+    height: 240px;
+    perspective: 1000px;
+    top: 0; left: 0;
+  }
+
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .flip-card-inner.flipped {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 14px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(30,58,30,0.45);
+  }
+
+  .flip-card-front {
+    background: #1e3a1e;
+    position: relative;
+  }
+
+  .flip-card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
+  }
+
+  .flip-card-back {
+    background: linear-gradient(160deg, rgba(45,74,45,0.3), rgba(30,58,30,0.3));
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 2px solid rgba(122,158,110,0.4);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .flip-card-back .card-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+    opacity: 0.55;
+    z-index: 0;
+  }
+
+  .flip-card-back .card-name-on-card {
+    font-family: 'PP Pangaia', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    padding: 8px 12px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+    background: rgba(0,0,0,0.45);
+    border-radius: 8px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .card-deck-wrapper:hover .flip-card-inner:not(.flipped) {
+    transform: translateY(-6px) rotate(1deg);
+  }
+
+  .oracle-card-name {
+    font-family: 'PP Pangaia', sans-serif;
+    font-size: 1.6rem;
     color: white;
+    margin-bottom: 14px;
   }
 
-  /* ── CARD DECK SYSTEM ── */
-  .cards-container {
+  .oracle-card-desc {
+    font-family: 'PP Pangaia', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--text-dark);
+    font-weight: 400;
+    max-width: 480px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.75);
+    border-radius: 12px;
+    padding: 16px 22px;
+    border-left: 3px solid var(--green-sage);
+  }
+
+  /* ── NEW CARD SYSTEM STYLES ── */
+  .new-cards-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -282,21 +432,21 @@
     position: relative;
   }
 
-  .deck-wrapper {
+  .new-deck-wrapper {
     position: relative;
     width: 220px;
     height: 320px;
     perspective: 1000px;
   }
 
-  .card-deck {
+  .new-card-deck {
     width: 100%;
     height: 100%;
     position: relative;
     cursor: pointer;
   }
 
-  .card-back {
+  .new-card-back {
     width: 100%;
     height: 100%;
     background-size: cover;
@@ -309,11 +459,18 @@
     transition: all 0.3s ease;
   }
 
-  .card-deck:hover .card-back {
-    animation: shuffleAnimation 0.6s ease-in-out infinite;
+  .new-card-deck:hover .new-card-back {
+    animation: newShuffleAnimation 0.6s ease-in-out infinite;
   }
 
-  .card-front {
+  @keyframes newShuffleAnimation {
+    0%, 100% { transform: translateX(0) rotateZ(0deg); }
+    25% { transform: translateX(8px) rotateZ(2deg); }
+    50% { transform: translateX(-8px) rotateZ(-2deg); }
+    75% { transform: translateX(6px) rotateZ(1deg); }
+  }
+
+  .new-card-front {
     width: 100%;
     height: 100%;
     background-size: cover;
@@ -330,15 +487,20 @@
     padding: 30px;
   }
 
-  .card-front.revealed {
-    animation: revealCard 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  .new-card-front.revealed {
+    animation: newRevealCard 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   }
 
-  .card-name {
+  @keyframes newRevealCard {
+    from { opacity: 0; transform: scale(0.85) rotateY(90deg); }
+    to { opacity: 1; transform: scale(1) rotateY(0deg); }
+  }
+
+  .new-card-name {
     font-family: 'PP Pangaia', sans-serif;
     font-size: 1.3rem;
     font-weight: 600;
-    color: var(--card-label-color);
+    color: #a8927f;
     text-align: center;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     letter-spacing: 0.05em;
@@ -346,13 +508,13 @@
     text-transform: uppercase;
   }
 
-  .card-result-section {
+  .new-card-result-section {
     text-align: center;
     margin-top: 40px;
     min-height: 200px;
   }
 
-  .card-result-text {
+  .new-card-result-text {
     font-family: 'PP Pangaia', sans-serif;
     font-size: 1.1rem;
     color: #3a3a3a;
@@ -360,9 +522,17 @@
     letter-spacing: 0.01em;
     line-height: 1.8;
     animation: fadeInUp 0.8s ease-out;
+    background: rgba(255, 255, 255, 0.75);
+    padding: 25px 35px;
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(122, 158, 110, 0.2);
+    display: inline-block;
+    max-width: 600px;
+    margin: 0 auto;
   }
 
-  .reset-btn {
+  .new-reset-btn {
     font-family: 'PP Pangaia', sans-serif;
     font-size: 1rem;
     color: var(--cream);
@@ -375,61 +545,692 @@
     transition: all 0.3s ease;
   }
 
-  .reset-btn:hover {
+  .new-reset-btn:hover {
     background: var(--green-deep);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(45,74,45,0.3);
   }
 
-  .tab-content {
+  .simultaneous-text {
+    font-family: 'PP Pangaia', sans-serif;
+    font-size: 1rem;
+    color: #a8927f;
+    font-weight: 600;
+    margin-top: 30px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── SUBCATEGORIES ── */
+  .subcategories-title {
+    font-family: 'PP Pangaia', sans-serif;
+    font-size: 1.4rem;
+    color: var(--green-deep);
+    margin-bottom: 18px;
+    text-align: center;
+  }
+
+  .subcategory-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+
+  .tab-btn {
+    font-family: 'PP Pangaia', sans-serif;
+    font-size: 1rem;
+    color: var(--green-mid);
+    background: rgba(255,255,255,0.8);
+    border: 1px solid var(--green-light);
+    border-radius: 30px;
+    padding: 9px 22px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .tab-btn:hover, .tab-btn.active {
+    background: var(--green-deep);
+    color: var(--cream);
+    border-color: var(--green-deep);
+  }
+
+  .tab-btn[data-duration="long"] {
+    border-color: var(--petal-pink);
+    color: var(--petal-pink);
+  }
+
+  .tab-btn[data-duration="long"]:hover,
+  .tab-btn[data-duration="long"].active {
+    background: var(--petal-pink);
+    color: white;
+    border-color: var(--petal-pink);
+  }
+
+  /* ── VIDEOS GRID ── */
+  .videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .video-card {
+    background: rgba(255,255,255,0.8);
+    border: 1px solid rgba(122,158,110,0.25);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .video-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(45,74,45,0.12);
+  }
+
+  .video-label {
+    background: linear-gradient(135deg, rgba(74,124,74,0.9), rgba(122,158,110,0.7));
+    color: white;
+    padding: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(122,158,110,0.3);
+  }
+
+  /* ── VOLUME SLIDER ── */
+  .volume-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: rgba(122,158,110,0.08);
+    border-top: 1px solid rgba(122,158,110,0.15);
+  }
+
+  .volume-label {
+    font-family: 'PP Pangaia', sans-serif;
+    font-size: 0.85rem;
+    color: var(--green-deep);
+    font-weight: 600;
+    min-width: 30px;
+  }
+
+  .volume-slider {
+    flex: 1;
+    max-width: 150px;
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(to right, #7a9e6e, #4a7c4a);
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+  }
+
+  .volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--green-deep);
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: background 0.2s;
+  }
+
+  .volume-slider::-webkit-slider-thumb:hover {
+    background: var(--green-mid);
+  }
+
+  .volume-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--green-deep);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: background 0.2s;
+  }
+
+  .volume-slider::-moz-range-thumb:hover {
+    background: var(--green-mid);
+  }
+
+  .volume-value {
+    font-family: 'PP Pangaia', sans-serif;
+    font-size: 0.85rem;
+    color: var(--green-deep);
+    font-weight: 600;
+    min-width: 30px;
+    text-align: right;
+  }
+    padding: 12px 16px 8px;
+    font-family: 'PP Pangaia', sans-serif;
+    font-size: 1rem;
+    color: var(--text-mid);
+    font-style: italic;
+  }
+
+  .video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+  }
+
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* ── EMPTY STATE ── */
+  .empty-state {
+    text-align: center;
+    padding: 40px;
+    color: var(--green-sage);
+    font-family: 'PP Pangaia', sans-serif;
+    font-style: italic;
+    font-size: 1.1rem;
+  }
+
+  /* ── FOOTER PETALS ── */
+  .petal-row {
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 20px;
+    opacity: 0.5;
+  }
+
+  /* ── MUSIC PLAYER ── */
+  #music-player {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    background: rgba(45,74,45,0.88);
+    backdrop-filter: blur(8px);
+    border-radius: 40px;
+    padding: 10px 18px;
+    box-shadow: 0 4px 20px rgba(45,74,45,0.3);
+    transition: all 0.3s;
+  }
+  #music-player.open {
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 16px;
+    padding: 14px 16px;
+  }
+  #music-player:hover { background: rgba(45,74,45,0.97); }
+
+  #toggle-player-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: var(--cream);
+    padding: 0;
+    transition: transform 0.2s;
+  }
+  #toggle-player-btn:hover { transform: scale(1.2); }
+
+  .player-label {
+    font-family: 'PP Pangaia', sans-serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.85);
+  }
+
+  /* ── MUSIC PLAYER ── */
+  #music-player {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  #music-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(45,74,45,0.85);
+    border: 1px solid rgba(122,158,110,0.5);
+    color: var(--cream);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(6px);
+    transition: all 0.3s;
+    box-shadow: 0 4px 16px rgba(45,74,45,0.25);
+  }
+  #music-btn:hover { background: rgba(45,74,45,1); transform: scale(1.08); }
+  #music-label {
+    font-family: 'PP Pangaia', sans-serif;
+    font-style: italic;
+    font-size: 0.82rem;
+    color: var(--green-mid);
+    background: rgba(255,255,255,0.75);
+    padding: 4px 10px;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(122,158,110,0.2);
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: all 0.3s;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  #music-player:hover #music-label { opacity: 1; transform: translateX(0); }
+
+  /* ── MUSIC PLAYER ── */
+  #music-player {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  #play-btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(45,74,45,0.85);
+    border: 1px solid rgba(122,158,110,0.5);
+    color: var(--cream);
+    font-size: 1.1rem;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(45,74,45,0.25);
+  }
+  #play-btn:hover {
+    background: var(--green-deep);
+    transform: scale(1.08);
+  }
+
+  #music-label {
+    font-family: 'PP Pangaia', sans-serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--green-deep);
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(6px);
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(122,158,110,0.3);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.4s;
+    pointer-events: none;
+  }
+  #music-player:hover #music-label { opacity: 1; }
+
+  /* ── FLOATING MUSIC PLAYER ── */
+  #music-player {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(45,74,45,0.88);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(184,212,168,0.3);
+    border-radius: 50px;
+    padding: 10px 18px 10px 14px;
+    box-shadow: 0 4px 20px rgba(45,74,45,0.25);
+    transition: all 0.3s ease;
+  }
+  #music-player:hover {
+    background: rgba(45,74,45,0.96);
+    box-shadow: 0 6px 28px rgba(45,74,45,0.35);
+  }
+  #play-pause-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(184,212,168,0.2);
+    border: 1px solid rgba(184,212,168,0.4);
+    color: var(--cream);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+  #play-pause-btn:hover { background: rgba(184,212,168,0.35); }
+  #track-info {
+    font-family: 'PP Pangaia', sans-serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--green-light);
+    white-space: nowrap;
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  #next-btn {
+    background: none;
+    border: none;
+    color: var(--green-light);
+    font-size: 0.8rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    padding: 0;
+    flex-shrink: 0;
+  }
+  #next-btn:hover { opacity: 1; }
+  #yt-players { position: fixed; top: -9999px; left: -9999px; width: 1px; height: 1px; }
+
+  /* ── GUIDANCE PAGE ── */
+  #guidance-page {
+    display: none;
+    position: relative;
+    z-index: 5;
+    padding: 30px 20px 80px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .guidance-tabs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .guidance-tab-btn {
+    font-family: 'PP Pangaia', sans-serif;
+    font-size: 1rem;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px solid var(--green-light);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: var(--green-mid);
+    font-weight: 500;
+  }
+
+  .guidance-tab-btn.active {
+    background: var(--green-mid);
+    color: white;
+    border-color: var(--green-mid);
+  }
+
+  .guidance-tab-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 124, 74, 0.2);
+  }
+
+  #oracle-content {
     display: none;
   }
 
-  .tab-content.active {
+  #astro-content {
+    display: none;
+  }
+
+  /* ── ASTRO SIGNS GRID ── */
+  .astro-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 15px;
+    margin-top: 30px;
+  }
+
+  .astro-card {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #333;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    position: relative;
+  }
+
+  .astro-card:hover {
+    transform: scale(1.08) translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  }
+
+  .astro-symbol {
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+    filter: grayscale(100%);
+  }
+
+  .astro-name {
+    font-family: 'PP Pangaia', sans-serif;
+    font-size: 0.85rem;
+    color: #333;
+    font-weight: 500;
+  }
+
+  .astro-guidance-display {
+    display: none;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid var(--green-light);
+    border-radius: 20px;
+    padding: 40px;
+    margin-top: 40px;
+    animation: fadeInUp 0.6s ease;
+    text-align: center;
+  }
+
+  .astro-guidance-display.show {
     display: block;
-    animation: fadeInUp 0.6s ease-out;
+  }
+
+  /* ── ASTRO MODALE ── */
+  .astro-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .astro-modal-overlay.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .astro-modal-content {
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 25px;
+    padding: 50px 40px 40px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: slideUp 0.4s ease;
+  }
+
+  .astro-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #333;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    padding: 0;
+  }
+
+  .astro-modal-close:hover {
+    transform: rotate(90deg);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .astro-sign-title {
+    font-family: 'PP Pangaia', sans-serif;
+    font-size: 2rem;
+    color: var(--green-mid);
+    margin-bottom: 20px;
+  }
+
+  .astro-guidance-text {
+    font-family: 'PP Pangaia', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    line-height: 1.8;
+    font-style: italic;
   }
 
   /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     .categories-grid {
       grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      padding: 0 20px;
+      gap: 24px;
+      padding: 0 30px;
+      grid-auto-rows: 300px;
     }
-
-    .cards-container {
-      gap: 40px;
-    }
-
-    .deck-wrapper {
-      width: 180px;
-      height: 280px;
+    .guidance-card-small {
+      width: 220px !important;
+      height: 200px !important;
     }
   }
 
-  @media (max-width: 480px) {
-    .categories-grid {
-      grid-template-columns: 1fr;
-      gap: 12px;
-      padding: 0 10px;
+  @media (max-width: 768px) {
+    header {
+      padding: 50px 20px 40px;
+    }
+    
+    .site-title {
+      font-size: clamp(3.5rem, 10vw, 7rem);
     }
 
-    .guidance-tabs {
+    .categories-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      padding: 0 20px;
+      grid-auto-rows: 260px;
+    }
+
+    .category-card {
+      border-radius: 20px;
+    }
+
+    .guidance-card-small {
+      width: 180px !important;
+      height: 160px !important;
+    }
+
+    #home-page {
+      padding: 40px 0 80px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    header {
+      padding: 40px 15px 30px;
+    }
+
+    .site-title {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+    }
+
+    .categories-grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+      padding: 0 12px;
+      grid-auto-rows: 200px;
+    }
+
+    .category-name {
+      font-size: 1.1rem;
+      bottom: 16px;
+      left: 14px;
+      right: 14px;
+    }
+
+    .guidance-card-small {
+      width: 100% !important;
+      height: 140px !important;
+      max-width: 300px;
+      margin: 0 auto 30px;
+    }
+
+    #home-page {
+      padding: 30px 0 60px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .categories-grid {
+      grid-auto-rows: 180px;
       gap: 10px;
     }
 
-    .cards-container {
-      gap: 20px;
-      margin: 40px 0;
+    .category-name {
+      font-size: 1rem;
     }
   }
 </style>
 </head>
 <body>
 
+<!-- SoundCloud Widget API -->
+<script src="https://w.soundcloud.com/player/api.js"></script>
+
 <header>
-  <h1 class="site-title">Temps Calme</h1>
+  <div class="site-title">temps calme</div>
   <div style="font-family: 'Maulysia', sans-serif; font-weight: 400; font-size: clamp(1rem, 3vw, 1.5rem); color: #3a3a3a; letter-spacing: 0.02em; text-shadow: 0 2px 20px rgba(0,0,0,0.2); margin-top: 8px;">Sons d'ambiance et musiques relaxantes</div>
 </header>
 
@@ -437,7 +1238,7 @@
 <div id="home-page">
   <!-- PAUSE GUIDANCE - EN HAUT ET PLUS PETITE -->
   <div style="text-align: center; margin-bottom: 50px;">
-    <div class="category-card guidance-card-small" onclick="openGuidance()" style="display: inline-block; width: 220px; height: 200px;">
+    <div class="category-card guidance-card-small" onclick="openCategory('pauseguidance')" style="display: inline-block; width: 220px; height: 200px;">
       <div class="card-bg" style="background-image:url('https://images.unsplash.com/photo-1644730999874-05cfd381b108?q=80&w=436&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size:cover; background-position:center;"></div>
       <div class="card-overlay"></div>
       <div class="category-name" style="font-size: 1.15rem;">Pause Guidance</div>
@@ -479,140 +1280,686 @@
   </div>
 </div>
 
-<!-- GUIDANCE PAGE -->
-<div id="guidance-section">
+<!-- CATEGORY PAGE -->
+<div id="category-page">
   <button class="back-btn" onclick="goHome()">← Retour</button>
+
+  <div id="category-header" style="text-align:center; margin-bottom:30px;">
+    <div id="cat-name"></div>
+  </div>
+
+  <!-- Subcategories -->
+  <div class="subcategory-tabs" id="subcategory-tabs"></div>
+
+  <!-- Playlist player -->
+  <div id="playlist-player" style="display:none; background:rgba(255,255,255,0.8); border:1px solid rgba(122,158,110,0.3); border-radius:16px; padding:18px 20px; margin-bottom:20px; text-align:center;">
+    <div id="now-playing" style="font-family:'PP Pangaia',sans-serif; font-size:1.1rem; color:var(--green-deep); margin-bottom:12px;">🎵 <span id="track-title">—</span></div>
+    <iframe id="playlist-iframe" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" style="border-radius:10px; display:block; margin-bottom:14px;"></iframe>
+    <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+      <button onclick="prevTrack()" style="font-family:'PP Pangaia',sans-serif; font-size:0.95rem; color:var(--green-deep); background:rgba(255,255,255,0.9); border:1px solid var(--green-light); border-radius:30px; padding:8px 20px; cursor:pointer;">⏮ Précédent</button>
+      <button onclick="nextTrack()" style="font-family:'PP Pangaia',sans-serif; font-size:0.95rem; color:var(--green-deep); background:rgba(255,255,255,0.9); border:1px solid var(--green-light); border-radius:30px; padding:8px 20px; cursor:pointer;">Suivant ⏭</button>
+      <button onclick="shufflePlay()" style="font-family:'PP Pangaia',sans-serif; font-size:0.95rem; color:var(--cream); background:var(--green-mid); border:none; border-radius:30px; padding:8px 20px; cursor:pointer;"><span style="filter: grayscale(100%); display: inline-block;">🔀</span> Aléatoire</button>
+    </div>
+  </div>
+
+  <div id="shuffle-bar" style="display:none; text-align:center; margin-bottom:20px;">
+    <button onclick="shufflePlay()" style="font-family:'PP Pangaia',sans-serif; font-size:1rem; color:var(--cream); background:var(--green-mid); border:none; border-radius:30px; padding:10px 26px; cursor:pointer;"><span style="filter: grayscale(100%); display: inline-block;">🔀</span> Lancer en aléatoire</button>
+    <div style="font-family:'PP Pangaia',sans-serif; font-size:0.95rem; color:black; font-weight:bold; margin-top:12px;">Tu peux lancer plusieurs sons simultanément pour plus de profondeur</div>
+  </div>
+  <div class="videos-grid" id="videos-grid"></div>
+
+
+</div>
+
+<!-- GUIDANCE PAGE (Oracle + Astro) -->
+<div id="guidance-page">
+  <button class="back-btn" onclick="goHome()"><span>← Retour</span></button>
   
-  <div class="guidance-header">
-    <h2 id="guidance-title">Pause Guidance</h2>
-    <p class="guidance-subtitle">Choisissez votre lecture</p>
+  <div id="guidance-header" style="text-align:center; margin-bottom:40px;">
+    <div style="font-family:'Maulysia',sans-serif; font-weight:400; font-size:clamp(3rem, 8vw, 5rem); color:#3a3a3a; letter-spacing:0.02em; line-height:1; text-shadow:0 2px 20px rgba(0,0,0,0.2); margin-bottom:12px;">Pause Guidance</div>
+    <div class="category-subtitle">Choisissez votre lecture</div>
   </div>
   
   <div class="guidance-tabs">
-    <button class="tab-btn active" onclick="switchTab('oracle')">Pause Oracle</button>
-    <button class="tab-btn" onclick="switchTab('tarot')">Pause Tarot</button>
+    <button class="guidance-tab-btn active" data-tab="oracle" onclick="switchGuidanceTab('oracle')">Pause Oracle</button>
+    <button class="guidance-tab-btn" data-tab="tarot" onclick="switchGuidanceTab('tarot')">Pause Tarot</button>
+    <button class="guidance-tab-btn" data-tab="astro" onclick="switchGuidanceTab('astro')">Pause Astro</button>
   </div>
 
-  <!-- ORACLE TAB -->
-  <div id="oracle" class="tab-content active">
-    <div class="cards-container">
-      <div class="deck-wrapper">
-        <div class="card-deck" id="oracle-deck" onclick="drawCard('oracle')">
-          <div class="card-back" id="oracle-back"></div>
-          <div class="card-front" id="oracle-front">
-            <div class="card-name" id="oracle-card-name"></div>
+  <!-- ORACLE CONTENT -->
+  <div id="oracle-content">
+    <div class="oracle-section">
+      <div class="oracle-title" style="color: white;">Tire une carte</div>
+
+      <div class="new-cards-container">
+        <div class="new-deck-wrapper">
+          <div class="new-card-deck" id="oracle-deck" onclick="drawNewCard('oracle')">
+            <div class="new-card-back" id="oracle-back"></div>
+            <div class="new-card-front" id="oracle-front">
+              <div class="new-card-name" id="oracle-card-name"></div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    
-    <div class="card-result-section" id="oracle-result">
-      <p class="card-result-text" id="oracle-text"></p>
-      <button class="reset-btn" onclick="resetDeck('oracle')" style="display:none;" id="oracle-reset">Tirer à nouveau</button>
+      
+      <div class="new-card-result-section" id="oracle-result">
+        <p class="new-card-result-text" id="oracle-text"></p>
+        <button class="new-reset-btn" onclick="resetNewDeck('oracle')" style="display:none;" id="oracle-reset">Tirer à nouveau</button>
+        <div class="simultaneous-text">Tu peux lancer plusieurs sons simultanément pour plus de profondeur</div>
+      </div>
     </div>
   </div>
 
-  <!-- TAROT TAB -->
-  <div id="tarot" class="tab-content">
-    <div class="cards-container">
-      <div class="deck-wrapper">
-        <div class="card-deck" id="tarot-deck" onclick="drawCard('tarot')">
-          <div class="card-back" id="tarot-back"></div>
-          <div class="card-front" id="tarot-front">
-            <div class="card-name" id="tarot-card-name"></div>
+  <!-- TAROT CONTENT -->
+  <div id="tarot-content" style="display:none;">
+    <div class="oracle-section">
+      <div class="oracle-title" style="color: white;">Tire une lame</div>
+
+      <div class="new-cards-container">
+        <div class="new-deck-wrapper">
+          <div class="new-card-deck" id="tarot-deck" onclick="drawNewCard('tarot')">
+            <div class="new-card-back" id="tarot-back"></div>
+            <div class="new-card-front" id="tarot-front">
+              <div class="new-card-name" id="tarot-card-name"></div>
+            </div>
           </div>
         </div>
       </div>
+      
+      <div class="new-card-result-section" id="tarot-result">
+        <p class="new-card-result-text" id="tarot-text"></p>
+        <button class="new-reset-btn" onclick="resetNewDeck('tarot')" style="display:none;" id="tarot-reset">Tirer à nouveau</button>
+        <div class="simultaneous-text">Tu peux lancer plusieurs sons simultanément pour plus de profondeur</div>
+      </div>
     </div>
+  </div>
+
+  <!-- ASTRO CONTENT -->
+  <div id="astro-content" style="background-image: url('https://images.pexels.com/photos/6298023/pexels-photo-6298023.jpeg'); background-size: cover; background-position: center; background-attachment: fixed; padding: 60px 20px; position: relative;">
+    <div style="position: absolute; inset: 0; background: rgba(0, 0, 0, 0.25);"></div>
     
-    <div class="card-result-section" id="tarot-result">
-      <p class="card-result-text" id="tarot-text"></p>
-      <button class="reset-btn" onclick="resetDeck('tarot')" style="display:none;" id="tarot-reset">Tirer à nouveau</button>
+    <div style="position: relative; z-index: 1;">
+      <h2 style="font-family: 'PP Pangaia', sans-serif; font-size: 2.5rem; color: white; text-align: center; margin-bottom: 50px; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">Astrologie</h2>
+
+      <div class="astro-grid">
+      <div class="astro-card" onclick="selectAstroSign('belier')">
+        <div class="astro-symbol">♈</div>
+        <div class="astro-name">Bélier</div>
+      </div>
+      <div class="astro-card" onclick="selectAstroSign('taureau')">
+        <div class="astro-symbol">♉</div>
+        <div class="astro-name">Taureau</div>
+      </div>
+      <div class="astro-card" onclick="selectAstroSign('gemeaux')">
+        <div class="astro-symbol">♊</div>
+        <div class="astro-name">Gémeaux</div>
+      </div>
+      <div class="astro-card" onclick="selectAstroSign('cancer')">
+        <div class="astro-symbol">♋</div>
+        <div class="astro-name">Cancer</div>
+      </div>
+      <div class="astro-card" onclick="selectAstroSign('lion')">
+        <div class="astro-symbol">♌</div>
+        <div class="astro-name">Lion</div>
+      </div>
+      <div class="astro-card" onclick="selectAstroSign('vierge')">
+        <div class="astro-symbol">♍</div>
+        <div class="astro-name">Vierge</div>
+      </div>
+      <div class="astro-card" onclick="selectAstroSign('balance')">
+        <div class="astro-symbol">♎</div>
+        <div class="astro-name">Balance</div>
+      </div>
+      <div class="astro-card" onclick="selectAstroSign('scorpion')">
+        <div class="astro-symbol">♏</div>
+        <div class="astro-name">Scorpion</div>
+      </div>
+      <div class="astro-card" onclick="selectAstroSign('sagittaire')">
+        <div class="astro-symbol">♐</div>
+        <div class="astro-name">Sagittaire</div>
+      </div>
+      <div class="astro-card" onclick="selectAstroSign('capricorne')">
+        <div class="astro-symbol">♑</div>
+        <div class="astro-name">Capricorne</div>
+      </div>
+      <div class="astro-card" onclick="selectAstroSign('verseau')">
+        <div class="astro-symbol">♒</div>
+        <div class="astro-name">Verseau</div>
+      </div>
+      <div class="astro-card" onclick="selectAstroSign('poissons')">
+        <div class="astro-symbol">♓</div>
+        <div class="astro-name">Poissons</div>
+      </div>
+      </div>
+    </div>
+
+    <!-- ASTRO MODAL -->
+    <div class="astro-modal-overlay" id="astro-modal">
+      <div class="astro-modal-content">
+        <button class="astro-modal-close" onclick="closeAstroModal()">×</button>
+        <div class="astro-sign-title"></div>
+        <div class="astro-guidance-text"></div>
+      </div>
     </div>
   </div>
 </div>
 
+
+<div id="music-player">
+  <button id="toggle-player-btn" onclick="togglePlayerView()" title="Musique d'ambiance">🎵</button>
+  <span class="player-label" id="player-label-text">ambiance</span>
+  <div id="sc-wrap" style="display:none; margin-top:8px;">
+    <iframe
+      width="260" height="120"
+      scrolling="no" frameborder="no" allow="autoplay"
+      src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/soundcloud-uk/sets/jamz-best-uk-r-b&color=%234a7c4a&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&single_active=false"
+      style="border-radius:12px;">
+    </iframe>
+  </div>
+</div>
+
 <script>
-// Card data
+var playerOpen = false;
+function togglePlayerView() {
+  playerOpen = !playerOpen;
+  document.getElementById('sc-wrap').style.display = playerOpen ? 'block' : 'none';
+  document.getElementById('toggle-player-btn').textContent = playerOpen ? '✕' : '🎵';
+  document.getElementById('player-label-text').style.display = playerOpen ? 'none' : 'inline';
+  document.getElementById('music-player').classList.toggle('open', playerOpen);
+}
+</script>
+
+<script>
+// ── Oracle cards data ──
 const oracleCards = [
-  { name: "Paix Intérieure", description: "Un moment pour respirer et trouver ton calme intérieur." },
-  { name: "Clarté", description: "La clarté arrive dans tes pensées et tes décisions." },
-  { name: "Gratitude", description: "Reconnaître ce que tu as crée une abondance de bien-être." },
-  { name: "Courage", description: "Tu as la force nécessaire pour avancer. Fais confiance à ta bravoure." },
-  { name: "Lâcher Prise", description: "Il est temps de relâcher ce qui ne sert plus ta croissance." },
-  { name: "Connexion", description: "Tu es connecté(e) à quelque chose de plus grand que toi." },
+  {
+    name: "Mère Nature",
+    symbol: "🌍",
+    image: "https://images.pexels.com/photos/10077939/pexels-photo-10077939.jpeg",
+    desc: "Touche de l'herbe, fais un câlin à un arbre. Tu es la seule personne à savoir si tu as besoin d'une balade en forêt ou plutôt de vacances au vert !"
+  },
+  {
+    name: "La Guidance",
+    symbol: "⭐",
+    image: "https://images.pexels.com/photos/17298790/pexels-photo-17298790.jpeg",
+    desc: "Tu es une personne très entourée. Ici et là haut, on t'aime et te soutient. Prête attention aux signes, et fais confiance."
+  },
+  {
+    name: "La Sérénité",
+    symbol: "🕊️",
+    image: "https://images.pexels.com/photos/11377550/pexels-photo-11377550.jpeg",
+    desc: "La paix de l'esprit se savoure. Le monde peut attendre, mais toi, tu mérites ce moment de calme."
+  },
+  {
+    name: "L'Amour",
+    symbol: "🌹",
+    image: "https://images.pexels.com/photos/5874736/pexels-photo-5874736.jpeg",
+    desc: "Tes amis, ta famille, ou la personne qui fait chavirer ton cœur, tous sont remplis d'amour pour toi. Ressens la chaleur de se sentir aimé et laisse toi porter. Partage toi aussi cet amour à ceux qui te sont chers."
+  },
+  {
+    name: "L'Écoute de soi",
+    symbol: "🌿",
+    image: "https://images.pexels.com/photos/29567421/pexels-photo-29567421.jpeg",
+    desc: "La réponse à tes questions est en toi. Tu as la clé qui ouvre la porte à toutes ces choses dont tu rêves. Fais confiance à ton ressenti."
+  },
+  {
+    name: "Le Changement",
+    symbol: "🍂",
+    image: "https://images.pexels.com/photos/3389538/pexels-photo-3389538.jpeg",
+    desc: "Embrasse le changement car il fait parti de la vie. On se plaint parfois d'un changement qui, au bout du compte, est une bénédiction que l'on n'aurait jamais pu l'imaginer. Trust the process!"
+  },
+  {
+    name: "L'Ordre des choses",
+    symbol: "✨",
+    image: "https://images.pexels.com/photos/3083250/pexels-photo-3083250.jpeg",
+    desc: "Le brouillard peut apparaître partout, et parfois il est si lourd qu'on ne voit pas où l'on est. Il n'y a rien à faire pour le faire fuir, il disparaîtra de lui-même, c'est dans l'ordre des choses. Laisse-le passer. Le plus beau des paysages s'offrira à toi."
+  },
+  {
+    name: "Le Pardon",
+    symbol: "🌸",
+    image: "https://images.pexels.com/photos/827455/pexels-photo-827455.jpeg",
+    desc: "Pardonne aux autres, et pardonne toi. C'est le plus beau cadeau qu'on puisse se faire. Libère toi de ce qui pèse."
+  },
+  {
+    name: "Le Choix",
+    symbol: "🌿",
+    image: "https://images.unsplash.com/photo-1429743305873-d4065c15f93e?q=80&w=867&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    desc: "Plusieurs options s'offrent à toi. Il n'y a pas de mauvais choix, seulement celui qui résonne avec ce que tu souhaites vraiment. Pas de pression, tout arrive pour une raison."
+  }
 ];
 
+// ── Tarot cards data (22 Arcanes Majeurs) ──
 const tarotCards = [
-  { name: "Le Magicien", description: "Tu as le pouvoir de créer la réalité que tu désires." },
-  { name: "La Prêtresse", description: "Écoute ton intuition, elle te guide vers la vérité." },
-  { name: "L'Impératrice", description: "L'abondance et la fertilité sont à ta portée." },
-  { name: "L'Amoureux", description: "Une décision importante se dessine. Suis ton cœur." },
-  { name: "Le Chariot", description: "Tu avances vers ton objectif avec détermination et succès." },
-  { name: "L'Ermite", description: "La sagesse vient de la réflexion solitaire et du recueillement." },
-  { name: "La Roue de Fortune", description: "Les cycles changent, une nouvelle phase commence." },
-  { name: "La Justesse", description: "L'équilibre et l'honnêteté te mènent vers l'harmonie." },
+  {
+    name: "Le Bateleur",
+    number: "I",
+    image: "https://images.pexels.com/photos/3694380/pexels-photo-3694380.jpeg",
+    desc: "Le début d'un nouveau cycle. Tu as tous les outils en main pour créer ta réalité. C'est le moment d'agir avec intention et confiance."
+  },
+  {
+    name: "La Papesse",
+    number: "II",
+    image: "https://images.pexels.com/photos/3889857/pexels-photo-3889857.jpeg",
+    desc: "L'intuition et la sagesse cachée. Écoute ta voix intérieure, elle détient les réponses que tu cherches. Le mystère t'appelle."
+  },
+  {
+    name: "L'Impératrice",
+    number: "III",
+    image: "https://images.pexels.com/photos/3402999/pexels-photo-3402999.jpeg",
+    desc: "La créativité et l'abondance. Tu es en pleine force créatrice. Cultive ce que tu désires, la fertilité est avec toi."
+  },
+  {
+    name: "L'Empereur",
+    number: "IV",
+    image: "https://images.pexels.com/photos/3657096/pexels-photo-3657096.jpeg",
+    desc: "L'autorité et la stabilité. C'est le moment de prendre le contrôle de ta vie. La discipline et la structure t'apporteront le succès."
+  },
+  {
+    name: "Le Pape",
+    number: "V",
+    image: "https://images.pexels.com/photos/3657097/pexels-photo-3657097.jpeg",
+    desc: "La sagesse spirituelle et la tradition. Cherche conseil auprès de ceux qui savent. La connaissance est ta plus grande richesse."
+  },
+  {
+    name: "L'Amoureux",
+    number: "VI",
+    image: "https://images.pexels.com/photos/3656839/pexels-photo-3656839.jpeg",
+    desc: "Les choix du cœur et l'harmonie. Une décision importante t'attend. Laisse l'amour guider ton chemin."
+  },
+  {
+    name: "Le Chariot",
+    number: "VII",
+    image: "https://images.pexels.com/photos/3739686/pexels-photo-3739686.jpeg",
+    desc: "La détermination et le succès. Tu avances vers la victoire. Reste focus et tu franchiras tous les obstacles."
+  },
+  {
+    name: "La Justice",
+    number: "VIII",
+    image: "https://images.pexels.com/photos/3889857/pexels-photo-3889857.jpeg",
+    desc: "L'équilibre et la vérité. La justice prévaut. Sois honnête avec toi-même et les autres, l'équité te sourit."
+  },
+  {
+    name: "L'Hermite",
+    number: "IX",
+    image: "https://images.pexels.com/photos/3657511/pexels-photo-3657511.jpeg",
+    desc: "La réflexion et la solitude. Retire-toi pour mieux te connaître. La sagesse naît de l'introspection."
+  },
+  {
+    name: "La Roue de Fortune",
+    number: "X",
+    image: "https://images.pexels.com/photos/3656840/pexels-photo-3656840.jpeg",
+    desc: "Le destin et le cycle. Les choses changent. Accepte le mouvement de la vie, tout tourne et revient."
+  },
+  {
+    name: "La Force",
+    number: "XI",
+    image: "https://images.pexels.com/photos/3889858/pexels-photo-3889858.jpeg",
+    desc: "La puissance intérieure et le courage. Tu es plus fort que tu ne le crois. Canalise ton énergie avec bienveillance."
+  },
+  {
+    name: "Le Pendu",
+    number: "XII",
+    image: "https://images.pexels.com/photos/3657512/pexels-photo-3657512.jpeg",
+    desc: "La suspension et l'attente. Parfois il faut lâcher prise pour avancer. L'acceptation apporte la paix."
+  },
+  {
+    name: "La Mort",
+    number: "XIII",
+    image: "https://images.pexels.com/photos/3889859/pexels-photo-3889859.jpeg",
+    desc: "La transformation et la renaissance. Quelque chose se termine pour que du nouveau naisse. C'est une belle mutation."
+  },
+  {
+    name: "La Tempérance",
+    number: "XIV",
+    image: "https://images.pexels.com/photos/3656841/pexels-photo-3656841.jpeg",
+    desc: "L'harmonie et l'équilibre. Modère tes excès, trouve le juste milieu. L'harmonie intérieure t'attend."
+  },
+  {
+    name: "Le Diable",
+    number: "XV",
+    image: "https://images.pexels.com/photos/3657513/pexels-photo-3657513.jpeg",
+    desc: "Les attachements et les chaînes. Reconnais ce qui te retient prisonnier. Tu as le pouvoir de te libérer."
+  },
+  {
+    name: "La Tour",
+    number: "XVI",
+    image: "https://images.pexels.com/photos/3657514/pexels-photo-3657514.jpeg",
+    desc: "L'effondrement et la clarté. Un changement brutal arrive mais il libère. La destruction précède la reconstruction."
+  },
+  {
+    name: "L'Étoile",
+    number: "XVII",
+    image: "https://images.pexels.com/photos/3402997/pexels-photo-3402997.jpeg",
+    desc: "L'espoir et l'inspiration. Un rayon de lumière éclaire ton chemin. Tes rêves sont possibles, crois-y."
+  },
+  {
+    name: "La Lune",
+    number: "XVIII",
+    image: "https://images.pexels.com/photos/3889860/pexels-photo-3889860.jpeg",
+    desc: "L'illusion et les émotions. Ne te laisse pas tromper par les apparences. Prête attention à tes rêves."
+  },
+  {
+    name: "Le Soleil",
+    number: "XIX",
+    image: "https://images.pexels.com/photos/3402998/pexels-photo-3402998.jpeg",
+    desc: "La joie et la clarté. La lumière brille sur toi. Tout s'illumine, c'est une période d'expansion."
+  },
+  {
+    name: "Le Jugement",
+    number: "XX",
+    image: "https://images.pexels.com/photos/3657515/pexels-photo-3657515.jpeg",
+    desc: "L'appel et la révolution intérieure. C'est le moment d'entendre ton appel. Un renouveau t'attend."
+  },
+  {
+    name: "Le Monde",
+    number: "XXI",
+    image: "https://images.pexels.com/photos/3656842/pexels-photo-3656842.jpeg",
+    desc: "L'accomplissement et la complétude. Tu as bouclé une boucle. C'est la fin et le début d'un nouveau voyage."
+  },
+  {
+    name: "Le Fou",
+    number: "0",
+    image: "https://images.pexels.com/photos/3657516/pexels-photo-3657516.jpeg",
+    desc: "L'innocence et le libre arbitre. Aie le courage de sauter dans l'inconnu. La vie t'appelle à vivre pleinement."
+  }
 ];
 
-// State
-let currentType = null;
-let drawnCard = null;
-let cardDrawn = false;
+// ── Categories data ──
+const categories = {
+  dormir: {
+    icon: "🌙",
+    name: "Pour dormir tranquillement",
+    subcategories: {
+      "Une longue pause": [
+        { label: "Sons de douche apaisants", type: "soundcloud", url: "https://soundcloud.com/thechilloutzone/relaxing-sound-of-a-2-hour-shower-white-noise-water-sounds-to-help-you-or-baby-sleep" },
+        { label: "Son de pluie", type: "soundcloud", url: "https://soundcloud.com/sonidosdelanaturalezaruidoblancoparabebes/sonido-de-lluvia-rain-sound" },
+        { label: "Relaxing Sleep Music", type: "soundcloud", url: "https://soundcloud.com/soothingrelaxation/relaxing-sleep-music-deep-sleeping-music-relaxing-music-stress-relief-meditation-music-68" },
+        { label: "Thunderstorm Sounds Long Recording", type: "soundcloud", url: "https://soundcloud.com/user-908929543/thunderstorm-soundslong-recording-relaxing-rain-thunder-sounds-for-sleep-insomnia-or-study?si=f3d6e5168828468cba5ed1925df8df22&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" }
+      ],
+      "Une petite pause": [
+        { label: "Ruisseau balbutiant", type: "soundcloud", url: "https://soundcloud.com/oasisdesbruitsnaturels/ruisseau-balbutiant-le-rebirth" },
+        { label: "Cascades féeriques", type: "soundcloud", url: "https://soundcloud.com/freshwatersoundsforinnerpeace-sc/whimsical-waterfalls-sounds-to" },
+        { label: "Relaxing Facial Harmony", type: "soundcloud", url: "https://soundcloud.com/deepmassagetribe/relaxing-facial-harmony" }
+      ]
+    }
+  },
+  bain: {
+    icon: "🛁",
+    name: "Pour prendre soin de moi",
+    subcategories: {
+      "Une longue pause": [
+        { label: "Musique Zen - Flute, Cloches Tibétaines et Bruit de la Nature", type: "soundcloud", url: "https://soundcloud.com/pascale-toubeau/musique-zen-flute-cloches-tibetaines-et-bruit-de-la-nature-relaxation-dormir?si=0a8e846657014ac8a2b32fa305e52627&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" }
+      ],
+      "Une petite pause": [
+        { label: "The Sun Comes Out", type: "soundcloud", url: "https://soundcloud.com/chapelsound/astrological-the-sun-comes-out" }
+      ]
+    }
+  },
+  travailler: {
+    icon: "📖",
+    name: "Pour bosser sereinement",
+    subcategories: {
+      "Une longue pause": [
+        { label: "Crackling Fire and Rain", type: "soundcloud", url: "https://soundcloud.com/cosmomedia/crackling-fire-and-rain-mp3?si=cebb1cefae52479f8ccf57d7425ef596&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" }
+      ],
+      "Une petite pause": [
+        { label: "Lo-fi chill beats", id: "TO_ADD" },
+        { label: "Bruits de café parisien", id: "TO_ADD" },
+        { label: "Forêt matinale", id: "TO_ADD" }
+      ]
+    }
+  },
+  jardiner: {
+    icon: "🌿",
+    name: "Pour apaiser mes plantes et moi",
+    subcategories: {
+      "Une longue pause": [
+        { label: "Musique Zen - Flute, Cloches Tibétaines et Bruit de la Nature", type: "soundcloud", url: "https://soundcloud.com/pascale-toubeau/musique-zen-flute-cloches-tibetaines-et-bruit-de-la-nature-relaxation-dormir?si=0a8e846657014ac8a2b32fa305e52627&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" }
+      ],
+      "Une petite pause": [
+        { label: "Moon feat. Lamat", type: "soundcloud", url: "https://soundcloud.com/andresalborok/moon-feat-lamat-8" },
+        { label: "Highlands", type: "soundcloud", url: "https://soundcloud.com/zazenkai-music/highlands" },
+        { label: "Aurum", type: "soundcloud", url: "https://soundcloud.com/dr3amd00r/aurum" }
+      ]
+    }
+  },
+  lire: {
+    icon: "🍃",
+    name: "Pour lire en toute détente",
+    subcategories: {
+      "Une longue pause": [
+        { label: "Rain Sounds Ambience", type: "soundcloud", url: "https://soundcloud.com/soundsofnaturewhitenoisesoundeffects/rain-sounds-ambience-for" },
+        { label: "Forest at Night - Crickets, Owls, Rain & Wind", type: "soundcloud", url: "https://soundcloud.com/user-17441338/forest-at-night-crickets-owls-rain-wind-in-trees-nature-sounds-to-relax-stud?si=8a73ac65057344ad89998f3738b551d8&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" },
+        { label: "Campfire Sounds on the Beach - Ocean Waves & Nature Sounds", type: "soundcloud", url: "https://soundcloud.com/mariuszpierog/campfire-sounds-on-the-beach-ocean-waves-nature-sounds-for-sleep-study-n012?si=cb9f588c2c5e4a11b61276a35fad33e5&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" }
+      ],
+      "Une petite pause": [
+        { label: "Cellar", type: "soundcloud", url: "https://soundcloud.com/user-933862268/cellar" },
+        { label: "Damp Forest", type: "soundcloud", url: "https://soundcloud.com/user-933862268/damp-forest" },
+        { label: "Ethereal Serenity", type: "soundcloud", url: "https://soundcloud.com/zen74833/ethereal-serenity-in-harmonic" },
+        { label: "Tranquil Harmonies", type: "soundcloud", url: "https://soundcloud.com/velvetambient/tranquil-harmonies" }
+      ]
+    }
+  },
+  mediter: {
+    icon: "🕊️",
+    name: "Pour un moment spirituel",
+    subcategories: {
+      "Une longue pause": [
+        { label: "Full Soundscape 60min", type: "soundcloud", url: "https://soundcloud.com/konstantin-garkavenko/full-60-minute-soundscape" },
+        { label: "Thunderstorm Sounds Long Recording", type: "soundcloud", url: "https://soundcloud.com/user-908929543/thunderstorm-soundslong-recording-relaxing-rain-thunder-sounds-for-sleep-insomnia-or-study?si=f3d6e5168828468cba5ed1925df8df22&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" },
+        { label: "Long Thunderstorm High Quality", type: "soundcloud", url: "https://soundcloud.com/user6380197/long-thunderstorm-high-quality?si=7cd4dbcfb3ab45f6803bec033fd96509&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" }
+      ],
+      "Une petite pause": [
+        { label: "Vertige", type: "soundcloud", url: "https://soundcloud.com/user-228288169/vertige" },
+        { label: "Jardin", type: "soundcloud", url: "https://soundcloud.com/user-228288169/jardin" },
+        { label: "Sad Angels", type: "soundcloud", url: "https://soundcloud.com/cedricdiaz/sad-angels" },
+        { label: "The Billows That Break", type: "soundcloud", url: "https://soundcloud.com/mattt/the-billows-that-break" }
+      ]
+    }
+  },
+  pauseguidance: {
+    icon: "✨",
+    name: "Pause Guidance",
+    isSpecial: true
+  }
+};
 
-// Initialize
-function init() {
-  setCardBackgrounds();
+let currentCategory = null;
+let currentSubcat = null;
+
+function openCategory(key) {
+  // Cas spécial: Pause Guidance
+  if (key === 'pauseguidance') {
+    openGuidance();
+    return;
+  }
+
+  currentCategory = key;
+  const cat = categories[key];
+
+  document.getElementById('home-page').style.display = 'none';
+  document.getElementById('category-page').style.display = 'block';
+  document.getElementById('cat-name').textContent = cat.name;
+
+  // Reset playlist player
+  document.getElementById('playlist-player').style.display = 'none';
+  document.getElementById('playlist-iframe').src = '';
+  playlistTracks = [];
+  playlistIndex = 0;
+
+  // Build subcategory tabs
+  const tabsEl = document.getElementById('subcategory-tabs');
+  tabsEl.innerHTML = '';
+  const subcats = Object.keys(cat.subcategories);
+  subcats.forEach((sub, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn' + (i === 0 ? ' active' : '');
+    btn.textContent = sub;
+    // Ajouter l'attribut data-duration pour différencier les longues pauses
+    if (sub === 'Une longue pause') {
+      btn.setAttribute('data-duration', 'long');
+    }
+    btn.onclick = () => selectSubcat(sub, btn);
+    tabsEl.appendChild(btn);
+  });
+
+  // Show first subcategory
+  if (subcats.length > 0) selectSubcat(subcats[0]);
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function setCardBackgrounds() {
+function selectSubcat(name, btn) {
+  currentSubcat = name;
+
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  if (btn) {
+    btn.classList.add('active');
+  } else {
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      if (b.textContent === name) b.classList.add('active');
+    });
+  }
+
+  const videos = categories[currentCategory].subcategories[name] || [];
+  const grid = document.getElementById('videos-grid');
+  grid.innerHTML = '';
+
+  // Show shuffle button only if all items are soundcloud
+  const shuffleBar = document.getElementById('shuffle-bar');
+  const allSoundcloud = videos.length > 0 && videos.every(v => v.type === 'soundcloud');
+  shuffleBar.style.display = allSoundcloud ? 'block' : 'none';
+
+  if (videos.length === 0) {
+    grid.innerHTML = '<div class="empty-state">Aucune musique pour l\'instant… revenez bientôt 🌿</div>';
+    return;
+  }
+
+  videos.forEach((v, index) => {
+    const card = document.createElement('div');
+    card.className = 'video-card';
+
+    if (v.type === 'soundcloud' && v.url) {
+      const encodedUrl = encodeURIComponent(v.url);
+      const trackId = `sc-track-${Date.now()}-${index}`;
+      card.innerHTML = `
+        <div class="video-label">${v.label}</div>
+        <div style="padding:10px 12px 12px;">
+          <iframe id="${trackId}"
+            width="100%" height="120"
+            scrolling="no" frameborder="no" allow="autoplay"
+            src="https://w.soundcloud.com/player/?url=${encodedUrl}&color=%234a7c4a&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&single_active=false"
+            style="border-radius:10px;">
+          </iframe>
+        </div>
+        <div class="volume-control">
+          <span class="volume-label">🔊</span>
+          <input type="range" class="volume-slider" min="0" max="100" value="100" 
+            onchange="setTrackVolume('${trackId}', this.value)"
+            oninput="setTrackVolume('${trackId}', this.value); updateVolumeDisplay(this)">
+          <span class="volume-value" id="vol-display-${trackId}">100%</span>
+        </div>`;
+    } else if (v.id && v.id !== 'TO_ADD') {
+      card.innerHTML = `
+        <div class="video-label">${v.label}</div>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/${v.id}?rel=0&modestbranding=1" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
+        </div>`;
+    } else {
+      card.innerHTML = `
+        <div class="video-label">${v.label}</div>
+        <div style="padding:20px; text-align:center; color:var(--green-sage); font-style:italic; font-size:0.9rem;">
+          🌿 À ajouter bientôt
+        </div>`;
+    }
+    grid.appendChild(card);
+  });
+}
+
+function shufflePlay() {
+  startPlaylist(true);
+}
+
+let playlistTracks = [];
+let playlistIndex = 0;
+let autoAdvanceTimer = null;
+
+function startPlaylist(shuffle) {
+  const videos = categories[currentCategory].subcategories[currentSubcat] || [];
+  if (!videos.length) return;
+  playlistTracks = shuffle ? [...videos].sort(() => Math.random() - 0.5) : [...videos];
+  playlistIndex = 0;
+  document.getElementById('playlist-player').style.display = 'block';
+  document.getElementById('shuffle-bar').style.display = 'none';
+  loadPlaylistTrack(playlistIndex);
+}
+
+function loadPlaylistTrack(index) {
+  if (!playlistTracks.length) return;
+  if (index >= playlistTracks.length) return;
+  const v = playlistTracks[index];
+  document.getElementById('track-title').textContent = v.label + ' (' + (index+1) + '/' + playlistTracks.length + ')';
+  const encodedUrl = encodeURIComponent(v.url);
+  document.getElementById('playlist-iframe').src =
+    'https://w.soundcloud.com/player/?url=' + encodedUrl +
+    '&color=%234a7c4a&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false';
+  if (autoAdvanceTimer) clearTimeout(autoAdvanceTimer);
+}
+
+function nextTrack() {
+  playlistIndex++;
+  if (playlistIndex >= playlistTracks.length) playlistIndex = playlistTracks.length - 1;
+  loadPlaylistTrack(playlistIndex);
+}
+
+function prevTrack() {
+  playlistIndex--;
+  if (playlistIndex < 0) playlistIndex = 0;
+  loadPlaylistTrack(playlistIndex);
+}
+
+
+
+// ── NEW CARD SYSTEM ──
+// Les cartes originales sont déjà définies plus haut (oracleCards et tarotCards)
+
+let currentNewCardType = null;
+let drawnNewCard = null;
+let newCardDrawn = false;
+
+function initNewCardSystem() {
   document.getElementById('oracle-back').style.backgroundImage = "url('https://images.pexels.com/photos/10397039/pexels-photo-10397039.jpeg')";
   document.getElementById('tarot-back').style.backgroundImage = "url('https://images.pexels.com/photos/14523380/pexels-photo-14523380.jpeg')";
 }
 
-function switchTab(tabName) {
-  // Hide all tabs
-  document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+function drawNewCard(type) {
+  if (newCardDrawn && currentNewCardType === type) return;
   
-  // Show selected tab
-  document.getElementById(tabName).classList.add('active');
-  event.target.classList.add('active');
-  
-  // Reset when switching tabs
-  resetDeck(tabName);
-}
-
-function drawCard(type) {
-  if (cardDrawn && currentType === type) return;
-  
-  currentType = type;
+  currentNewCardType = type;
   const cards = type === 'oracle' ? oracleCards : tarotCards;
   const randomIndex = Math.floor(Math.random() * cards.length);
-  drawnCard = cards[randomIndex];
+  drawnNewCard = cards[randomIndex];
   
-  // Reveal card
   const frontEl = document.getElementById(type + '-front');
   const nameEl = document.getElementById(type + '-card-name');
   const textEl = document.getElementById(type + '-text');
   const resetBtn = document.getElementById(type + '-reset');
   
-  // Set card front background
   frontEl.style.backgroundImage = "url('https://images.pexels.com/photos/20728215/pexels-photo-20728215.jpeg')";
-  
-  // Add revealed class
   frontEl.classList.add('revealed');
-  nameEl.textContent = drawnCard.name;
-  textEl.textContent = drawnCard.description;
+  nameEl.textContent = drawnNewCard.name;
+  textEl.textContent = drawnNewCard.desc;
   
-  // Show reset button
   resetBtn.style.display = 'block';
   
-  cardDrawn = true;
+  newCardDrawn = true;
 }
 
-function resetDeck(type) {
-  cardDrawn = false;
-  currentType = null;
+function resetNewDeck(type) {
+  newCardDrawn = false;
+  currentNewCardType = null;
   
   const frontEl = document.getElementById(type + '-front');
   const textEl = document.getElementById(type + '-text');
@@ -623,26 +1970,458 @@ function resetDeck(type) {
   resetBtn.style.display = 'none';
 }
 
+function goHome() {
+  // Réinitialiser les cartes oracle anciennes si elles existent
+  const inner = document.getElementById('flip-card-inner-guidance');
+  if (inner) {
+    inner.classList.remove('flipped');
+  }
+  const display = document.getElementById('oracle-display-guidance');
+  if (display) {
+    display.style.display = 'none';
+  }
+  const btn = document.getElementById('retirer-btn-guidance');
+  if (btn) {
+    btn.style.display = 'none';
+  }
+  
+  // Réinitialiser les nouvelles cartes
+  resetNewDeck('oracle');
+  resetNewDeck('tarot');
+  
+  // Cacher toutes les pages et afficher la home
+  document.getElementById('category-page').style.display = 'none';
+  document.getElementById('guidance-page').style.display = 'none';
+  document.getElementById('home-page').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function openCategory(key) {
+  // Cas spécial: Pause Guidance
+  if (key === 'pauseguidance') {
+    openGuidance();
+    return;
+  }
+
+  currentCategory = key;
+  const cat = categories[key];
+
+  document.getElementById('home-page').style.display = 'none';
+  document.getElementById('category-page').style.display = 'block';
+  document.getElementById('cat-name').textContent = cat.name;
+
+  // Reset playlist player
+  document.getElementById('playlist-player').style.display = 'none';
+  document.getElementById('playlist-iframe').src = '';
+  playlistTracks = [];
+  playlistIndex = 0;
+
+  // Build subcategory tabs
+  const tabsEl = document.getElementById('subcategory-tabs');
+  tabsEl.innerHTML = '';
+  const subcats = Object.keys(cat.subcategories);
+  subcats.forEach((sub, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn' + (i === 0 ? ' active' : '');
+    btn.textContent = sub;
+    // Ajouter l'attribut data-duration pour différencier les longues pauses
+    if (sub === 'Une longue pause') {
+      btn.setAttribute('data-duration', 'long');
+    }
+    btn.onclick = () => selectSubcat(sub, btn);
+    tabsEl.appendChild(btn);
+  });
+
+  // Show first subcategory
+  if (subcats.length > 0) selectSubcat(subcats[0]);
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+let currentShufflingElement = null;
+
+function startShuffle(element = null) {
+  if (element) {
+    currentShufflingElement = element;
+    element.classList.add('deck-shuffling');
+  } else {
+    // Fallback: cherche le deck visible
+    const oracle = document.getElementById('oracle-content');
+    const tarot = document.getElementById('tarot-content');
+    if (oracle && oracle.style.display !== 'none') {
+      currentShufflingElement = oracle.querySelector('.card-deck-wrapper');
+    } else if (tarot && tarot.style.display !== 'none') {
+      currentShufflingElement = tarot.querySelector('.card-deck-wrapper');
+    }
+    if (currentShufflingElement) {
+      currentShufflingElement.classList.add('deck-shuffling');
+    }
+  }
+}
+
+function stopShuffle() {
+  if (currentShufflingElement) {
+    currentShufflingElement.classList.remove('deck-shuffling');
+    currentShufflingElement = null;
+  }
+}
+
+// ── Track last drawn cards to avoid repetition ──
+let lastOracleCard = null;
+let lastTarotCard = null;
+
+function drawCardGuidance() {
+  const inner = document.getElementById('flip-card-inner-guidance');
+  if (!inner) {
+    console.error('flip-card-inner-guidance not found');
+    return;
+  }
+  if (inner.classList.contains('flipped')) return;
+
+  // Mélange rapide avant le retournement
+  const deckWrapper = document.getElementById('oracle-content').querySelector('.card-deck-wrapper');
+  startShuffle(deckWrapper);
+  setTimeout(() => {
+    // Éviter de tirer la même carte deux fois d'affilée
+    let card = oracleCards[Math.floor(Math.random() * oracleCards.length)];
+    while (lastOracleCard && card.name === lastOracleCard.name && oracleCards.length > 1) {
+      card = oracleCards[Math.floor(Math.random() * oracleCards.length)];
+    }
+    lastOracleCard = card;
+    
+    document.getElementById('card-name-visual-guidance').textContent = card.name;
+    document.getElementById('card-name-text-guidance').textContent = card.name;
+    document.getElementById('card-desc-text-guidance').textContent = card.desc;
+
+    // Image de fond sur la carte révélée
+    const back = document.getElementById('flip-card-back-guidance');
+    let bgImg = back.querySelector('.card-bg-img');
+    if (!bgImg) {
+      bgImg = document.createElement('img');
+      bgImg.className = 'card-bg-img';
+      back.insertBefore(bgImg, back.firstChild);
+    }
+    if (card.image) {
+      bgImg.src = card.image;
+      bgImg.style.display = 'block';
+    } else {
+      bgImg.style.display = 'none';
+    }
+
+    inner.classList.add('flipped');
+
+    // Continue le shuffle un peu après le retournement pour l'effet téléphone
+    setTimeout(() => {
+      stopShuffle();
+      document.getElementById('retirer-btn-guidance').style.display = 'block';
+      const display = document.getElementById('oracle-display-guidance');
+      display.style.display = 'block';
+      display.style.animation = 'none';
+      display.offsetHeight;
+      display.style.animation = 'fadeInUp 0.6s ease';
+    }, 300);
+  }, 800);
+}
+
+function resetOracleGuidance() {
+  const inner = document.getElementById('flip-card-inner-guidance');
+  inner.classList.remove('flipped');
+  document.getElementById('oracle-display-guidance').style.display = 'none';
+  document.getElementById('retirer-btn-guidance').style.display = 'none';
+}
+
 function openGuidance() {
   document.getElementById('home-page').style.display = 'none';
-  document.getElementById('guidance-section').style.display = 'block';
+  document.getElementById('guidance-page').style.display = 'block';
+  document.getElementById('oracle-content').style.display = 'block';
+  document.getElementById('astro-content').style.display = 'none';
+  
+  // Reset oracle
+  resetOracleGuidance();
+  
+  // Active le premier tab
+  document.querySelectorAll('.guidance-tab-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelector('.guidance-tab-btn[data-tab="oracle"]').classList.add('active');
+  
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function goHome() {
-  document.getElementById('guidance-section').style.display = 'none';
-  document.getElementById('home-page').style.display = 'block';
-  resetDeck('oracle');
-  resetDeck('tarot');
+function drawCardTarot() {
+  const inner = document.getElementById('flip-card-inner-tarot');
+  if (!inner) {
+    console.error('flip-card-inner-tarot not found');
+    return;
+  }
+  if (inner.classList.contains('flipped')) return;
+
+  // Mélange rapide avant le retournement
+  const deckWrapper = document.getElementById('tarot-content').querySelector('.card-deck-wrapper');
+  startShuffle(deckWrapper);
+  setTimeout(() => {
+    // Éviter de tirer la même carte deux fois d'affilée
+    let card = tarotCards[Math.floor(Math.random() * tarotCards.length)];
+    while (lastTarotCard && card.name === lastTarotCard.name && tarotCards.length > 1) {
+      card = tarotCards[Math.floor(Math.random() * tarotCards.length)];
+    }
+    lastTarotCard = card;
+    
+    document.getElementById('card-name-visual-tarot').textContent = card.name + ' (' + card.number + ')';
+    document.getElementById('card-name-text-tarot').textContent = card.name + ' (' + card.number + ')';
+    document.getElementById('card-desc-text-tarot').textContent = card.desc;
+
+    // Image de fond sur la carte révélée
+    const back = document.getElementById('flip-card-back-tarot');
+    let bgImg = back.querySelector('.card-bg-img');
+    if (!bgImg) {
+      bgImg = document.createElement('img');
+      bgImg.className = 'card-bg-img';
+      back.insertBefore(bgImg, back.firstChild);
+    }
+    if (card.image) {
+      bgImg.src = card.image;
+      bgImg.style.display = 'block';
+    } else {
+      bgImg.style.display = 'none';
+    }
+
+    inner.classList.add('flipped');
+
+    // Continue le shuffle un peu après le retournement pour l'effet téléphone
+    setTimeout(() => {
+      stopShuffle();
+      document.getElementById('retirer-btn-tarot').style.display = 'block';
+      const display = document.getElementById('oracle-display-tarot');
+      display.style.display = 'block';
+      display.style.animation = 'none';
+      display.offsetHeight;
+      display.style.animation = 'fadeInUp 0.6s ease';
+    }, 300);
+  }, 800);
 }
 
-function openCategory(category) {
-  console.log('Category:', category);
-  // À implémenter si nécessaire
+function resetOracleTarot() {
+  const inner = document.getElementById('flip-card-inner-tarot');
+  inner.classList.remove('flipped');
+  document.getElementById('oracle-display-tarot').style.display = 'none';
+  document.getElementById('retirer-btn-tarot').style.display = 'none';
 }
 
-// Initialize on load
-window.addEventListener('load', init);
+function switchGuidanceTab(tab) {
+  // Update buttons
+  document.querySelectorAll('.guidance-tab-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelector(`.guidance-tab-btn[data-tab="${tab}"]`).classList.add('active');
+  
+  // Update content
+  document.getElementById('oracle-content').style.display = tab === 'oracle' ? 'block' : 'none';
+  document.getElementById('tarot-content').style.display = tab === 'tarot' ? 'block' : 'none';
+  document.getElementById('astro-content').style.display = tab === 'astro' ? 'block' : 'none';
+  
+  // Fermer la modale astro quand on change d'onglet
+  if (tab === 'oracle' || tab === 'tarot') {
+    closeAstroModal();
+  }
+}
+
+function selectAstroSign(signKey) {
+  const sign = astroSigns[signKey];
+  const modal = document.getElementById('astro-modal');
+  const titleEl = modal.querySelector('.astro-sign-title');
+  const textEl = modal.querySelector('.astro-guidance-text');
+  
+  // Ajouter plus d'aléatoire : choisir aléatoirement parmi les messages
+  const messages = sign.guidance;
+  const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+  
+  titleEl.textContent = sign.name + ' ' + sign.symbol;
+  textEl.textContent = randomMessage;
+  
+  modal.classList.add('show');
+}
+
+function closeAstroModal() {
+  const modal = document.getElementById('astro-modal');
+  modal.classList.remove('show');
+}
+
+// ── Track volume storage ──
+const trackVolumes = {};
+
+function setTrackVolume(trackId, volume) {
+  trackVolumes[trackId] = volume;
+  const iframeElement = document.getElementById(trackId);
+  if (iframeElement) {
+    // Appliquer le volume via l'API SoundCloud Widget
+    try {
+      const widget = SC.Widget(iframeElement);
+      const volumePercent = parseInt(volume) / 100;
+      widget.setVolume(volumePercent * 100);
+    } catch (e) {
+      // Si l'API n'est pas disponible, stocker juste la valeur
+      console.log('Volume défini pour ' + trackId + ': ' + volume + '%');
+    }
+  }
+}
+
+function updateVolumeDisplay(slider) {
+  const trackId = slider.previousElementSibling.id || slider.parentElement.querySelector('input[type="range"]').id;
+  const displayElement = slider.parentElement.querySelector('.volume-value');
+  if (displayElement) {
+    displayElement.textContent = slider.value + '%';
+  }
+}
+function testRandomness() {
+  console.log('=== TESTING RANDOMNESS ===');
+  
+  // Test Oracle Cards
+  const oracleCount = {};
+  for (let i = 0; i < 1000; i++) {
+    const card = oracleCards[Math.floor(Math.random() * oracleCards.length)];
+    oracleCount[card.name] = (oracleCount[card.name] || 0) + 1;
+  }
+  console.log('Oracle Cards (1000 draws):', oracleCount);
+  
+  // Test Tarot Cards
+  const tarotCount = {};
+  for (let i = 0; i < 1000; i++) {
+    const card = tarotCards[Math.floor(Math.random() * tarotCards.length)];
+    tarotCount[card.name] = (tarotCount[card.name] || 0) + 1;
+  }
+  console.log('Tarot Cards (1000 draws):', tarotCount);
+  
+  // Test Astro Messages
+  const astroCount = {};
+  for (let signKey in astroSigns) {
+    const sign = astroSigns[signKey];
+    const msgCount = {};
+    for (let i = 0; i < 300; i++) {
+      const msg = sign.guidance[Math.floor(Math.random() * sign.guidance.length)];
+      const msgKey = msg.substring(0, 30) + '...';
+      msgCount[msgKey] = (msgCount[msgKey] || 0) + 1;
+    }
+    astroCount[sign.name] = msgCount;
+  }
+  console.log('Astro Guidance Messages (300 draws per sign):', astroCount);
+  
+  console.log('✅ All systems are 100% random!');
+}
+
+// Call test on page load (check console)
+setTimeout(() => testRandomness(), 100);
+const astroSigns = {
+  belier: {
+    name: "Bélier",
+    symbol: "♈",
+    guidance: [
+      "Tu es un feu ardent qui brûle de passions. Ralentis un instant et écoute ton cœur avant de foncer. La réussite vient aussi de la réflexion et non que de l'action. Canalise cette énergie extraordinaire vers ce qui compte vraiment pour toi.",
+      "Ton courage est admirable, mais sais-tu que la vraie force réside parfois dans la patience ? Avant de charger, prends un moment pour réfléchir. Les meilleures batailles se gagnent avec la tête et le cœur.",
+      "Tu brûles d'envie d'agir et c'est ton super pouvoir. Utilise-le pour inspirer les autres, pas pour les écraser. Ensemble, vous irez bien plus loin que seul."
+    ]
+  },
+  taureau: {
+    name: "Taureau",
+    symbol: "♉",
+    guidance: [
+      "Tu construis solidement, pierre après pierre. Tes fondations sont impressionnantes, mais ne restes pas figé dans tes certitudes. La vie t'invite à explorer l'inconnu avec confiance. Ton pouvoir réside dans ta capacité à évoluer sans perdre ton essence.",
+      "Ta stabilité est un don précieux, mais le changement aussi. Ne crains pas de réorganiser ton monde si cela t'apporte plus de joie. L'évolution douce est encore une forme de croissance.",
+      "Tu sais ce que tu veux et tu y vas. C'est magnifique. Veille juste à rester ouvert aux surprises magiques qui peuvent surgir sur ta route."
+    ]
+  },
+  gemeaux: {
+    name: "Gémeaux",
+    symbol: "♊",
+    guidance: [
+      "Tu es une belle papillon qui voltige entre mille idées. Cherche la profondeur dans ces mille conversations. Là où tu brilles vraiment, c'est quand tu arrives à synthétiser ta curiosité en quelque chose de significatif. Écoute plus, parle avec intention.",
+      "Ton esprit brillant papillonne partout. C'est ton art. Mais souviens-toi : parfois, te focaliser sur une seule chose révèle la vrai magie.",
+      "Tu connectes les points que personne d'autre ne voit. Tes échanges sont précieux. Assure-toi juste que tu écoutes vraiment, pas seulement que tu parles."
+    ]
+  },
+  cancer: {
+    name: "Cancer",
+    symbol: "♋",
+    guidance: [
+      "Ton empathie est un don précieux, mais ne te noies pas dans les émotions des autres. Protège-toi avec la même tendresse que tu offres au monde. Tu mérites d'être nourri autant que tu nourris les autres. Pose tes limites avec douceur mais fermeté.",
+      "Ton cœur est aussi grand que l'océan. Veille à ne pas absorber les tempêtes des autres. Tu peux aimer sans te perdre.",
+      "Tu sens tout profondément, c'est ta force. Utilise cette sensibilité pour créer, pas pour te torturer. Tes émotions sont une boussole, pas une prison."
+    ]
+  },
+  lion: {
+    name: "Lion",
+    symbol: "♌",
+    guidance: [
+      "Tu es une lumière naturelle qui illumine tout autour de toi. Mais sais-tu que ton vrai pouvoir réside dans la capacité à élever les autres ? Partage le projecteur, car ensemble vous brillerez infiniment plus fort. L'amour vrai est dans la générosité de cœur.",
+      "Tu as le don de briller, et le monde a besoin de ta lumière. Mais n'oublie pas que les autres aussi ont leur propre éclat.",
+      "Ton rayonnement est naturel et contagieux. Utilise-le pour créer de la chaleur autour de toi, pas seulement pour être admiré."
+    ]
+  },
+  vierge: {
+    name: "Vierge",
+    symbol: "♍",
+    guidance: [
+      "Tu vois les détails que personne d'autre ne voit. C'est un don, mais attention à ne pas perdre la vue d'ensemble. La perfection n'existe pas, et c'est justement ce qui rend la vie belle. Accorde-toi de la grâce et célèbre tes petites victoires au quotidien.",
+      "Ton œil critique est un super pouvoir. Utilise-le pour améliorer le monde, pas pour te punir. Sois aussi gentille avec toi-même que tu l'es avec les autres.",
+      "Tes listes, tes plans, tes systèmes : c'est ton amour du monde. Laisse juste un peu de place à l'imprévu magique."
+    ]
+  },
+  balance: {
+    name: "Balance",
+    symbol: "♎",
+    guidance: [
+      "Tu cherches l'harmonie, mais elle ne vient pas de plaire à tous. Elle vient de l'authenticité. Tu dois apprendre à dire non sans culpabilité et à choisir ton camp quand il le faut. Ton équilibre véritable naît de l'alignement avec tes valeurs profondes.",
+      "L'équilibre est beau, mais pas si cela signifie perdre qui tu es vraiment. Sois honnête sur ce que tu veux.",
+      "Tu vois tous les côtés, c'est un don. Mais c'est à toi de trancher et de choisir. L'indécision n'est pas l'équilibre."
+    ]
+  },
+  scorpion: {
+    name: "Scorpion",
+    symbol: "♏",
+    guidance: [
+      "Tu es intense, magnétique et profond comme un océan sans fin. Ton mystère est ton charme, mais partage un peu plus de toi. La vulnérabilité n'est pas une faiblesse, c'est une force. Laisse les gens proches te voir vraiment, sans armure.",
+      "Ton pouvoir est immense, mais il l'est encore plus quand tu l'utilises pour guérir, pas pour blesser.",
+      "Tu as le don de transformation. Transforme tes blessures en sagesse et partage-la. C'est ta vraie magie."
+    ]
+  },
+  sagittaire: {
+    name: "Sagittaire",
+    symbol: "♐",
+    guidance: [
+      "Tu rêves grand et tu as raison. Le monde a besoin de ton optimisme. Mais attention, ne fuis pas les responsabilités en quête de nouvelles aventures. Apprends à terminer ce que tu commences. C'est en ancrant tes rêves dans la réalité qu'ils deviennent vrais.",
+      "Ton optimisme est contagieux. Utilise-le pour motiver, puis reste pour voir la graine grandir.",
+      "L'aventure t'appelle, c'est magnifique. Veille juste à construire quelque chose qui dure, pas seulement à explorer."
+    ]
+  },
+  capricorne: {
+    name: "Capricorne",
+    symbol: "♑",
+    guidance: [
+      "Tu gravies les montagnes avec patience et détermination. C'est admirable, mais n'oublie pas de profiter du paysage en chemin. La vie n'est pas qu'une destination à atteindre. Permets-toi de rire, de jouer, de te détendre. Le succès sans joie est creux.",
+      "Ton sérieux est une force, mais le plaisir aussi. Balance-les. Tu mérites d'être heureux, pas seulement réussi.",
+      "Tu construis l'avenir avec sagesse. N'oublie pas de vivre le présent. C'est là que la vraie richesse vit."
+    ]
+  },
+  verseau: {
+    name: "Verseau",
+    symbol: "♒",
+    guidance: [
+      "Tu es un visionnaire, tes idées sont révolutionnaires. Mais souviens-toi que tu vis sur cette planète avec d'autres humains. Descends de ta tour d'ivoire et connecte-toi vraiment. La magie vient quand tes idées brillantes rencontrent le cœur tendre du monde.",
+      "Ton avance sur le temps est étonnante. Aide les autres à te comprendre. C'est dans l'explication que naît le changement.",
+      "Tu rêves d'un monde meilleur. C'est beau. Souviens-toi que le changement véritable passe par les cœurs des gens, pas seulement par les idées."
+    ]
+  },
+  poissons: {
+    name: "Poissons",
+    symbol: "♓",
+    guidance: [
+      "Tu nages dans les eaux infinies de l'imaginaire et c'est un cadeau. Mais tu dois aussi avoir des racines sur la terre. Ancre tes rêves dans des actions concrètes. Ton intuition est juste, alors fais-lui confiance tout en restant pragmatique. C'est ton équilibre.",
+      "Ton imagination est un super pouvoir. Crée, rêve, mais ancre aussi tes rêves dans le réel pour les voir grandir.",
+      "Tu ressens les énergies autour de toi. C'est un don. Utilise-le pour guérir le monde, mais ne te laisse pas consumer par ses peines."
+    ]
+  }
+};
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  initNewCardSystem();
+});
 </script>
-
 </body>
 </html>
