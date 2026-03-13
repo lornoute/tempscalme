@@ -102,18 +102,18 @@
     box-shadow: 0 16px 48px rgba(0,0,0,0.25);
   }
 
-  .guidance-card {
-    grid-column: 2;
-    grid-row: 2;
-    height: 340px !important;
-    border: 3px solid rgba(122, 158, 110, 0.4);
-    box-shadow: 0 0 30px rgba(122, 158, 110, 0.2);
+  /* Guidance card small - en haut */
+  .guidance-card-small {
+    position: relative !important;
+    height: 100% !important;
+    border: 3px solid rgba(122, 158, 110, 0.4) !important;
+    box-shadow: 0 0 30px rgba(122, 158, 110, 0.2) !important;
   }
 
-  .guidance-card:hover {
-    border-color: rgba(122, 158, 110, 0.8);
-    box-shadow: 0 0 50px rgba(122, 158, 110, 0.35);
-    transform: translateY(-8px);
+  .guidance-card-small:hover {
+    border-color: rgba(122, 158, 110, 0.8) !important;
+    box-shadow: 0 0 50px rgba(122, 158, 110, 0.35) !important;
+    transform: scale(1.05) !important;
   }
 
   .card-bg {
@@ -849,11 +849,6 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 18px;
     }
-    .guidance-card {
-      grid-column: 1 / -1;
-      grid-row: auto;
-      height: 300px !important;
-    }
   }
 
   @media (max-width: 768px) {
@@ -866,10 +861,6 @@
     .category-card {
       height: 240px !important;
     }
-    .guidance-card {
-      grid-column: 1 / -1;
-      height: 260px !important;
-    }
   }
 
   @media (max-width: 600px) {
@@ -879,11 +870,6 @@
     }
     .category-card {
       height: 220px !important;
-    }
-    .guidance-card {
-      grid-column: 1;
-      grid-row: auto;
-      height: 240px !important;
     }
   }
 </style>
@@ -896,6 +882,16 @@
 
 <!-- HOME PAGE -->
 <div id="home-page">
+  <!-- PAUSE GUIDANCE - EN HAUT ET PLUS PETITE -->
+  <div style="text-align: center; margin-bottom: 40px;">
+    <div class="category-card guidance-card-small" onclick="openCategory('pauseguidance')" style="display: inline-block; width: 200px; height: 180px;">
+      <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/11437522/pexels-photo-11437522.jpeg'); background-size:cover; background-position:center; filter: saturate(0.85) brightness(1.05) contrast(1.1);"></div>
+      <div class="card-overlay"></div>
+      <div class="category-name" style="font-size: 1.1rem;">Pause Guidance</div>
+    </div>
+  </div>
+
+  <!-- AUTRES CATÉGORIES - GRILLE 3X2 -->
   <div class="categories-grid">
     <div class="category-card" onclick="openCategory('dormir')">
       <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/34767464/pexels-photo-34767464.jpeg'); background-size:cover; background-position:center;"></div>
@@ -912,14 +908,6 @@
       <div class="card-overlay"></div>
       <div class="category-name">Pour bosser sereinement</div>
     </div>
-    
-    <!-- PAUSE GUIDANCE - AU CENTRE -->
-    <div class="category-card guidance-card" onclick="openCategory('pauseguidance')">
-      <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/11437522/pexels-photo-11437522.jpeg'); background-size:cover; background-position:center; filter: saturate(0.85) brightness(1.05) contrast(1.1);"></div>
-      <div class="card-overlay"></div>
-      <div class="category-name">Pause Guidance</div>
-    </div>
-    
     <div class="category-card" onclick="openCategory('jardiner')">
       <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/10713505/pexels-photo-10713505.jpeg'); background-size:cover; background-position:center;"></div>
       <div class="card-overlay"></div>
@@ -975,13 +963,13 @@
     </div>
 
     <!-- Bouton tirer à nouveau, toujours visible après tirage -->
-    <div id="retirer-btn" style="display:none; text-align:center; margin-bottom:12px;">
-      <button onclick="resetOracle()" style="font-family:'PP Pangaia',sans-serif;font-size:1.1rem;color:var(--cream);background:var(--green-deep);border:none;border-radius:30px;padding:10px 28px;cursor:pointer;box-shadow:0 4px 15px rgba(30,58,30,0.3);">🔄 Tirer à nouveau</button>
+    <div id="retirer-btn-guidance" style="display:none; text-align:center; margin-bottom:12px;">
+      <button onclick="resetOracleGuidance()" style="font-family:'PP Pangaia',sans-serif;font-size:1.1rem;color:var(--cream);background:var(--green-deep);border:none;border-radius:30px;padding:10px 28px;cursor:pointer;box-shadow:0 4px 15px rgba(30,58,30,0.3);">🔄 Tirer à nouveau</button>
     </div>
 
-    <div class="oracle-card-display" id="oracle-display">
-      <div class="oracle-card-name" id="card-name-text"></div>
-      <div class="oracle-card-desc" id="card-desc-text"></div>
+    <div class="oracle-card-display" id="oracle-display-guidance">
+      <div class="oracle-card-name" id="card-name-text-guidance"></div>
+      <div class="oracle-card-desc" id="card-desc-text-guidance"></div>
     </div>
   </div>
 
@@ -1013,8 +1001,8 @@
   <button class="back-btn" onclick="goHome()"><span>← Retour</span></button>
   
   <div class="guidance-tabs">
-    <button class="guidance-tab-btn active" data-tab="oracle" onclick="switchGuidanceTab('oracle')">Oracle</button>
-    <button class="guidance-tab-btn" data-tab="astro" onclick="switchGuidanceTab('astro')">Astrologie</button>
+    <button class="guidance-tab-btn active" data-tab="oracle" onclick="switchGuidanceTab('oracle')">Pause Oracle</button>
+    <button class="guidance-tab-btn" data-tab="astro" onclick="switchGuidanceTab('astro')">Pause Astro</button>
   </div>
 
   <!-- ORACLE CONTENT -->
@@ -1058,9 +1046,10 @@
 
   <!-- ASTRO CONTENT -->
   <div id="astro-content">
-    <div style="text-align: center; margin-bottom: 30px;">
-      <h2 style="font-family: 'PP Pangaia', sans-serif; font-size: 2rem; color: var(--green-deep); margin-bottom: 10px;">Astrologie</h2>
-      <p style="font-family: 'PP Pangaia', sans-serif; color: var(--text-mid); font-style: italic;">Cliquez sur votre signe pour recevoir votre message de guidance</p>
+    <div style="text-align: center; margin-bottom: 30px; background-image: url('https://images.pexels.com/photos/6298023/pexels-photo-6298023.jpeg'); background-size: cover; background-position: center; border-radius: 20px; padding: 40px; position: relative;">
+      <div style="position: absolute; inset: 0; background: rgba(0, 0, 0, 0.2); border-radius: 20px;"></div>
+      <h2 style="font-family: 'PP Pangaia', sans-serif; font-size: 2rem; color: white; margin-bottom: 10px; position: relative; z-index: 1;">Astrologie</h2>
+      <p style="font-family: 'PP Pangaia', sans-serif; color: rgba(255, 255, 255, 0.9); font-style: italic; position: relative; z-index: 1;">Cliquez sur votre signe pour recevoir votre message de guidance</p>
     </div>
 
     <div class="astro-grid">
@@ -1463,7 +1452,49 @@ function drawCard() {
 }
 
 function drawCardGuidance() {
-  drawCardInPage('flip-card-inner-guidance', 'flip-card-back-guidance', 'card-name-visual-guidance', 'oracle-display', 'retirer-btn');
+  const inner = document.getElementById('flip-card-inner-guidance');
+  if (!inner) {
+    console.error('flip-card-inner-guidance not found');
+    return;
+  }
+  if (inner.classList.contains('flipped')) return;
+
+  // Mélange rapide avant le retournement
+  startShuffle();
+  setTimeout(() => {
+    const card = oracleCards[Math.floor(Math.random() * oracleCards.length)];
+    document.getElementById('card-name-visual-guidance').textContent = card.name;
+    document.getElementById('card-name-text-guidance').textContent = card.name;
+    document.getElementById('card-desc-text-guidance').textContent = card.desc;
+
+    // Image de fond sur la carte révélée
+    const back = document.getElementById('flip-card-back-guidance');
+    let bgImg = back.querySelector('.card-bg-img');
+    if (!bgImg) {
+      bgImg = document.createElement('img');
+      bgImg.className = 'card-bg-img';
+      back.insertBefore(bgImg, back.firstChild);
+    }
+    if (card.image) {
+      bgImg.src = card.image;
+      bgImg.style.display = 'block';
+    } else {
+      bgImg.style.display = 'none';
+    }
+
+    inner.classList.add('flipped');
+
+    // Continue le shuffle un peu après le retournement pour l'effet téléphone
+    setTimeout(() => {
+      stopShuffle();
+      document.getElementById('retirer-btn-guidance').style.display = 'block';
+      const display = document.getElementById('oracle-display-guidance');
+      display.style.display = 'block';
+      display.style.animation = 'none';
+      display.offsetHeight;
+      display.style.animation = 'fadeInUp 0.6s ease';
+    }, 300);
+  }, 800);
 }
 
 function drawCardInPage(innerId, backId, visualId, displayId, btnId) {
@@ -1519,8 +1550,8 @@ function resetOracle() {
 function resetOracleGuidance() {
   const inner = document.getElementById('flip-card-inner-guidance');
   inner.classList.remove('flipped');
-  document.getElementById('oracle-display').style.display = 'none';
-  document.getElementById('retirer-btn').style.display = 'none';
+  document.getElementById('oracle-display-guidance').style.display = 'none';
+  document.getElementById('retirer-btn-guidance').style.display = 'none';
 }
 
 function openGuidance() {
