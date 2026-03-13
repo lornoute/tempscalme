@@ -347,7 +347,7 @@
   .subcategories-title {
     font-family: 'PP Pangaia', sans-serif;
     font-size: 1.4rem;
-    color: var(--green-deep);
+    color: #3a3a3a;
     margin-bottom: 18px;
     text-align: center;
   }
@@ -690,13 +690,13 @@
   <button class="back-btn" onclick="goHome()">← Retour</button>
 
   <div id="category-header" style="text-align:center; margin-bottom:30px;">
-    <div id="cat-name" style="font-family:'PP Pangaia',sans-serif; font-size:1.8rem; color:var(--green-deep);"></div>
+    <div id="cat-name" style="font-family:'PP Pangaia',sans-serif; font-size:1.8rem; color:#3a3a3a;"></div>
   </div>
 
   <!-- Oracle -->
   <div class="oracle-section">
     <div style="text-align:center; margin-bottom:28px;">
-      <div style="font-family:'PP Pangaia',sans-serif; font-size:3.8rem; font-weight:700; color:#ffffff; text-shadow: 0 2px 12px rgba(0,0,0,0.4); line-height:1.1;">l'oracle du calme</div>
+      <div style="font-family:'PP Pangaia',sans-serif; font-size:3.8rem; font-weight:700; color:#3a3a3a; text-shadow: 0 2px 12px rgba(0,0,0,0.1); line-height:1.1;">l'oracle du calme</div>
     </div>
 
     <!-- Deck of cards with flip animation -->
@@ -712,7 +712,7 @@
             <img src="https://images.pexels.com/photos/34256952/pexels-photo-34256952.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:14px;"/>
             <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
               <div style="font-size:1.4rem;color:rgba(255,255,255,0.85);">✦</div>
-              <div style="font-family:'PP Pangaia',sans-serif;font-size:0.9rem;color:rgba(255,255,255,0.85);">cliquez pour tirer</div>
+              <div style="font-family:'PP Pangaia',sans-serif;font-size:0.9rem;color:#3a3a3a;">cliquez pour tirer</div>
             </div>
           </div>
           <div class="flip-card-back" id="flip-card-back">
@@ -744,12 +744,12 @@
     <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
       <button onclick="prevTrack()" style="font-family:'PP Pangaia',sans-serif; font-size:0.95rem; color:var(--green-deep); background:rgba(255,255,255,0.9); border:1px solid var(--green-light); border-radius:30px; padding:8px 20px; cursor:pointer;">⏮ Précédent</button>
       <button onclick="nextTrack()" style="font-family:'PP Pangaia',sans-serif; font-size:0.95rem; color:var(--green-deep); background:rgba(255,255,255,0.9); border:1px solid var(--green-light); border-radius:30px; padding:8px 20px; cursor:pointer;">Suivant ⏭</button>
-      <button onclick="shufflePlay()" style="font-family:'PP Pangaia',sans-serif; font-size:0.95rem; color:var(--cream); background:var(--green-mid); border:none; border-radius:30px; padding:8px 20px; cursor:pointer;">🔀 Aléatoire</button>
+      <button onclick="shufflePlay()" style="font-family:'PP Pangaia',sans-serif; font-size:0.95rem; color:var(--cream); background:var(--green-mid); border:none; border-radius:30px; padding:8px 20px; cursor:pointer;">Aléatoire</button>
     </div>
   </div>
 
   <div id="shuffle-bar" style="display:none; text-align:center; margin-bottom:20px;">
-    <button onclick="shufflePlay()" style="font-family:'PP Pangaia',sans-serif; font-size:1rem; color:var(--cream); background:var(--green-mid); border:none; border-radius:30px; padding:10px 26px; cursor:pointer;">🔀 Lancer en aléatoire</button>
+    <button onclick="shufflePlay()" style="font-family:'PP Pangaia',sans-serif; font-size:1rem; color:var(--cream); background:var(--green-mid); border:none; border-radius:30px; padding:10px 26px; cursor:pointer;">Lancer en aléatoire</button>
   </div>
   <div class="videos-grid" id="videos-grid"></div>
 
@@ -847,15 +847,17 @@ const categories = {
     icon: "🌙",
     name: "Pour dormir tranquillement",
     subcategories: {
-      "Les bruits de l'eau": [
+      "une petite pause": [
         { label: "Ruisseau balbutiant", type: "soundcloud", url: "https://soundcloud.com/oasisdesbruitsnaturels/ruisseau-balbutiant-le-rebirth" },
         { label: "Son de pluie", type: "soundcloud", url: "https://soundcloud.com/sonidosdelanaturalezaruidoblancoparabebes/sonido-de-lluvia-rain-sound" },
-        { label: "Sons de douche apaisants", type: "soundcloud", url: "https://soundcloud.com/thechilloutzone/relaxing-sound-of-a-2-hour-shower-white-noise-water-sounds-to-help-you-or-baby-sleep" },
-        { label: "Cascades féeriques", type: "soundcloud", url: "https://soundcloud.com/freshwatersoundsforinnerpeace-sc/whimsical-waterfalls-sounds-to" }
-      ],
-      "Musiques douces": [
-        { label: "Relaxing Sleep Music", type: "soundcloud", url: "https://soundcloud.com/soothingrelaxation/relaxing-sleep-music-deep-sleeping-music-relaxing-music-stress-relief-meditation-music-68" },
+        { label: "Cascades féeriques", type: "soundcloud", url: "https://soundcloud.com/freshwatersoundsforinnerpeace-sc/whimsical-waterfalls-sounds-to" },
         { label: "Relaxing Facial Harmony", type: "soundcloud", url: "https://soundcloud.com/deepmassagetribe/relaxing-facial-harmony" }
+      ],
+      "une longue pause": [
+        { label: "Sons de douche apaisants", type: "soundcloud", url: "https://soundcloud.com/thechilloutzone/relaxing-sound-of-a-2-hour-shower-white-noise-water-sounds-to-help-you-or-baby-sleep" },
+        { label: "Relaxing Sleep Music", type: "soundcloud", url: "https://soundcloud.com/soothingrelaxation/relaxing-sleep-music-deep-sleeping-music-relaxing-music-stress-relief-meditation-music-68" },
+        { label: "Rain Ambience", type: "soundcloud", url: "https://soundcloud.com/cosmomedia/rain-ambience" },
+        { label: "Autumn Wind Sounds", type: "soundcloud", url: "https://soundcloud.com/dave-smith-173/autumn-wind-sounds-2-hour-long" }
       ]
     }
   },
@@ -863,8 +865,11 @@ const categories = {
     icon: "🛁",
     name: "Pour prendre soin de moi",
     subcategories: {
-      "Ambiances douces": [
+      "une petite pause": [
         { label: "The Sun Comes Out", type: "soundcloud", url: "https://soundcloud.com/chapelsound/astrological-the-sun-comes-out" }
+      ],
+      "une longue pause": [
+        { label: "The KLF - Chill Out", type: "soundcloud", url: "https://soundcloud.com/mrgrinderman/the-klf-chill-out" }
       ]
     }
   },
@@ -872,14 +877,8 @@ const categories = {
     icon: "📖",
     name: "Pour bosser sereinement",
     subcategories: {
-      "Lo-fi": [
-        { label: "Lo-fi chill beats", id: "TO_ADD" }
-      ],
-      "Café ambiance": [
-        { label: "Bruits de café parisien", id: "TO_ADD" }
-      ],
-      "Nature focus": [
-        { label: "Forêt matinale", id: "TO_ADD" }
+      "une longue pause": [
+        { label: "Vajra Mind Soundscapes", type: "soundcloud", url: "https://soundcloud.com/desertdwellers/vajra-mind-meditative-soundscapes-compiled-by-amani" }
       ]
     }
   },
@@ -887,10 +886,11 @@ const categories = {
     icon: "🌿",
     name: "Pour apaiser mes plantes et moi",
     subcategories: {
-      "Musiques pour les plantes": [
+      "une petite pause": [
         { label: "Moon feat. Lamat", type: "soundcloud", url: "https://soundcloud.com/andresalborok/moon-feat-lamat-8" },
         { label: "Highlands", type: "soundcloud", url: "https://soundcloud.com/zazenkai-music/highlands" },
-        { label: "Aurum", type: "soundcloud", url: "https://soundcloud.com/dr3amd00r/aurum" }
+        { label: "Aurum", type: "soundcloud", url: "https://soundcloud.com/dr3amd00r/aurum" },
+        { label: "Oiseaux de ruisseau", type: "soundcloud", url: "https://soundcloud.com/zonedelamusiquerelaxante/oiseaux-de-ruisseau" }
       ]
     }
   },
@@ -898,12 +898,15 @@ const categories = {
     icon: "🍃",
     name: "Pour lire en toute détente",
     subcategories: {
-      "Ambiances musicales": [
+      "une petite pause": [
         { label: "Cellar", type: "soundcloud", url: "https://soundcloud.com/user-933862268/cellar" },
         { label: "Damp Forest", type: "soundcloud", url: "https://soundcloud.com/user-933862268/damp-forest" },
         { label: "Ethereal Serenity", type: "soundcloud", url: "https://soundcloud.com/zen74833/ethereal-serenity-in-harmonic" },
-        { label: "Tranquil Harmonies", type: "soundcloud", url: "https://soundcloud.com/velvetambient/tranquil-harmonies" },
-        { label: "Rain Sounds Ambience", type: "soundcloud", url: "https://soundcloud.com/soundsofnaturewhitenoisesoundeffects/rain-sounds-ambience-for" }
+        { label: "Tranquil Harmonies", type: "soundcloud", url: "https://soundcloud.com/velvetambient/tranquil-harmonies" }
+      ],
+      "une longue pause": [
+        { label: "Rain Sounds Ambience", type: "soundcloud", url: "https://soundcloud.com/soundsofnaturewhitenoisesoundeffects/rain-sounds-ambience-for" },
+        { label: "ASMR Rain Storm", type: "soundcloud", url: "https://soundcloud.com/relaxmusic0007/asmr-rain-storm-atmosphere-relax-nature-sounds-rain-thunder-water-ambience-meditation-sleep-sound" }
       ]
     }
   },
@@ -911,12 +914,14 @@ const categories = {
     icon: "🕊️",
     name: "Pour un moment spirituel",
     subcategories: {
-      "Ambiances spirituelles": [
+      "une petite pause": [
         { label: "Vertige", type: "soundcloud", url: "https://soundcloud.com/user-228288169/vertige" },
         { label: "Jardin", type: "soundcloud", url: "https://soundcloud.com/user-228288169/jardin" },
         { label: "Sad Angels", type: "soundcloud", url: "https://soundcloud.com/cedricdiaz/sad-angels" },
-        { label: "Full Soundscape 60min", type: "soundcloud", url: "https://soundcloud.com/konstantin-garkavenko/full-60-minute-soundscape" },
         { label: "The Billows That Break", type: "soundcloud", url: "https://soundcloud.com/mattt/the-billows-that-break" }
+      ],
+      "une longue pause": [
+        { label: "Full Soundscape 60min", type: "soundcloud", url: "https://soundcloud.com/konstantin-garkavenko/full-60-minute-soundscape" }
       ]
     }
   }
