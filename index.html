@@ -48,7 +48,7 @@
     content: '';
     position: fixed;
     inset: 0;
-    background: rgba(250, 246, 238, 0.72);
+    background: rgba(250, 246, 238, 0.35);
     pointer-events: none;
     z-index: 0;
   }
@@ -119,6 +119,14 @@
     position: absolute;
     inset: 0;
     background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.15) 50%, transparent 100%);
+  }
+
+  .card-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(90, 110, 75, 0.22);
+    mix-blend-mode: multiply;
   }
 
   .category-name {
