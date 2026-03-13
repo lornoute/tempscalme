@@ -1304,7 +1304,7 @@
 
   <div id="shuffle-bar" style="display:none; text-align:center; margin-bottom:20px;">
     <button onclick="shufflePlay()" style="font-family:'PP Pangaia',sans-serif; font-size:1rem; color:var(--cream); background:var(--green-mid); border:none; border-radius:30px; padding:10px 26px; cursor:pointer;"><span style="filter: grayscale(100%); display: inline-block;">🔀</span> Lancer en aléatoire</button>
-    <div style="font-family:'PP Pangaia',sans-serif; font-size:0.95rem; color:black; font-weight:bold; margin-top:12px;">Tu peux lancer plusieurs sons simultanément pour plus de profondeur</div>
+    <div style="font-family:'PP Pangaia',sans-serif; font-size:0.95rem; color:#a8927f; font-weight:bold; margin-top:12px;">Tu peux lancer plusieurs sons simultanément pour plus de profondeur</div>
   </div>
   <div class="videos-grid" id="videos-grid"></div>
 
@@ -1669,6 +1669,8 @@ const categories = {
     name: "Pour dormir tranquillement",
     subcategories: {
       "Une longue pause": [
+        { label: "Long Playlist of Relaxing Soft", type: "soundcloud", url: "https://soundcloud.com/pixeladed-le/long-playlist-of-relaxing-soft?in=user-479364998/sets/60-minutes-piano&si=83db7497b77240f0a676a7b6bd9e80e4&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" },
+        { label: "Deep Relaxing Sleep Music", type: "soundcloud", url: "https://soundcloud.com/spiritualmoment/deep-relaxing-sleep-music-go-for-your-deepest-sleep-yet-60-minutes-for-insomnia-help-calm-music?si=e1f47a98112e47948802174bc09874f6&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" },
         { label: "Sons de douche apaisants", type: "soundcloud", url: "https://soundcloud.com/thechilloutzone/relaxing-sound-of-a-2-hour-shower-white-noise-water-sounds-to-help-you-or-baby-sleep" },
         { label: "Son de pluie", type: "soundcloud", url: "https://soundcloud.com/sonidosdelanaturalezaruidoblancoparabebes/sonido-de-lluvia-rain-sound" },
         { label: "Relaxing Sleep Music", type: "soundcloud", url: "https://soundcloud.com/soothingrelaxation/relaxing-sleep-music-deep-sleeping-music-relaxing-music-stress-relief-meditation-music-68" },
@@ -1698,6 +1700,7 @@ const categories = {
     name: "Pour bosser sereinement",
     subcategories: {
       "Une longue pause": [
+        { label: "Library Sounds", type: "soundcloud", url: "https://soundcloud.com/tanvi-ashok/library-sounds?si=a55da0383ac6486884a1626f62687f2e&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" },
         { label: "Crackling Fire and Rain", type: "soundcloud", url: "https://soundcloud.com/cosmomedia/crackling-fire-and-rain-mp3?si=cebb1cefae52479f8ccf57d7425ef596&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" }
       ],
       "Une petite pause": [
@@ -1712,9 +1715,11 @@ const categories = {
     name: "Pour apaiser mes plantes et moi",
     subcategories: {
       "Une longue pause": [
+        { label: "Alan Walker The Spectre Piano Orchestral", type: "soundcloud", url: "https://soundcloud.com/thuc-nguyen-99977305/alan-walker-the-spectre-piano-orchestral-60-minutes-version-with-relaxing-nature-sounds?si=7e8c21b61e7c4b22a5dc35e2368b09af&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" },
         { label: "Musique Zen - Flute, Cloches Tibétaines et Bruit de la Nature", type: "soundcloud", url: "https://soundcloud.com/pascale-toubeau/musique-zen-flute-cloches-tibetaines-et-bruit-de-la-nature-relaxation-dormir?si=0a8e846657014ac8a2b32fa305e52627&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" }
       ],
       "Une petite pause": [
+        { label: "Spring Forest Blackbird Song", type: "soundcloud", url: "https://soundcloud.com/ch_sizar/spring-forest-blackbird-song-bird-singing-chirping-3-hours-of-relaxing-nature-sounds?si=b104b9f0e35141cf95d381487722cf3c&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" },
         { label: "Moon feat. Lamat", type: "soundcloud", url: "https://soundcloud.com/andresalborok/moon-feat-lamat-8" },
         { label: "Highlands", type: "soundcloud", url: "https://soundcloud.com/zazenkai-music/highlands" },
         { label: "Aurum", type: "soundcloud", url: "https://soundcloud.com/dr3amd00r/aurum" }
@@ -1726,6 +1731,8 @@ const categories = {
     name: "Pour lire en toute détente",
     subcategories: {
       "Une longue pause": [
+        { label: "Old Library Sounds Rain", type: "soundcloud", url: "https://soundcloud.com/user-112269840/old-library-sounds-rain?si=62f849778ae544fc94194fa310bd0817&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" },
+        { label: "Rainy Mood", type: "soundcloud", url: "https://soundcloud.com/sh1nebayar/rainy-mood?si=e15fd7ab8b4f45f5b6cb203eaef3c1fa&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" },
         { label: "Rain Sounds Ambience", type: "soundcloud", url: "https://soundcloud.com/soundsofnaturewhitenoisesoundeffects/rain-sounds-ambience-for" },
         { label: "Forest at Night - Crickets, Owls, Rain & Wind", type: "soundcloud", url: "https://soundcloud.com/user-17441338/forest-at-night-crickets-owls-rain-wind-in-trees-nature-sounds-to-relax-stud?si=8a73ac65057344ad89998f3738b551d8&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" },
         { label: "Campfire Sounds on the Beach - Ocean Waves & Nature Sounds", type: "soundcloud", url: "https://soundcloud.com/mariuszpierog/campfire-sounds-on-the-beach-ocean-waves-nature-sounds-for-sleep-study-n012?si=cb9f588c2c5e4a11b61276a35fad33e5&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" }
