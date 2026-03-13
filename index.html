@@ -83,8 +83,23 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
+    grid-auto-rows: 280px;
+  }
+
+  .category-card {
+    position: relative;
+    height: 100%;
+    border-radius: 18px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.25);
   }
 
   .guidance-card {
@@ -98,20 +113,7 @@
   .guidance-card:hover {
     border-color: rgba(122, 158, 110, 0.8);
     box-shadow: 0 0 50px rgba(122, 158, 110, 0.35);
-  }
-
-  .category-card {
-    position: relative;
-    height: 280px;
-    border-radius: 18px;
-    cursor: pointer;
-    overflow: hidden;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-  }
-
-  .category-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 16px 48px rgba(0,0,0,0.25);
+    transform: translateY(-8px);
   }
 
   .card-bg {
@@ -172,20 +174,20 @@
     gap: 8px;
     font-family: 'PP Pangaia', sans-serif;
     font-size: 1rem;
-    color: var(--green-mid);
+    color: #3a3a3a;
     background: none;
-    border: 1px solid var(--green-light);
+    border: 1px solid #3a3a3a;
     border-radius: 30px;
     padding: 8px 18px;
     cursor: pointer;
     transition: all 0.3s;
     margin-bottom: 30px;
   }
-  .back-btn:hover { background: var(--green-pale); }
+  .back-btn:hover { background: rgba(58, 58, 58, 0.08); }
 
   /* ── ORACLE SECTION ── */
   .oracle-section {
-    background-image: url('https://images.pexels.com/photos/17495285/pexels-photo-17495285.jpeg');
+    background-image: url('https://images.pexels.com/photos/2109759/pexels-photo-2109759.jpeg');
     background-size: cover;
     background-position: center;
     border: 1px solid rgba(176,136,192,0.3);
@@ -224,7 +226,7 @@
     width: 160px;
     height: 240px;
     border-radius: 14px;
-    background-image: url('https://images.pexels.com/photos/34256952/pexels-photo-34256952.jpeg');
+    background-image: url('https://images.pexels.com/photos/10397039/pexels-photo-10397039.jpeg');
     background-size: cover;
     background-position: center;
     box-shadow: 0 8px 30px rgba(30,58,30,0.4);
@@ -234,31 +236,35 @@
   .deck-card-2 { transform: rotate(-3deg) translateY(3px); opacity: 0.8; }
   .deck-card-1 { transform: rotate(2deg); opacity: 0.9; }
 
+  /* Animations améliorées avec shuffle plus long et continu */
   @keyframes shuffle1 {
     0%   { transform: rotate(2deg) translateX(0px); }
-    25%  { transform: rotate(-8deg) translateX(-18px) translateY(-8px); }
-    50%  { transform: rotate(5deg) translateX(12px) translateY(-4px); }
-    75%  { transform: rotate(-4deg) translateX(-8px) translateY(4px); }
+    20%  { transform: rotate(-8deg) translateX(-18px) translateY(-8px); }
+    40%  { transform: rotate(5deg) translateX(12px) translateY(-4px); }
+    60%  { transform: rotate(-4deg) translateX(-8px) translateY(4px); }
+    80%  { transform: rotate(6deg) translateX(16px) translateY(-6px); }
     100% { transform: rotate(2deg) translateX(0px); }
   }
   @keyframes shuffle2 {
     0%   { transform: rotate(-3deg) translateY(3px); }
-    25%  { transform: rotate(7deg) translateX(16px) translateY(-10px); }
-    50%  { transform: rotate(-6deg) translateX(-14px) translateY(2px); }
-    75%  { transform: rotate(4deg) translateX(8px) translateY(-5px); }
+    20%  { transform: rotate(7deg) translateX(16px) translateY(-10px); }
+    40%  { transform: rotate(-6deg) translateX(-14px) translateY(2px); }
+    60%  { transform: rotate(4deg) translateX(8px) translateY(-5px); }
+    80%  { transform: rotate(-7deg) translateX(-16px) translateY(8px); }
     100% { transform: rotate(-3deg) translateY(3px); }
   }
   @keyframes shuffle3 {
     0%   { transform: rotate(-6deg) translateY(6px); }
-    25%  { transform: rotate(4deg) translateX(-10px) translateY(-6px); }
-    50%  { transform: rotate(-9deg) translateX(16px) translateY(4px); }
-    75%  { transform: rotate(2deg) translateX(-6px) translateY(-2px); }
+    20%  { transform: rotate(4deg) translateX(-10px) translateY(-6px); }
+    40%  { transform: rotate(-9deg) translateX(16px) translateY(4px); }
+    60%  { transform: rotate(2deg) translateX(-6px) translateY(-2px); }
+    80%  { transform: rotate(8deg) translateX(14px) translateY(5px); }
     100% { transform: rotate(-6deg) translateY(6px); }
   }
 
-  .deck-shuffling .deck-card-1 { animation: shuffle1 0.4s ease-in-out infinite; }
-  .deck-shuffling .deck-card-2 { animation: shuffle2 0.4s ease-in-out infinite 0.1s; }
-  .deck-shuffling .deck-card-3 { animation: shuffle3 0.4s ease-in-out infinite 0.2s; }
+  .deck-shuffling .deck-card-1 { animation: shuffle1 0.6s ease-in-out infinite; }
+  .deck-shuffling .deck-card-2 { animation: shuffle2 0.6s ease-in-out infinite 0.1s; }
+  .deck-shuffling .deck-card-3 { animation: shuffle3 0.6s ease-in-out infinite 0.2s; }
 
   .flip-card {
     position: absolute;
@@ -756,6 +762,72 @@
     display: block;
   }
 
+  /* ── ASTRO MODALE ── */
+  .astro-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .astro-modal-overlay.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .astro-modal-content {
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 25px;
+    padding: 50px 40px 40px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: slideUp 0.4s ease;
+  }
+
+  .astro-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #333;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    padding: 0;
+  }
+
+  .astro-modal-close:hover {
+    transform: rotate(90deg);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .astro-sign-title {
     font-family: 'PP Pangaia', sans-serif;
     font-size: 2rem;
@@ -775,21 +847,43 @@
   @media (max-width: 1024px) {
     .categories-grid {
       grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
     }
     .guidance-card {
       grid-column: 1 / -1;
       grid-row: auto;
+      height: 300px !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .categories-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      max-width: 100%;
+      padding: 0 15px;
+    }
+    .category-card {
+      height: 240px !important;
+    }
+    .guidance-card {
+      grid-column: 1 / -1;
+      height: 260px !important;
     }
   }
 
   @media (max-width: 600px) {
     .categories-grid {
       grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .category-card {
+      height: 220px !important;
     }
     .guidance-card {
       grid-column: 1;
       grid-row: auto;
-      height: 280px !important;
+      height: 240px !important;
     }
   }
 </style>
@@ -865,17 +959,16 @@
       <div class="deck-card deck-card-2"></div>
       <div class="deck-card deck-card-1"></div>
       <!-- Flip card (front = back of card / back = revealed card) -->
-      <div class="flip-card" id="flip-card">
-        <div class="flip-card-inner" id="flip-card-inner">
+      <div class="flip-card" id="flip-card-guidance">
+        <div class="flip-card-inner" id="flip-card-inner-guidance">
           <div class="flip-card-front">
-            <img src="https://images.pexels.com/photos/34256952/pexels-photo-34256952.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:14px;"/>
+            <img src="https://images.pexels.com/photos/10397039/pexels-photo-10397039.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:14px;"/>
             <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
               <div style="font-size:1.4rem;color:rgba(255,255,255,0.85);">✦</div>
-              <div style="font-family:'PP Pangaia',sans-serif;font-size:0.9rem;color:rgba(255,255,255,0.85);">cliquez pour tirer</div>
             </div>
           </div>
-          <div class="flip-card-back" id="flip-card-back">
-            <div class="card-name-on-card" id="card-name-visual"></div>
+          <div class="flip-card-back" id="flip-card-back-guidance">
+            <div class="card-name-on-card" id="card-name-visual-guidance"></div>
           </div>
         </div>
       </div>
@@ -920,17 +1013,17 @@
   <button class="back-btn" onclick="goHome()"><span>← Retour</span></button>
   
   <div class="guidance-tabs">
-    <button class="guidance-tab-btn active" data-tab="oracle" onclick="switchGuidanceTab('oracle')">🔮 Oracle</button>
-    <button class="guidance-tab-btn" data-tab="astro" onclick="switchGuidanceTab('astro')">✨ Astrologie</button>
+    <button class="guidance-tab-btn active" data-tab="oracle" onclick="switchGuidanceTab('oracle')">Oracle</button>
+    <button class="guidance-tab-btn" data-tab="astro" onclick="switchGuidanceTab('astro')">Astrologie</button>
   </div>
 
   <!-- ORACLE CONTENT -->
   <div id="oracle-content">
     <div class="oracle-section">
-      <div class="oracle-title">Tirez votre carte de guidance</div>
+      <div class="oracle-title" style="color: white;">Tire une carte</div>
 
       <!-- Deck of cards with flip animation -->
-      <div class="card-deck-wrapper" onclick="drawCard()" onmouseenter="startShuffle()" onmouseleave="stopShuffle()">
+      <div class="card-deck-wrapper" onclick="drawCardGuidance()" onmouseenter="startShuffle()" onmouseleave="stopShuffle()">
         <!-- Background stacked cards -->
         <div class="deck-card deck-card-3"></div>
         <div class="deck-card deck-card-2"></div>
@@ -939,10 +1032,9 @@
         <div class="flip-card" id="flip-card">
           <div class="flip-card-inner" id="flip-card-inner">
             <div class="flip-card-front">
-              <img src="https://images.pexels.com/photos/34256952/pexels-photo-34256952.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:14px;"/>
+              <img src="https://images.pexels.com/photos/10397039/pexels-photo-10397039.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:14px;"/>
               <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
                 <div style="font-size:1.4rem;color:rgba(255,255,255,0.85);">✦</div>
-                <div style="font-family:'PP Pangaia',sans-serif;font-size:0.9rem;color:rgba(255,255,255,0.85);">cliquez pour tirer</div>
               </div>
             </div>
             <div class="flip-card-back" id="flip-card-back">
@@ -954,7 +1046,7 @@
 
       <!-- Bouton tirer à nouveau, toujours visible après tirage -->
       <div id="retirer-btn" style="display:none; text-align:center; margin-bottom:12px;">
-        <button onclick="resetOracle()" style="font-family:'PP Pangaia',sans-serif;font-size:1.1rem;color:var(--cream);background:var(--green-deep);border:none;border-radius:30px;padding:10px 28px;cursor:pointer;box-shadow:0 4px 15px rgba(30,58,30,0.3);">🔄 Tirer à nouveau</button>
+        <button onclick="resetOracleGuidance()" style="font-family:'PP Pangaia',sans-serif;font-size:1.1rem;color:var(--cream);background:var(--green-deep);border:none;border-radius:30px;padding:10px 28px;cursor:pointer;box-shadow:0 4px 15px rgba(30,58,30,0.3);">🔄 Tirer à nouveau</button>
       </div>
 
       <div class="oracle-card-display" id="oracle-display">
@@ -1022,9 +1114,13 @@
       </div>
     </div>
 
-    <div class="astro-guidance-display">
-      <div class="astro-sign-title"></div>
-      <div class="astro-guidance-text"></div>
+    <!-- ASTRO MODAL -->
+    <div class="astro-modal-overlay" id="astro-modal">
+      <div class="astro-modal-content">
+        <button class="astro-modal-close" onclick="closeAstroModal()">×</button>
+        <div class="astro-sign-title"></div>
+        <div class="astro-guidance-text"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -1365,21 +1461,28 @@ function stopShuffle() {
 }
 
 function drawCard() {
-  const inner = document.getElementById('flip-card-inner');
+  drawCardInPage('flip-card-inner', 'flip-card-back', 'card-name-visual', 'oracle-display', 'retirer-btn');
+}
+
+function drawCardGuidance() {
+  drawCardInPage('flip-card-inner-guidance', 'flip-card-back-guidance', 'card-name-visual-guidance', 'oracle-display', 'retirer-btn');
+}
+
+function drawCardInPage(innerId, backId, visualId, displayId, btnId) {
+  const inner = document.getElementById(innerId);
   if (inner.classList.contains('flipped')) return;
 
-  // Mélange rapide avant le retournement
+  // Mélange rapide avant le retournement (plus long pour voir l'animation)
   startShuffle();
   setTimeout(() => {
-    stopShuffle();
-
+    // Continue le mélange un peu pendant le retournement
     const card = oracleCards[Math.floor(Math.random() * oracleCards.length)];
-    document.getElementById('card-name-visual').textContent = card.name;
+    document.getElementById(visualId).textContent = card.name;
     document.getElementById('card-name-text').textContent = card.name;
     document.getElementById('card-desc-text').textContent = card.desc;
 
     // Image de fond sur la carte révélée
-    const back = document.getElementById('flip-card-back');
+    const back = document.getElementById(backId);
     let bgImg = back.querySelector('.card-bg-img');
     if (!bgImg) {
       bgImg = document.createElement('img');
@@ -1395,19 +1498,28 @@ function drawCard() {
 
     inner.classList.add('flipped');
 
+    // Continue le shuffle un peu après le retournement pour l'effet téléphone
     setTimeout(() => {
-      document.getElementById('retirer-btn').style.display = 'block';
-      const display = document.getElementById('oracle-display');
+      stopShuffle();
+      document.getElementById(btnId).style.display = 'block';
+      const display = document.getElementById(displayId);
       display.style.display = 'block';
       display.style.animation = 'none';
       display.offsetHeight;
       display.style.animation = 'fadeInUp 0.6s ease';
-    }, 500);
-  }, 600);
+    }, 300);
+  }, 800);
 }
 
 function resetOracle() {
   const inner = document.getElementById('flip-card-inner');
+  inner.classList.remove('flipped');
+  document.getElementById('oracle-display').style.display = 'none';
+  document.getElementById('retirer-btn').style.display = 'none';
+}
+
+function resetOracleGuidance() {
+  const inner = document.getElementById('flip-card-inner-guidance');
   inner.classList.remove('flipped');
   document.getElementById('oracle-display').style.display = 'none';
   document.getElementById('retirer-btn').style.display = 'none';
@@ -1421,7 +1533,6 @@ function openGuidance() {
   
   // Reset oracle
   resetOracle();
-  document.getElementById('oracle-display').style.display = 'none';
   
   // Active le premier tab
   document.querySelectorAll('.guidance-tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -1439,20 +1550,31 @@ function switchGuidanceTab(tab) {
   document.getElementById('oracle-content').style.display = tab === 'oracle' ? 'block' : 'none';
   document.getElementById('astro-content').style.display = tab === 'astro' ? 'block' : 'none';
   
-  if (tab === 'astro') {
-    document.querySelector('.astro-guidance-display').classList.remove('show');
+  // Fermer la modale astro quand on change d'onglet
+  if (tab === 'oracle') {
+    closeAstroModal();
   }
 }
 
 function selectAstroSign(signKey) {
   const sign = astroSigns[signKey];
-  const display = document.querySelector('.astro-guidance-display');
+  const modal = document.getElementById('astro-modal');
+  const titleEl = modal.querySelector('.astro-sign-title');
+  const textEl = modal.querySelector('.astro-guidance-text');
   
-  document.querySelector('.astro-sign-title').textContent = sign.name + ' ' + sign.symbol;
-  document.querySelector('.astro-guidance-text').textContent = sign.guidance;
+  // Ajouter plus d'aléatoire : choisir aléatoirement parmi les messages
+  const messages = sign.guidance;
+  const randomMessage = messages[Math.floor(Math.random() * messages.length)];
   
-  display.classList.add('show');
-  display.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  titleEl.textContent = sign.name + ' ' + sign.symbol;
+  textEl.textContent = randomMessage;
+  
+  modal.classList.add('show');
+}
+
+function closeAstroModal() {
+  const modal = document.getElementById('astro-modal');
+  modal.classList.remove('show');
 }
 
 // Données des signes astro avec conseils personnalisés
@@ -1460,62 +1582,110 @@ const astroSigns = {
   belier: {
     name: "Bélier",
     symbol: "♈",
-    guidance: "Tu es un feu ardent qui brûle de passions. Ralentis un instant et écoute ton cœur avant de foncer. La réussite vient aussi de la réflexion et non que de l'action. Canalise cette énergie extraordinaire vers ce qui compte vraiment pour toi."
+    guidance: [
+      "Tu es un feu ardent qui brûle de passions. Ralentis un instant et écoute ton cœur avant de foncer. La réussite vient aussi de la réflexion et non que de l'action. Canalise cette énergie extraordinaire vers ce qui compte vraiment pour toi.",
+      "Ton courage est admirable, mais sais-tu que la vraie force réside parfois dans la patience ? Avant de charger, prends un moment pour réfléchir. Les meilleures batailles se gagnent avec la tête et le cœur.",
+      "Tu brûles d'envie d'agir et c'est ton super pouvoir. Utilise-le pour inspirer les autres, pas pour les écraser. Ensemble, vous irez bien plus loin que seul."
+    ]
   },
   taureau: {
     name: "Taureau",
     symbol: "♉",
-    guidance: "Tu construis solidement, pierre après pierre. Tes fondations sont impressionnantes, mais ne restes pas figé dans tes certitudes. La vie t'invite à explorer l'inconnu avec confiance. Ton pouvoir réside dans ta capacité à évoluer sans perdre ton essence."
+    guidance: [
+      "Tu construis solidement, pierre après pierre. Tes fondations sont impressionnantes, mais ne restes pas figé dans tes certitudes. La vie t'invite à explorer l'inconnu avec confiance. Ton pouvoir réside dans ta capacité à évoluer sans perdre ton essence.",
+      "Ta stabilité est un don précieux, mais le changement aussi. Ne crains pas de réorganiser ton monde si cela t'apporte plus de joie. L'évolution douce est encore une forme de croissance.",
+      "Tu sais ce que tu veux et tu y vas. C'est magnifique. Veille juste à rester ouvert aux surprises magiques qui peuvent surgir sur ta route."
+    ]
   },
   gemeaux: {
     name: "Gémeaux",
     symbol: "♊",
-    guidance: "Tu es une belle papillon qui voltige entre mille idées. Cherche la profondeur dans ces mille conversations. Là où tu brilles vraiment, c'est quand tu arrives à synthétiser ta curiosité en quelque chose de significatif. Écoute plus, parle avec intention."
+    guidance: [
+      "Tu es une belle papillon qui voltige entre mille idées. Cherche la profondeur dans ces mille conversations. Là où tu brilles vraiment, c'est quand tu arrives à synthétiser ta curiosité en quelque chose de significatif. Écoute plus, parle avec intention.",
+      "Ton esprit brillant papillonne partout. C'est ton art. Mais souviens-toi : parfois, te focaliser sur une seule chose révèle la vrai magie.",
+      "Tu connectes les points que personne d'autre ne voit. Tes échanges sont précieux. Assure-toi juste que tu écoutes vraiment, pas seulement que tu parles."
+    ]
   },
   cancer: {
     name: "Cancer",
     symbol: "♋",
-    guidance: "Ton empathie est un don précieux, mais ne te noies pas dans les émotions des autres. Protège-toi avec la même tendresse que tu offres au monde. Tu mérites d'être nourri autant que tu nourris les autres. Pose tes limites avec douceur mais fermeté."
+    guidance: [
+      "Ton empathie est un don précieux, mais ne te noies pas dans les émotions des autres. Protège-toi avec la même tendresse que tu offres au monde. Tu mérites d'être nourri autant que tu nourris les autres. Pose tes limites avec douceur mais fermeté.",
+      "Ton cœur est aussi grand que l'océan. Veille à ne pas absorber les tempêtes des autres. Tu peux aimer sans te perdre.",
+      "Tu sens tout profondément, c'est ta force. Utilise cette sensibilité pour créer, pas pour te torturer. Tes émotions sont une boussole, pas une prison."
+    ]
   },
   lion: {
     name: "Lion",
     symbol: "♌",
-    guidance: "Tu es une lumière naturelle qui illumine tout autour de toi. Mais sais-tu que ton vrai pouvoir réside dans la capacité à élever les autres ? Partage le projecteur, car ensemble vous brillerez infiniment plus fort. L'amour vrai est dans la générosité de cœur."
+    guidance: [
+      "Tu es une lumière naturelle qui illumine tout autour de toi. Mais sais-tu que ton vrai pouvoir réside dans la capacité à élever les autres ? Partage le projecteur, car ensemble vous brillerez infiniment plus fort. L'amour vrai est dans la générosité de cœur.",
+      "Tu as le don de briller, et le monde a besoin de ta lumière. Mais n'oublie pas que les autres aussi ont leur propre éclat.",
+      "Ton rayonnement est naturel et contagieux. Utilise-le pour créer de la chaleur autour de toi, pas seulement pour être admiré."
+    ]
   },
   vierge: {
     name: "Vierge",
     symbol: "♍",
-    guidance: "Tu vois les détails que personne d'autre ne voit. C'est un don, mais attention à ne pas perdre la vue d'ensemble. La perfection n'existe pas, et c'est justement ce qui rend la vie belle. Accorde-toi de la grâce et célèbre tes petites victoires au quotidien."
+    guidance: [
+      "Tu vois les détails que personne d'autre ne voit. C'est un don, mais attention à ne pas perdre la vue d'ensemble. La perfection n'existe pas, et c'est justement ce qui rend la vie belle. Accorde-toi de la grâce et célèbre tes petites victoires au quotidien.",
+      "Ton œil critique est un super pouvoir. Utilise-le pour améliorer le monde, pas pour te punir. Sois aussi gentille avec toi-même que tu l'es avec les autres.",
+      "Tes listes, tes plans, tes systèmes : c'est ton amour du monde. Laisse juste un peu de place à l'imprévu magique."
+    ]
   },
   balance: {
     name: "Balance",
     symbol: "♎",
-    guidance: "Tu cherches l'harmonie, mais elle ne vient pas de plaire à tous. Elle vient de l'authenticité. Tu dois apprendre à dire non sans culpabilité et à choisir ton camp quand il le faut. Ton équilibre véritable naît de l'alignement avec tes valeurs profondes."
+    guidance: [
+      "Tu cherches l'harmonie, mais elle ne vient pas de plaire à tous. Elle vient de l'authenticité. Tu dois apprendre à dire non sans culpabilité et à choisir ton camp quand il le faut. Ton équilibre véritable naît de l'alignement avec tes valeurs profondes.",
+      "L'équilibre est beau, mais pas si cela signifie perdre qui tu es vraiment. Sois honnête sur ce que tu veux.",
+      "Tu vois tous les côtés, c'est un don. Mais c'est à toi de trancher et de choisir. L'indécision n'est pas l'équilibre."
+    ]
   },
   scorpion: {
     name: "Scorpion",
     symbol: "♏",
-    guidance: "Tu es intense, magnétique et profond comme un océan sans fin. Ton mystère est ton charme, mais partage un peu plus de toi. La vulnérabilité n'est pas une faiblesse, c'est une force. Laisse les gens proches te voir vraiment, sans armure."
+    guidance: [
+      "Tu es intense, magnétique et profond comme un océan sans fin. Ton mystère est ton charme, mais partage un peu plus de toi. La vulnérabilité n'est pas une faiblesse, c'est une force. Laisse les gens proches te voir vraiment, sans armure.",
+      "Ton pouvoir est immense, mais il l'est encore plus quand tu l'utilises pour guérir, pas pour blesser.",
+      "Tu as le don de transformation. Transforme tes blessures en sagesse et partage-la. C'est ta vraie magie."
+    ]
   },
   sagittaire: {
     name: "Sagittaire",
     symbol: "♐",
-    guidance: "Tu rêves grand et tu as raison. Le monde a besoin de ton optimisme. Mais attention, ne fuis pas les responsabilités en quête de nouvelles aventures. Apprends à terminer ce que tu commences. C'est en ancrant tes rêves dans la réalité qu'ils deviennent vrais."
+    guidance: [
+      "Tu rêves grand et tu as raison. Le monde a besoin de ton optimisme. Mais attention, ne fuis pas les responsabilités en quête de nouvelles aventures. Apprends à terminer ce que tu commences. C'est en ancrant tes rêves dans la réalité qu'ils deviennent vrais.",
+      "Ton optimisme est contagieux. Utilise-le pour motiver, puis reste pour voir la graine grandir.",
+      "L'aventure t'appelle, c'est magnifique. Veille juste à construire quelque chose qui dure, pas seulement à explorer."
+    ]
   },
   capricorne: {
     name: "Capricorne",
     symbol: "♑",
-    guidance: "Tu gravies les montagnes avec patience et détermination. C'est admirable, mais n'oublie pas de profiter du paysage en chemin. La vie n'est pas qu'une destination à atteindre. Permets-toi de rire, de jouer, de te détendre. Le succès sans joie est creux."
+    guidance: [
+      "Tu gravies les montagnes avec patience et détermination. C'est admirable, mais n'oublie pas de profiter du paysage en chemin. La vie n'est pas qu'une destination à atteindre. Permets-toi de rire, de jouer, de te détendre. Le succès sans joie est creux.",
+      "Ton sérieux est une force, mais le plaisir aussi. Balance-les. Tu mérites d'être heureux, pas seulement réussi.",
+      "Tu construis l'avenir avec sagesse. N'oublie pas de vivre le présent. C'est là que la vraie richesse vit."
+    ]
   },
   verseau: {
     name: "Verseau",
     symbol: "♒",
-    guidance: "Tu es un visionnaire, tes idées sont révolutionnaires. Mais souviens-toi que tu vis sur cette planète avec d'autres humains. Descends de ta tour d'ivoire et connecte-toi vraiment. La magie vient quand tes idées brillantes rencontrent le cœur tendre du monde."
+    guidance: [
+      "Tu es un visionnaire, tes idées sont révolutionnaires. Mais souviens-toi que tu vis sur cette planète avec d'autres humains. Descends de ta tour d'ivoire et connecte-toi vraiment. La magie vient quand tes idées brillantes rencontrent le cœur tendre du monde.",
+      "Ton avance sur le temps est étonnante. Aide les autres à te comprendre. C'est dans l'explication que naît le changement.",
+      "Tu rêves d'un monde meilleur. C'est beau. Souviens-toi que le changement véritable passe par les cœurs des gens, pas seulement par les idées."
+    ]
   },
   poissons: {
     name: "Poissons",
     symbol: "♓",
-    guidance: "Tu nages dans les eaux infinies de l'imaginaire et c'est un cadeau. Mais tu dois aussi avoir des racines sur la terre. Ancre tes rêves dans des actions concrètes. Ton intuition est juste, alors fais-lui confiance tout en restant pragmatique. C'est ton équilibre."
+    guidance: [
+      "Tu nages dans les eaux infinies de l'imaginaire et c'est un cadeau. Mais tu dois aussi avoir des racines sur la terre. Ancre tes rêves dans des actions concrètes. Ton intuition est juste, alors fais-lui confiance tout en restant pragmatique. C'est ton équilibre.",
+      "Ton imagination est un super pouvoir. Crée, rêve, mais ancre aussi tes rêves dans le réel pour les voir grandir.",
+      "Tu ressens les énergies autour de toi. C'est un don. Utilise-le pour guérir le monde, mais ne te laisse pas consumer par ses peines."
+    ]
   }
 };
 </script>
