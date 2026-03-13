@@ -183,7 +183,25 @@
     line-height: 1.2;
   }
 
-  /* ── CATEGORY PAGE ── */
+  /* ── CATEGORY PAGE HEADER ── */
+  #cat-name {
+    font-family: 'Maulysia', sans-serif;
+    font-weight: 400;
+    font-size: clamp(3rem, 8vw, 5rem);
+    color: #3a3a3a;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+    margin-bottom: 12px;
+  }
+
+  .category-subtitle {
+    font-family: 'PP Pangaia', sans-serif;
+    font-size: 1.2rem;
+    color: #3a3a3a;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
   #category-page {
     display: none;
     position: relative;
@@ -995,7 +1013,7 @@
       <div class="category-name">Pour bosser sereinement</div>
     </div>
     <div class="category-card" onclick="openCategory('jardiner')">
-      <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/10713505/pexels-photo-10713505.jpeg'); background-size:cover; background-position:center;"></div>
+      <div class="card-bg" style="background-image:url('https://images.unsplash.com/photo-1729409201328-12f33be19831?q=80&w=388&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size:cover; background-position:center;"></div>
       <div class="card-overlay"></div>
       <div class="category-name">Pour apaiser mes plantes et moi</div>
     </div>
@@ -1017,11 +1035,11 @@
   <button class="back-btn" onclick="goHome()">← Retour</button>
 
   <div id="category-header" style="text-align:center; margin-bottom:30px;">
-    <div id="cat-name" style="font-family:'PP Pangaia',sans-serif; font-size:1.8rem; color:var(--green-deep);"></div>
+    <div id="cat-name"></div>
+    <div class="category-subtitle">Choisissez votre ambiance</div>
   </div>
 
   <!-- Subcategories -->
-  <div class="subcategories-title">Choisissez votre ambiance</div>
   <div class="subcategory-tabs" id="subcategory-tabs"></div>
 
   <!-- Playlist player -->
@@ -1047,6 +1065,11 @@
 <div id="guidance-page">
   <button class="back-btn" onclick="goHome()"><span>← Retour</span></button>
   
+  <div id="guidance-header" style="text-align:center; margin-bottom:40px;">
+    <div style="font-family:'Maulysia',sans-serif; font-weight:400; font-size:clamp(3rem, 8vw, 5rem); color:#3a3a3a; letter-spacing:0.02em; line-height:1; text-shadow:0 2px 20px rgba(0,0,0,0.2); margin-bottom:12px;">Pause Guidance</div>
+    <div class="category-subtitle">Choisissez votre lecture</div>
+  </div>
+  
   <div class="guidance-tabs">
     <button class="guidance-tab-btn active" data-tab="oracle" onclick="switchGuidanceTab('oracle')">Pause Oracle</button>
     <button class="guidance-tab-btn" data-tab="tarot" onclick="switchGuidanceTab('tarot')">Pause Tarot</button>
@@ -1068,7 +1091,7 @@
         <div class="flip-card" id="flip-card-guidance">
           <div class="flip-card-inner" id="flip-card-inner-guidance">
             <div class="flip-card-front">
-              <img src="https://images.pexels.com/photos/10397039/pexels-photo-10397039.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:14px;"/>
+              <img src="https://images.pexels.com/photos/14523380/pexels-photo-14523380.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:14px;"/>
               <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
                 <div style="font-size:1.4rem;color:rgba(255,255,255,0.85);">✦</div>
               </div>
@@ -1107,7 +1130,7 @@
         <div class="flip-card" id="flip-card-tarot">
           <div class="flip-card-inner" id="flip-card-inner-tarot">
             <div class="flip-card-front">
-              <img src="https://images.pexels.com/photos/10397039/pexels-photo-10397039.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:14px;"/>
+              <img src="https://images.pexels.com/photos/14523380/pexels-photo-14523380.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:14px;"/>
               <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
                 <div style="font-size:1.4rem;color:rgba(255,255,255,0.85);">✦</div>
               </div>
@@ -1290,133 +1313,133 @@ const tarotCards = [
   {
     name: "Le Bateleur",
     number: "I",
-    image: "https://images.pexels.com/photos/5632399/pexels-photo-5632399.jpeg",
+    image: "https://images.pexels.com/photos/3694380/pexels-photo-3694380.jpeg",
     desc: "Le début d'un nouveau cycle. Tu as tous les outils en main pour créer ta réalité. C'est le moment d'agir avec intention et confiance."
   },
   {
     name: "La Papesse",
     number: "II",
-    image: "https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg",
+    image: "https://images.pexels.com/photos/3889857/pexels-photo-3889857.jpeg",
     desc: "L'intuition et la sagesse cachée. Écoute ta voix intérieure, elle détient les réponses que tu cherches. Le mystère t'appelle."
   },
   {
     name: "L'Impératrice",
     number: "III",
-    image: "https://images.pexels.com/photos/3944441/pexels-photo-3944441.jpeg",
+    image: "https://images.pexels.com/photos/3402999/pexels-photo-3402999.jpeg",
     desc: "La créativité et l'abondance. Tu es en pleine force créatrice. Cultive ce que tu désires, la fertilité est avec toi."
   },
   {
     name: "L'Empereur",
     number: "IV",
-    image: "https://images.pexels.com/photos/3945683/pexels-photo-3945683.jpeg",
+    image: "https://images.pexels.com/photos/3657096/pexels-photo-3657096.jpeg",
     desc: "L'autorité et la stabilité. C'est le moment de prendre le contrôle de ta vie. La discipline et la structure t'apporteront le succès."
   },
   {
     name: "Le Pape",
     number: "V",
-    image: "https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg",
+    image: "https://images.pexels.com/photos/3657097/pexels-photo-3657097.jpeg",
     desc: "La sagesse spirituelle et la tradition. Cherche conseil auprès de ceux qui savent. La connaissance est ta plus grande richesse."
   },
   {
     name: "L'Amoureux",
     number: "VI",
-    image: "https://images.pexels.com/photos/4552286/pexels-photo-4552286.jpeg",
+    image: "https://images.pexels.com/photos/3656839/pexels-photo-3656839.jpeg",
     desc: "Les choix du cœur et l'harmonie. Une décision importante t'attend. Laisse l'amour guider ton chemin."
   },
   {
     name: "Le Chariot",
     number: "VII",
-    image: "https://images.pexels.com/photos/3587620/pexels-photo-3587620.jpeg",
+    image: "https://images.pexels.com/photos/3739686/pexels-photo-3739686.jpeg",
     desc: "La détermination et le succès. Tu avances vers la victoire. Reste focus et tu franchiras tous les obstacles."
   },
   {
     name: "La Justice",
     number: "VIII",
-    image: "https://images.pexels.com/photos/3783472/pexels-photo-3783472.jpeg",
+    image: "https://images.pexels.com/photos/3889857/pexels-photo-3889857.jpeg",
     desc: "L'équilibre et la vérité. La justice prévaut. Sois honnête avec toi-même et les autres, l'équité te sourit."
   },
   {
     name: "L'Hermite",
     number: "IX",
-    image: "https://images.pexels.com/photos/3808517/pexels-photo-3808517.jpeg",
+    image: "https://images.pexels.com/photos/3657511/pexels-photo-3657511.jpeg",
     desc: "La réflexion et la solitude. Retire-toi pour mieux te connaître. La sagesse naît de l'introspection."
   },
   {
     name: "La Roue de Fortune",
     number: "X",
-    image: "https://images.pexels.com/photos/4458470/pexels-photo-4458470.jpeg",
+    image: "https://images.pexels.com/photos/3656840/pexels-photo-3656840.jpeg",
     desc: "Le destin et le cycle. Les choses changent. Accepte le mouvement de la vie, tout tourne et revient."
   },
   {
     name: "La Force",
     number: "XI",
-    image: "https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg",
+    image: "https://images.pexels.com/photos/3889858/pexels-photo-3889858.jpeg",
     desc: "La puissance intérieure et le courage. Tu es plus fort que tu ne le crois. Canalise ton énergie avec bienveillance."
   },
   {
     name: "Le Pendu",
     number: "XII",
-    image: "https://images.pexels.com/photos/3945683/pexels-photo-3945683.jpeg",
+    image: "https://images.pexels.com/photos/3657512/pexels-photo-3657512.jpeg",
     desc: "La suspension et l'attente. Parfois il faut lâcher prise pour avancer. L'acceptation apporte la paix."
   },
   {
     name: "La Mort",
     number: "XIII",
-    image: "https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg",
+    image: "https://images.pexels.com/photos/3889859/pexels-photo-3889859.jpeg",
     desc: "La transformation et la renaissance. Quelque chose se termine pour que du nouveau naisse. C'est une belle mutation."
   },
   {
     name: "La Tempérance",
     number: "XIV",
-    image: "https://images.pexels.com/photos/4452286/pexels-photo-4452286.jpeg",
+    image: "https://images.pexels.com/photos/3656841/pexels-photo-3656841.jpeg",
     desc: "L'harmonie et l'équilibre. Modère tes excès, trouve le juste milieu. L'harmonie intérieure t'attend."
   },
   {
     name: "Le Diable",
     number: "XV",
-    image: "https://images.pexels.com/photos/3945619/pexels-photo-3945619.jpeg",
+    image: "https://images.pexels.com/photos/3657513/pexels-photo-3657513.jpeg",
     desc: "Les attachements et les chaînes. Reconnais ce qui te retient prisonnier. Tu as le pouvoir de te libérer."
   },
   {
     name: "La Tour",
     number: "XVI",
-    image: "https://images.pexels.com/photos/3631769/pexels-photo-3631769.jpeg",
+    image: "https://images.pexels.com/photos/3657514/pexels-photo-3657514.jpeg",
     desc: "L'effondrement et la clarté. Un changement brutal arrive mais il libère. La destruction précède la reconstruction."
   },
   {
     name: "L'Étoile",
     number: "XVII",
-    image: "https://images.pexels.com/photos/3560370/pexels-photo-3560370.jpeg",
+    image: "https://images.pexels.com/photos/3402997/pexels-photo-3402997.jpeg",
     desc: "L'espoir et l'inspiration. Un rayon de lumière éclaire ton chemin. Tes rêves sont possibles, crois-y."
   },
   {
     name: "La Lune",
     number: "XVIII",
-    image: "https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg",
+    image: "https://images.pexels.com/photos/3889860/pexels-photo-3889860.jpeg",
     desc: "L'illusion et les émotions. Ne te laisse pas tromper par les apparences. Prête attention à tes rêves."
   },
   {
     name: "Le Soleil",
     number: "XIX",
-    image: "https://images.pexels.com/photos/3945681/pexels-photo-3945681.jpeg",
+    image: "https://images.pexels.com/photos/3402998/pexels-photo-3402998.jpeg",
     desc: "La joie et la clarté. La lumière brille sur toi. Tout s'illumine, c'est une période d'expansion."
   },
   {
     name: "Le Jugement",
     number: "XX",
-    image: "https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg",
+    image: "https://images.pexels.com/photos/3657515/pexels-photo-3657515.jpeg",
     desc: "L'appel et la révolution intérieure. C'est le moment d'entendre ton appel. Un renouveau t'attend."
   },
   {
     name: "Le Monde",
     number: "XXI",
-    image: "https://images.pexels.com/photos/3945683/pexels-photo-3945683.jpeg",
+    image: "https://images.pexels.com/photos/3656842/pexels-photo-3656842.jpeg",
     desc: "L'accomplissement et la complétude. Tu as bouclé une boucle. C'est la fin et le début d'un nouveau voyage."
   },
   {
     name: "Le Fou",
     number: "0",
-    image: "https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg",
+    image: "https://images.pexels.com/photos/3657516/pexels-photo-3657516.jpeg",
     desc: "L'innocence et le libre arbitre. Aie le courage de sauter dans l'inconnu. La vie t'appelle à vivre pleinement."
   }
 ];
