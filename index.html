@@ -718,32 +718,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: white;
-    background-image: url('https://images.pexels.com/photos/6298023/pexels-photo-6298023.jpeg');
-    background-size: cover;
-    background-position: center;
+    background: rgba(255, 255, 255, 0.9);
     border: 2px solid #333;
     border-radius: 15px;
     cursor: pointer;
     transition: all 0.3s;
     padding: 15px;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     position: relative;
-  }
-
-  .astro-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(255, 255, 255, 0.85);
-    border-radius: 15px;
-    z-index: 0;
-  }
-
-  .astro-card > * {
-    position: relative;
-    z-index: 1;
   }
 
   .astro-card:hover {
@@ -1023,14 +1006,13 @@
   </div>
 
   <!-- ASTRO CONTENT -->
-  <div id="astro-content">
-    <div style="text-align: center; margin-bottom: 30px; background-image: url('https://images.pexels.com/photos/6298023/pexels-photo-6298023.jpeg'); background-size: cover; background-position: center; border-radius: 20px; padding: 40px; position: relative;">
-      <div style="position: absolute; inset: 0; background: rgba(0, 0, 0, 0.2); border-radius: 20px;"></div>
-      <h2 style="font-family: 'PP Pangaia', sans-serif; font-size: 2rem; color: white; margin-bottom: 10px; position: relative; z-index: 1;">Astrologie</h2>
-      <p style="font-family: 'PP Pangaia', sans-serif; color: rgba(255, 255, 255, 0.9); font-style: italic; position: relative; z-index: 1;">Cliquez sur votre signe pour recevoir votre message de guidance</p>
-    </div>
+  <div id="astro-content" style="background-image: url('https://images.pexels.com/photos/6298023/pexels-photo-6298023.jpeg'); background-size: cover; background-position: center; background-attachment: fixed; padding: 60px 20px; position: relative;">
+    <div style="position: absolute; inset: 0; background: rgba(0, 0, 0, 0.25);"></div>
+    
+    <div style="position: relative; z-index: 1;">
+      <h2 style="font-family: 'PP Pangaia', sans-serif; font-size: 2.5rem; color: white; text-align: center; margin-bottom: 50px; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">Astrologie</h2>
 
-    <div class="astro-grid">
+      <div class="astro-grid">
       <div class="astro-card" onclick="selectAstroSign('belier')">
         <div class="astro-symbol">♈</div>
         <div class="astro-name">Bélier</div>
@@ -1078,6 +1060,7 @@
       <div class="astro-card" onclick="selectAstroSign('poissons')">
         <div class="astro-symbol">♓</div>
         <div class="astro-name">Poissons</div>
+      </div>
       </div>
     </div>
 
@@ -1410,7 +1393,7 @@ function prevTrack() {
 
 
 function goHome() {
-  resetOracle();
+  resetOracleGuidance();
   document.getElementById('category-page').style.display = 'none';
   document.getElementById('guidance-page').style.display = 'none';
   document.getElementById('home-page').style.display = 'block';
