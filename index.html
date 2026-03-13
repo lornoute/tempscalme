@@ -899,12 +899,12 @@
       <div class="category-name">Pour dormir tranquillement</div>
     </div>
     <div class="category-card" onclick="openCategory('bain')">
-      <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/32208792/pexels-photo-32208792.jpeg'); background-size:cover; background-position:center;"></div>
+      <div class="card-bg" style="background-image:url('https://plus.unsplash.com/premium_photo-1679346079476-93ccc9df6878?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size:cover; background-position:center; filter: saturate(0.9) brightness(0.95) contrast(1.05);"></div>
       <div class="card-overlay"></div>
       <div class="category-name">Pour prendre soin de moi</div>
     </div>
     <div class="category-card" onclick="openCategory('travailler')">
-      <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/14348172/pexels-photo-14348172.jpeg'); background-size:cover; background-position:center;"></div>
+      <div class="card-bg" style="background-image:url('https://images.unsplash.com/photo-1587136527307-f53f514267d7?q=80&w=424&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size:cover; background-position:center; filter: saturate(0.9) brightness(0.95) contrast(1.05);"></div>
       <div class="card-overlay"></div>
       <div class="category-name">Pour bosser sereinement</div>
     </div>
@@ -914,7 +914,7 @@
       <div class="category-name">Pour apaiser mes plantes et moi</div>
     </div>
     <div class="category-card" onclick="openCategory('lire')">
-      <div class="card-bg" style="background-image:url('https://images.pexels.com/photos/2177482/pexels-photo-2177482.jpeg'); background-size:cover; background-position:center;"></div>
+      <div class="card-bg" style="background-image:url('https://images.unsplash.com/photo-1633362057641-db95580aaef1?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size:cover; background-position:center; filter: saturate(0.9) brightness(0.95) contrast(1.05);"></div>
       <div class="card-overlay"></div>
       <div class="category-name">Pour lire en toute détente</div>
     </div>
@@ -963,6 +963,7 @@
   
   <div class="guidance-tabs">
     <button class="guidance-tab-btn active" data-tab="oracle" onclick="switchGuidanceTab('oracle')">Pause Oracle</button>
+    <button class="guidance-tab-btn" data-tab="tarot" onclick="switchGuidanceTab('tarot')">Pause Tarot</button>
     <button class="guidance-tab-btn" data-tab="astro" onclick="switchGuidanceTab('astro')">Pause Astro</button>
   </div>
 
@@ -1001,6 +1002,45 @@
       <div class="oracle-card-display" id="oracle-display-guidance">
         <div class="oracle-card-name" id="card-name-text-guidance"></div>
         <div class="oracle-card-desc" id="card-desc-text-guidance"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAROT CONTENT -->
+  <div id="tarot-content" style="display:none;">
+    <div class="oracle-section">
+      <div class="oracle-title" style="color: white;">Tire une lame</div>
+
+      <!-- Deck of cards with flip animation -->
+      <div class="card-deck-wrapper" onclick="drawCardTarot()" onmouseenter="startShuffle()" onmouseleave="stopShuffle()">
+        <!-- Background stacked cards -->
+        <div class="deck-card deck-card-3"></div>
+        <div class="deck-card deck-card-2"></div>
+        <div class="deck-card deck-card-1"></div>
+        <!-- Flip card (front = back of card / back = revealed card) -->
+        <div class="flip-card" id="flip-card-tarot">
+          <div class="flip-card-inner" id="flip-card-inner-tarot">
+            <div class="flip-card-front">
+              <img src="https://images.pexels.com/photos/10397039/pexels-photo-10397039.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:14px;"/>
+              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
+                <div style="font-size:1.4rem;color:rgba(255,255,255,0.85);">✦</div>
+              </div>
+            </div>
+            <div class="flip-card-back" id="flip-card-back-tarot">
+              <div class="card-name-on-card" id="card-name-visual-tarot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bouton tirer à nouveau -->
+      <div id="retirer-btn-tarot" style="display:none; text-align:center; margin-bottom:12px;">
+        <button onclick="resetOracleTarot()" style="font-family:'PP Pangaia',sans-serif;font-size:1.1rem;color:var(--cream);background:var(--green-deep);border:none;border-radius:30px;padding:10px 28px;cursor:pointer;box-shadow:0 4px 15px rgba(30,58,30,0.3);">Tirer à nouveau</button>
+      </div>
+
+      <div class="oracle-card-display" id="oracle-display-tarot">
+        <div class="oracle-card-name" id="card-name-text-tarot"></div>
+        <div class="oracle-card-desc" id="card-desc-text-tarot"></div>
       </div>
     </div>
   </div>
@@ -1154,8 +1194,144 @@ const oracleCards = [
   {
     name: "Le Choix",
     symbol: "🌿",
-    image: "https://images.pexels.com/photos/164377/pexels-photo-164377.jpeg",
+    image: "https://images.unsplash.com/photo-1429743305873-d4065c15f93e?q=80&w=867&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     desc: "Plusieurs options s'offrent à toi. Il n'y a pas de mauvais choix, seulement celui qui résonne avec ce que tu souhaites vraiment. Pas de pression, tout arrive pour une raison."
+  }
+];
+
+// ── Tarot cards data (22 Arcanes Majeurs) ──
+const tarotCards = [
+  {
+    name: "Le Bateleur",
+    number: "I",
+    image: "https://images.pexels.com/photos/5632399/pexels-photo-5632399.jpeg",
+    desc: "Le début d'un nouveau cycle. Tu as tous les outils en main pour créer ta réalité. C'est le moment d'agir avec intention et confiance."
+  },
+  {
+    name: "La Papesse",
+    number: "II",
+    image: "https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg",
+    desc: "L'intuition et la sagesse cachée. Écoute ta voix intérieure, elle détient les réponses que tu cherches. Le mystère t'appelle."
+  },
+  {
+    name: "L'Impératrice",
+    number: "III",
+    image: "https://images.pexels.com/photos/3944441/pexels-photo-3944441.jpeg",
+    desc: "La créativité et l'abondance. Tu es en pleine force créatrice. Cultive ce que tu désires, la fertilité est avec toi."
+  },
+  {
+    name: "L'Empereur",
+    number: "IV",
+    image: "https://images.pexels.com/photos/3945683/pexels-photo-3945683.jpeg",
+    desc: "L'autorité et la stabilité. C'est le moment de prendre le contrôle de ta vie. La discipline et la structure t'apporteront le succès."
+  },
+  {
+    name: "Le Pape",
+    number: "V",
+    image: "https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg",
+    desc: "La sagesse spirituelle et la tradition. Cherche conseil auprès de ceux qui savent. La connaissance est ta plus grande richesse."
+  },
+  {
+    name: "L'Amoureux",
+    number: "VI",
+    image: "https://images.pexels.com/photos/4552286/pexels-photo-4552286.jpeg",
+    desc: "Les choix du cœur et l'harmonie. Une décision importante t'attend. Laisse l'amour guider ton chemin."
+  },
+  {
+    name: "Le Chariot",
+    number: "VII",
+    image: "https://images.pexels.com/photos/3587620/pexels-photo-3587620.jpeg",
+    desc: "La détermination et le succès. Tu avances vers la victoire. Reste focus et tu franchiras tous les obstacles."
+  },
+  {
+    name: "La Justice",
+    number: "VIII",
+    image: "https://images.pexels.com/photos/3783472/pexels-photo-3783472.jpeg",
+    desc: "L'équilibre et la vérité. La justice prévaut. Sois honnête avec toi-même et les autres, l'équité te sourit."
+  },
+  {
+    name: "L'Hermite",
+    number: "IX",
+    image: "https://images.pexels.com/photos/3808517/pexels-photo-3808517.jpeg",
+    desc: "La réflexion et la solitude. Retire-toi pour mieux te connaître. La sagesse naît de l'introspection."
+  },
+  {
+    name: "La Roue de Fortune",
+    number: "X",
+    image: "https://images.pexels.com/photos/4458470/pexels-photo-4458470.jpeg",
+    desc: "Le destin et le cycle. Les choses changent. Accepte le mouvement de la vie, tout tourne et revient."
+  },
+  {
+    name: "La Force",
+    number: "XI",
+    image: "https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg",
+    desc: "La puissance intérieure et le courage. Tu es plus fort que tu ne le crois. Canalise ton énergie avec bienveillance."
+  },
+  {
+    name: "Le Pendu",
+    number: "XII",
+    image: "https://images.pexels.com/photos/3945683/pexels-photo-3945683.jpeg",
+    desc: "La suspension et l'attente. Parfois il faut lâcher prise pour avancer. L'acceptation apporte la paix."
+  },
+  {
+    name: "La Mort",
+    number: "XIII",
+    image: "https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg",
+    desc: "La transformation et la renaissance. Quelque chose se termine pour que du nouveau naisse. C'est une belle mutation."
+  },
+  {
+    name: "La Tempérance",
+    number: "XIV",
+    image: "https://images.pexels.com/photos/4452286/pexels-photo-4452286.jpeg",
+    desc: "L'harmonie et l'équilibre. Modère tes excès, trouve le juste milieu. L'harmonie intérieure t'attend."
+  },
+  {
+    name: "Le Diable",
+    number: "XV",
+    image: "https://images.pexels.com/photos/3945619/pexels-photo-3945619.jpeg",
+    desc: "Les attachements et les chaînes. Reconnais ce qui te retient prisonnier. Tu as le pouvoir de te libérer."
+  },
+  {
+    name: "La Tour",
+    number: "XVI",
+    image: "https://images.pexels.com/photos/3631769/pexels-photo-3631769.jpeg",
+    desc: "L'effondrement et la clarté. Un changement brutal arrive mais il libère. La destruction précède la reconstruction."
+  },
+  {
+    name: "L'Étoile",
+    number: "XVII",
+    image: "https://images.pexels.com/photos/3560370/pexels-photo-3560370.jpeg",
+    desc: "L'espoir et l'inspiration. Un rayon de lumière éclaire ton chemin. Tes rêves sont possibles, crois-y."
+  },
+  {
+    name: "La Lune",
+    number: "XVIII",
+    image: "https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg",
+    desc: "L'illusion et les émotions. Ne te laisse pas tromper par les apparences. Prête attention à tes rêves."
+  },
+  {
+    name: "Le Soleil",
+    number: "XIX",
+    image: "https://images.pexels.com/photos/3945681/pexels-photo-3945681.jpeg",
+    desc: "La joie et la clarté. La lumière brille sur toi. Tout s'illumine, c'est une période d'expansion."
+  },
+  {
+    name: "Le Jugement",
+    number: "XX",
+    image: "https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg",
+    desc: "L'appel et la révolution intérieure. C'est le moment d'entendre ton appel. Un renouveau t'attend."
+  },
+  {
+    name: "Le Monde",
+    number: "XXI",
+    image: "https://images.pexels.com/photos/3945683/pexels-photo-3945683.jpeg",
+    desc: "L'accomplissement et la complétude. Tu as bouclé une boucle. C'est la fin et le début d'un nouveau voyage."
+  },
+  {
+    name: "Le Fou",
+    number: "0",
+    image: "https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg",
+    desc: "L'innocence et le libre arbitre. Aie le courage de sauter dans l'inconnu. La vie t'appelle à vivre pleinement."
   }
 ];
 
@@ -1261,9 +1437,6 @@ function openCategory(key) {
   document.getElementById('home-page').style.display = 'none';
   document.getElementById('category-page').style.display = 'block';
   document.getElementById('cat-name').textContent = cat.name;
-
-  // Reset oracle
-  document.getElementById('oracle-display').style.display = 'none';
 
   // Reset playlist player
   document.getElementById('playlist-player').style.display = 'none';
@@ -1477,6 +1650,59 @@ function openGuidance() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+function drawCardTarot() {
+  const inner = document.getElementById('flip-card-inner-tarot');
+  if (!inner) {
+    console.error('flip-card-inner-tarot not found');
+    return;
+  }
+  if (inner.classList.contains('flipped')) return;
+
+  // Mélange rapide avant le retournement
+  startShuffle();
+  setTimeout(() => {
+    const card = tarotCards[Math.floor(Math.random() * tarotCards.length)];
+    document.getElementById('card-name-visual-tarot').textContent = card.name + ' (' + card.number + ')';
+    document.getElementById('card-name-text-tarot').textContent = card.name + ' (' + card.number + ')';
+    document.getElementById('card-desc-text-tarot').textContent = card.desc;
+
+    // Image de fond sur la carte révélée
+    const back = document.getElementById('flip-card-back-tarot');
+    let bgImg = back.querySelector('.card-bg-img');
+    if (!bgImg) {
+      bgImg = document.createElement('img');
+      bgImg.className = 'card-bg-img';
+      back.insertBefore(bgImg, back.firstChild);
+    }
+    if (card.image) {
+      bgImg.src = card.image;
+      bgImg.style.display = 'block';
+    } else {
+      bgImg.style.display = 'none';
+    }
+
+    inner.classList.add('flipped');
+
+    // Continue le shuffle un peu après le retournement pour l'effet téléphone
+    setTimeout(() => {
+      stopShuffle();
+      document.getElementById('retirer-btn-tarot').style.display = 'block';
+      const display = document.getElementById('oracle-display-tarot');
+      display.style.display = 'block';
+      display.style.animation = 'none';
+      display.offsetHeight;
+      display.style.animation = 'fadeInUp 0.6s ease';
+    }, 300);
+  }, 800);
+}
+
+function resetOracleTarot() {
+  const inner = document.getElementById('flip-card-inner-tarot');
+  inner.classList.remove('flipped');
+  document.getElementById('oracle-display-tarot').style.display = 'none';
+  document.getElementById('retirer-btn-tarot').style.display = 'none';
+}
+
 function switchGuidanceTab(tab) {
   // Update buttons
   document.querySelectorAll('.guidance-tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -1484,10 +1710,11 @@ function switchGuidanceTab(tab) {
   
   // Update content
   document.getElementById('oracle-content').style.display = tab === 'oracle' ? 'block' : 'none';
+  document.getElementById('tarot-content').style.display = tab === 'tarot' ? 'block' : 'none';
   document.getElementById('astro-content').style.display = tab === 'astro' ? 'block' : 'none';
   
   // Fermer la modale astro quand on change d'onglet
-  if (tab === 'oracle') {
+  if (tab === 'oracle' || tab === 'tarot') {
     closeAstroModal();
   }
 }
